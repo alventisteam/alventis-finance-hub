@@ -128,61 +128,22 @@ const Services = () => {
                 </Button>
               </div>
 
-              <form action="https://formspree.io/f/mqabrqyj" method="POST" className="space-y-4">
-                <div>
-                  <Label htmlFor="name" className="text-sm font-lato font-semibold text-foreground">
-                    Naam *
-                  </Label>
-                  <Input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="mt-1"
-                    placeholder="Jouw volledige naam"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="email" className="text-sm font-lato font-semibold text-foreground">
-                    E-mail *
-                  </Label>
-                  <Input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="mt-1"
-                    placeholder="jouw@email.com"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="company" className="text-sm font-lato font-semibold text-foreground">
-                    Bedrijf
-                  </Label>
-                  <Input
-                    type="text"
-                    id="company"
-                    name="company"
-                    className="mt-1"
-                    placeholder="Naam van jouw bedrijf"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="message" className="text-sm font-lato font-semibold text-foreground">
-                    Bericht
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    className="mt-1"
-                    placeholder="Vertel ons over jouw uitdagingen en wat je hoopt te bereiken..."
-                  />
-                </div>
-
+              <form action="https://formspree.io/f/mqabrqyj" method="POST">
+                <label className="block mb-4">
+                  Name:
+                  <input type="text" name="name" required className="w-full mt-1 p-2 border border-border rounded-md bg-background text-foreground" />
+                </label>
+                <br/>
+                <label className="block mb-4">
+                  Email:
+                  <input type="email" name="email" required className="w-full mt-1 p-2 border border-border rounded-md bg-background text-foreground" />
+                </label>
+                <br/>
+                <label className="block mb-4">
+                  Message:
+                  <textarea name="message" required className="w-full mt-1 p-2 border border-border rounded-md bg-background text-foreground h-24"></textarea>
+                </label>
+                <br/>
                 <div className="flex gap-3 pt-4">
                   <Button
                     type="button"
@@ -192,12 +153,9 @@ const Services = () => {
                   >
                     Annuleren
                   </Button>
-                  <Button
-                    type="submit"
-                    className="flex-1"
-                  >
-                    Verstuur aanvraag
-                  </Button>
+                  <button type="submit" className="flex-1 bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors">
+                    Send
+                  </button>
                 </div>
               </form>
             </div>
