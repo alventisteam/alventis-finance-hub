@@ -55,7 +55,7 @@ const About = () => {
             {/* Professional Photo */}
             <div className="bg-card p-6 rounded-2xl shadow-soft">
               <img
-                src="/lovable-uploads/08164de1-05d7-409e-8e14-ee3262c17645.png"
+                src="/lovable-uploads/d88621f2-ecdc-492b-b0be-04d9dbedadd0.png"
                 alt="Professionele finance consultant - expert in fiscale vertegenwoordiging België"
                 className="w-full h-64 object-cover rounded-xl mb-4"
               />
