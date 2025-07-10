@@ -1,8 +1,14 @@
-import { Shield, Cog, Users } from "lucide-react";
+import { Shield, Cog, Users, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
 const Services = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const services = [
     {
       icon: Shield,
@@ -95,16 +101,109 @@ const Services = () => {
               variant="default" 
               size="lg" 
               className="font-lato font-semibold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              onClick={() => {
-                const element = document.getElementById('contact');
-                if (element) element.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => setIsModalOpen(true)}
             >
               Plan gratis kennismaking
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Modal Form */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-card rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-playfair font-bold text-foreground">
+                  Plan gratis kennismaking
+                </h3>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsModalOpen(false)}
+                  className="h-8 w-8 p-0"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+
+              <form action="https://formspree.io/f/mqabrqyj" method="POST" className="space-y-4">
+                <div>
+                  <Label htmlFor="name" className="text-sm font-lato font-semibold text-foreground">
+                    Naam *
+                  </Label>
+                  <Input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="mt-1"
+                    placeholder="Jouw volledige naam"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="email" className="text-sm font-lato font-semibold text-foreground">
+                    E-mail *
+                  </Label>
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="mt-1"
+                    placeholder="jouw@email.com"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="company" className="text-sm font-lato font-semibold text-foreground">
+                    Bedrijf
+                  </Label>
+                  <Input
+                    type="text"
+                    id="company"
+                    name="company"
+                    className="mt-1"
+                    placeholder="Naam van jouw bedrijf"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="message" className="text-sm font-lato font-semibold text-foreground">
+                    Bericht
+                  </Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    className="mt-1"
+                    placeholder="Vertel ons over jouw uitdagingen en wat je hoopt te bereiken..."
+                  />
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setIsModalOpen(false)}
+                    className="flex-1"
+                  >
+                    Annuleren
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="flex-1"
+                  >
+                    Verstuur aanvraag
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
