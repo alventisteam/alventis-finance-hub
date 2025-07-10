@@ -40,10 +40,7 @@ const Services = () => {
     // Verstuur POST request naar Formspree
     const response = await fetch('https://formspree.io/f/mqabrqyj', {
       method: 'POST',
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
+      body: data
     });
 
     if (response.ok) {
