@@ -10,8 +10,17 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 bg-background relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/lovable-uploads/08164de1-05d7-409e-8e14-ee3262c17645.png"
+          alt="Professional business consultant"
+          className="w-full h-full object-cover opacity-10"
+        />
+        <div className="absolute inset-0 bg-background/90"></div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div>
