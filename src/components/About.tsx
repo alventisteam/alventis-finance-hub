@@ -9,17 +9,8 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-32 bg-background relative overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/lovable-uploads/08164de1-05d7-409e-8e14-ee3262c17645.png"
-          alt="Professionele finance consultant in gesprek - fiscale vertegenwoordiging België"
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-background/60"></div>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="about" className="py-32 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div className="mb-12">
@@ -59,8 +50,19 @@ const About = () => {
             </div>
           </div>
 
-          {/* Visual Elements */}
+          {/* Visual Elements & Photo */}
           <div className="space-y-8">
+            {/* Professional Photo */}
+            <div className="bg-card p-6 rounded-2xl shadow-soft">
+              <img
+                src="/lovable-uploads/08164de1-05d7-409e-8e14-ee3262c17645.png"
+                alt="Professionele finance consultant - expert in fiscale vertegenwoordiging België"
+                className="w-full h-64 object-cover rounded-xl mb-4"
+              />
+              <p className="font-lato text-sm text-muted-foreground text-center">
+                Expert in fiscale vertegenwoordiging en finance optimalisatie voor multinationals
+              </p>
+            </div>
             <div className="bg-sand/20 p-8 rounded-2xl">
               <div className="flex items-center space-x-4 mb-4">
                 <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center">
