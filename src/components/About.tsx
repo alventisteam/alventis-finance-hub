@@ -1,5 +1,4 @@
 import { CheckCircle, Award, Target } from "lucide-react";
-import cfoWorking from "@/assets/cfo-working.jpg";
 
 const About = () => {
   const expertise = [
@@ -16,9 +15,9 @@ const About = () => {
         <img
           src="/lovable-uploads/08164de1-05d7-409e-8e14-ee3262c17645.png"
           alt="Professional business consultant"
-          className="w-full h-full object-cover opacity-10"
+          className="w-full h-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-background/90"></div>
+        <div className="absolute inset-0 bg-background/85"></div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -50,16 +49,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Visual Elements */}
-          <div className="space-y-8">
-            {/* Professional Image */}
-            <div className="rounded-2xl overflow-hidden shadow-medium">
-              <img 
-                src={cfoWorking} 
-                alt="Professional CFO working in modern office" 
-                className="w-full h-64 object-cover"
-              />
-            </div>
+          <div className="space-y-8">{/* Removed professional image - using background instead */}
 
             <div className="bg-sand/20 p-8 rounded-2xl">
               <div className="flex items-center space-x-4 mb-4">
