@@ -31,10 +31,10 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-32 bg-secondary/30">
+    <section id="services" className="py-24 bg-gradient-to-br from-background via-secondary/20 to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
             Onze diensten voor finance teams
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-4xl mx-auto leading-relaxed">
@@ -43,37 +43,37 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="bg-card shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1">
-              <CardContent className="p-8">
-                <div className="flex items-center justify-center w-16 h-16 bg-accent/10 rounded-xl mb-6 mx-auto">
-                  <service.icon className="h-8 w-8 text-accent" />
+            <Card key={index} className="bg-card border border-border/20 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+              <CardContent className="p-8 h-full">
+                <div className="flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8 mx-auto group-hover:bg-primary/20 transition-colors duration-300">
+                  <service.icon className="h-10 w-10 text-primary" />
                 </div>
                 
-                <h3 className="text-xl font-playfair font-semibold text-primary mb-4 text-center">
+                <h3 className="text-2xl font-playfair font-bold text-foreground mb-8 text-center leading-tight">
                   {service.title}
                 </h3>
                 
-                <div className="space-y-6">
-                  <div className="bg-destructive/10 p-4 rounded-lg border-l-4 border-destructive">
-                    <h4 className="font-lato font-semibold text-destructive mb-2">Probleem:</h4>
-                    <p className="font-lato text-foreground text-sm leading-relaxed">{service.problem}</p>
+                <div className="space-y-8">
+                  <div className="border-l-4 border-slate-400 pl-6 py-2">
+                    <h4 className="font-lato font-bold text-slate-600 mb-3 text-sm uppercase tracking-wide">Probleem</h4>
+                    <p className="font-lato text-muted-foreground leading-relaxed">{service.problem}</p>
                   </div>
                   
-                  <div className="bg-primary/10 p-4 rounded-lg border-l-4 border-primary">
-                    <h4 className="font-lato font-semibold text-primary mb-2">Onze oplossing:</h4>
-                    <p className="font-lato text-foreground text-sm leading-relaxed">{service.solution}</p>
+                  <div className="border-l-4 border-primary pl-6 py-2">
+                    <h4 className="font-lato font-bold text-primary mb-3 text-sm uppercase tracking-wide">Onze oplossing</h4>
+                    <p className="font-lato text-foreground leading-relaxed">{service.solution}</p>
                   </div>
                   
-                  <div className="bg-warm/10 p-4 rounded-lg border-l-4 border-warm">
-                    <h4 className="font-lato font-semibold text-warm mb-2">Jouw voordeel:</h4>
-                    <p className="font-lato text-foreground font-medium text-sm leading-relaxed">{service.result}</p>
+                  <div className="border-l-4 border-emerald-500 pl-6 py-2">
+                    <h4 className="font-lato font-bold text-emerald-600 mb-3 text-sm uppercase tracking-wide">Jouw voordeel</h4>
+                    <p className="font-lato text-foreground font-semibold leading-relaxed">{service.result}</p>
                   </div>
                   
-                  <div className="bg-accent/5 p-3 rounded-lg">
-                    <p className="font-lato text-accent font-medium text-xs italic">
-                      Praktijkvoorbeeld: {service.example}
+                  <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+                    <p className="font-lato text-slate-600 dark:text-slate-400 font-medium text-sm">
+                      <span className="font-bold text-primary">Resultaat:</span> {service.example}
                     </p>
                   </div>
                 </div>
@@ -83,18 +83,18 @@ const Services = () => {
         </div>
         
         {/* CTA na diensten */}
-        <div className="mt-20 text-center">
-          <div className="bg-warm/10 p-12 rounded-2xl max-w-4xl mx-auto">
-            <h3 className="text-3xl font-playfair font-bold text-primary mb-6">
+        <div className="mt-24 text-center">
+          <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 p-12 rounded-3xl max-w-4xl mx-auto shadow-lg">
+            <h3 className="text-3xl font-playfair font-bold text-foreground mb-6">
               Klaar om jouw finance team te transformeren?
             </h3>
-            <p className="text-xl font-lato text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-xl font-lato text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
               Plan een gratis kennismaking en ontdek hoe jouw team 50% sneller kan werken en 100% compliant blijft.
             </p>
             <Button 
-              variant="warm" 
+              variant="default" 
               size="lg" 
-              className="font-lato font-semibold text-xl px-12 py-6 rounded-xl shadow-lg hover:scale-105 transition-all duration-300"
+              className="font-lato font-semibold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               onClick={() => {
                 const element = document.getElementById('contact');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
