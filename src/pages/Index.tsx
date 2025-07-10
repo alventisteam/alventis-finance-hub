@@ -4,7 +4,9 @@ import Services from "@/components/Services";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
   return (
@@ -14,8 +16,10 @@ const Index = () => {
       <Services />
       <About />
       <Testimonials />
+      <FAQ />
       <Contact />
       <Footer />
+      <Toaster />
     </div>
   );
 };

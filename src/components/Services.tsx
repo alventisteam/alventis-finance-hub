@@ -32,13 +32,13 @@ const Services = () => {
   return (
     <section id="services" className="py-20 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-playfair font-bold text-primary mb-4">
-            Onze diensten
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
+            Onze diensten voor finance teams
           </h2>
-          <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl font-lato text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Van compliance stress naar strategische focus. Ontdek hoe jouw finance team 50% sneller kan werken, 
-            100% compliant blijft en eindelijk tijd krijgt voor wat echt belangrijk is.
+            100% compliant blijft en eindelijk tijd krijgt voor digitalisering van finance processen en strategische business partnering.
           </p>
         </div>
 

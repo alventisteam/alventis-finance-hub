@@ -27,7 +27,7 @@ const Hero = () => {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold mb-6 leading-tight">
           Fiscale vertegenwoordiging & finance optimalisatie voor{" "}
-          <span className="text-accent">multinationals</span> in België
+          <span className="text-warm">multinationals</span> in België
         </h1>
         
         <p className="text-xl sm:text-2xl font-lato font-light mb-8 max-w-3xl mx-auto leading-relaxed">

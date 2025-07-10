@@ -37,13 +37,14 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-20 bg-secondary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-playfair font-bold text-primary mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
             Resultaten die spreken
           </h2>
-          <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto">
-            Ontdek hoe Alventis finance teams heeft geholpen hun doelen te bereiken 
-            en hun processen te optimaliseren.
+          <p className="text-xl font-lato text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Ontdek hoe Alventis finance teams heeft geholpen hun doelen te bereiken door <strong>fiscale vertegenwoordiging België</strong>, 
+            <strong>digitalisering van finance processen</strong> en <strong>projectbegeleiding voor controllers en CFO's</strong>. 
+            Echte resultaten van multinationals die nu 50% sneller werken.
           </p>
         </div>
 
