@@ -56,8 +56,8 @@ const Services = () => {
                 </h3>
                 
                 <div className="space-y-8">
-                  <div className="border-l-4 border-slate-400 pl-6 py-2">
-                    <h4 className="font-lato font-bold text-slate-600 mb-3 text-sm uppercase tracking-wide">Probleem</h4>
+                  <div className="border-l-4 border-muted pl-6 py-2">
+                    <h4 className="font-lato font-bold text-muted-foreground mb-3 text-sm uppercase tracking-wide">Probleem</h4>
                     <p className="font-lato text-muted-foreground leading-relaxed">{service.problem}</p>
                   </div>
                   
@@ -66,13 +66,13 @@ const Services = () => {
                     <p className="font-lato text-foreground leading-relaxed">{service.solution}</p>
                   </div>
                   
-                  <div className="border-l-4 border-emerald-500 pl-6 py-2">
-                    <h4 className="font-lato font-bold text-emerald-600 mb-3 text-sm uppercase tracking-wide">Jouw voordeel</h4>
+                  <div className="border-l-4 border-warm pl-6 py-2">
+                    <h4 className="font-lato font-bold text-warm mb-3 text-sm uppercase tracking-wide">Jouw voordeel</h4>
                     <p className="font-lato text-foreground font-semibold leading-relaxed">{service.result}</p>
                   </div>
                   
-                  <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
-                    <p className="font-lato text-slate-600 dark:text-slate-400 font-medium text-sm">
+                  <div className="bg-accent/10 p-4 rounded-lg border border-accent/20">
+                    <p className="font-lato text-accent font-medium text-sm">
                       <span className="font-bold text-primary">Resultaat:</span> {service.example}
                     </p>
                   </div>
