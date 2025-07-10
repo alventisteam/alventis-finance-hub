@@ -5,9 +5,67 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Services = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Maak FormData van je formData state
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('company', formData.company);
+    data.append('message', formData.message);
+
+    // Verstuur POST request naar Formspree
+    const response = await fetch('https://formspree.io/f/mqabrqyj', {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      toast({
+        title: "Bericht verzonden!",
+        description: "We nemen binnen 24 uur contact met je op voor een gratis kennismaking.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        message: ""
+      });
+    } else {
+      toast({
+        title: "Er is iets misgegaan!",
+        description: "Probeer het later opnieuw of stuur een mail naar info@alventis.be.",
+        variant: "destructive",
+      });
+    }
+    setIsSubmitting(false);
+  };
 
   const services = [
     {
@@ -128,22 +186,71 @@ const Services = () => {
                 </Button>
               </div>
 
-              <form action="https://formspree.io/f/mqabrqyj" method="POST">
-                <label className="block mb-4">
-                  Name:
-                  <input type="text" name="name" required className="w-full mt-1 p-2 border border-border rounded-md bg-background text-foreground" />
-                </label>
-                <br/>
-                <label className="block mb-4">
-                  Email:
-                  <input type="email" name="email" required className="w-full mt-1 p-2 border border-border rounded-md bg-background text-foreground" />
-                </label>
-                <br/>
-                <label className="block mb-4">
-                  Message:
-                  <textarea name="message" required className="w-full mt-1 p-2 border border-border rounded-md bg-background text-foreground h-24"></textarea>
-                </label>
-                <br/>
+              <form onSubmit={handleSubmit}>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="name" className="text-sm font-lato font-semibold text-foreground">
+                      Naam *
+                    </Label>
+                    <Input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-1"
+                      placeholder="Jouw volledige naam"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="email" className="text-sm font-lato font-semibold text-foreground">
+                      E-mail *
+                    </Label>
+                    <Input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-1"
+                      placeholder="jouw@email.com"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="company" className="text-sm font-lato font-semibold text-foreground">
+                      Bedrijf
+                    </Label>
+                    <Input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="mt-1"
+                      placeholder="Naam van jouw bedrijf"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="message" className="text-sm font-lato font-semibold text-foreground">
+                      Bericht
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows={4}
+                      className="mt-1"
+                      placeholder="Vertel ons over jouw uitdagingen en wat je hoopt te bereiken..."
+                    />
+                  </div>
+                </div>
+
                 <div className="flex gap-3 pt-4">
                   <Button
                     type="button"
@@ -153,9 +260,13 @@ const Services = () => {
                   >
                     Annuleren
                   </Button>
-                  <button type="submit" className="flex-1 bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors">
-                    Send
-                  </button>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1"
+                  >
+                    {isSubmitting ? "Versturen..." : "Verstuur aanvraag"}
+                  </Button>
                 </div>
               </form>
             </div>
