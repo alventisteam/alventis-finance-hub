@@ -9,7 +9,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-background relative overflow-hidden">
+    <section id="about" className="py-32 bg-background relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -34,11 +34,18 @@ const About = () => {
               en het gevoel dat je team nooit toekomt aan echte strategische work. Ik help je dit definitief op te lossen.
             </p>
             
+            <div className="bg-warm/10 p-6 rounded-xl border-l-4 border-warm mb-8">
+              <p className="text-lg font-lato text-foreground font-medium italic leading-relaxed">
+                "Mijn missie: finance teams helpen om compliant, efficiënt én audit-ready te zijn – zonder stress. 
+                Jouw team verdient het om te doen waar ze écht goed in zijn: strategische business partnering in plaats van administratief geregel."
+              </p>
+            </div>
+            
             <p className="text-lg font-lato text-muted-foreground mb-8 leading-relaxed">
-              Mijn missie? Jouw finance team bevrijden van administratieve stress door <strong>digitalisering van finance processen</strong> 
-              en betrouwbare fiscale vertegenwoordiging. Zo kunnen controllers en CFO's zich focussen op 
-              strategische business partnering en groei realiseren. Met 15+ jaar ervaring in <strong>finance optimalisatie voor multinationals</strong> 
-              maak ik dit elke dag waar.
+              Met 15+ jaar ervaring in <strong>finance optimalisatie voor multinationals</strong> 
+              en <strong>digitalisering van finance processen</strong> zorg ik ervoor dat jouw team eindelijk 
+              kan focussen op groei en strategie. Betrouwbare fiscale vertegenwoordiging en geautomatiseerde processen 
+              maken dit elke dag waar.
             </p>
 
             <div className="space-y-4 mb-8">

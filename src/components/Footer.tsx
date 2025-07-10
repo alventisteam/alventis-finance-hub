@@ -32,15 +32,37 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact & Social Proof */}
           <div>
             <h4 className="font-playfair font-semibold text-lg mb-4">
               Contact
             </h4>
-            <div className="space-y-2 font-lato text-primary-foreground/80">
+            <div className="space-y-2 font-lato text-primary-foreground/80 mb-6">
               <p>Brussel, België</p>
               <p>+32 (0)2 123 45 67</p>
               <p>info@alventis.be</p>
+            </div>
+            
+            <div className="space-y-3">
+              <h5 className="font-lato font-semibold text-primary-foreground text-sm">
+                Vertrouwd door:
+              </h5>
+              <div className="space-y-1 font-lato text-primary-foreground/60 text-sm">
+                <p>• Internationale multinationals</p>
+                <p>• Finance teams in heel Europa</p>
+                <p>• Controllers & CFO's sinds 2008</p>
+              </div>
+              
+              <div className="pt-4">
+                <a 
+                  href="https://linkedin.com/in/alventis" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-primary-foreground/80 hover:text-warm transition-colors text-sm"
+                >
+                  LinkedIn →
+                </a>
+              </div>
             </div>
           </div>
         </div>

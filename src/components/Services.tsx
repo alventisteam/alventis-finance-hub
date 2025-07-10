@@ -1,5 +1,6 @@
 import { Shield, Cog, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const Services = () => {
   const services = [
@@ -30,9 +31,9 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-secondary/30">
+    <section id="services" className="py-32 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div className="text-center mb-24">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
             Onze diensten voor finance teams
           </h2>
@@ -42,7 +43,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {services.map((service, index) => (
             <Card key={index} className="bg-card shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1">
               <CardContent className="p-8">
@@ -79,6 +80,29 @@ const Services = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        {/* CTA na diensten */}
+        <div className="mt-20 text-center">
+          <div className="bg-warm/10 p-12 rounded-2xl max-w-4xl mx-auto">
+            <h3 className="text-3xl font-playfair font-bold text-primary mb-6">
+              Klaar om jouw finance team te transformeren?
+            </h3>
+            <p className="text-xl font-lato text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Plan een gratis kennismaking en ontdek hoe jouw team 50% sneller kan werken en 100% compliant blijft.
+            </p>
+            <Button 
+              variant="warm" 
+              size="lg" 
+              className="font-lato font-semibold text-xl px-12 py-6 rounded-xl shadow-lg hover:scale-105 transition-all duration-300"
+              onClick={() => {
+                const element = document.getElementById('contact');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Plan gratis kennismaking
+            </Button>
+          </div>
         </div>
       </div>
     </section>

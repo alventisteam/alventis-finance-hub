@@ -34,14 +34,24 @@ const Hero = () => {
           Stop met zorgen over compliance en inefficiënte processen. Wij zorgen dat jouw finance team 100% compliant werkt, 50% sneller opereert en audit-ready blijft.
         </p>
 
-        <Button
-          onClick={() => scrollToSection('contact')}
-          variant="warm"
-          size="lg"
-          className="font-lato font-semibold text-lg px-8 py-6 rounded-xl transition-all duration-300 hover:scale-105"
-        >
-          Plan een gratis kennismaking
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4">
+          <Button
+            onClick={() => scrollToSection('contact')}
+            variant="warm"
+            size="lg"
+            className="font-lato font-semibold text-xl px-12 py-6 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            Plan een gratis kennismaking
+          </Button>
+          <Button
+            onClick={() => scrollToSection('services')}
+            variant="outline"
+            size="lg"
+            className="font-lato font-semibold text-xl px-12 py-6 border-2 border-warm text-warm hover:bg-warm/10 rounded-xl transition-all duration-300"
+          >
+            Bekijk onze diensten
+          </Button>
+        </div>
       </div>
 
       {/* Scroll Indicator */}
