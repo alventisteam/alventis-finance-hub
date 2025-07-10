@@ -183,7 +183,10 @@ const Services = () => {
                 </Button>
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form
+                action="https://formspree.io/f/mqabrqyj"
+                method="POST"
+              >
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="name" className="text-sm font-lato font-semibold text-foreground">
@@ -193,8 +196,6 @@ const Services = () => {
                       type="text"
                       id="name"
                       name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
                       required
                       className="mt-1"
                       placeholder="Jouw volledige naam"
@@ -209,8 +210,6 @@ const Services = () => {
                       type="email"
                       id="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
                       required
                       className="mt-1"
                       placeholder="jouw@email.com"
@@ -225,8 +224,6 @@ const Services = () => {
                       type="text"
                       id="company"
                       name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
                       className="mt-1"
                       placeholder="Naam van jouw bedrijf"
                     />
@@ -239,8 +236,6 @@ const Services = () => {
                     <Textarea
                       id="message"
                       name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
                       rows={4}
                       className="mt-1"
                       placeholder="Vertel ons over jouw uitdagingen en wat je hoopt te bereiken..."
@@ -257,13 +252,9 @@ const Services = () => {
                   >
                     Annuleren
                   </Button>
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1"
-                  >
-                    {isSubmitting ? "Versturen..." : "Verstuur aanvraag"}
-                  </Button>
+                  <button type="submit" className="flex-1 bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors">
+                    Send
+                  </button>
                 </div>
               </form>
             </div>
