@@ -1,0 +1,74 @@
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-primary text-primary-foreground py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Company Info */}
+          <div>
+            <h3 className="text-2xl font-playfair font-bold mb-4">
+              Alventis
+            </h3>
+            <p className="font-lato text-primary-foreground/80 mb-4 leading-relaxed">
+              Fiscale vertegenwoordiging & finance optimalisatie voor multinationals in België.
+            </p>
+            <p className="font-lato text-primary-foreground/80 text-sm">
+              Vertrouwd door finance teams wereldwijd
+            </p>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-playfair font-semibold text-lg mb-4">
+              Onze diensten
+            </h4>
+            <ul className="space-y-2 font-lato text-primary-foreground/80">
+              <li>Fiscale vertegenwoordiging</li>
+              <li>Finance proces optimalisatie</li>
+              <li>Digitalisering & automatisering</li>
+              <li>Compliance monitoring</li>
+              <li>Projectbegeleiding</li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-playfair font-semibold text-lg mb-4">
+              Contact
+            </h4>
+            <div className="space-y-2 font-lato text-primary-foreground/80">
+              <p>Brussel, België</p>
+              <p>+32 (0)2 123 45 67</p>
+              <p>info@alventis.be</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-primary-foreground/20 mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="font-lato text-primary-foreground/60 text-sm">
+              © {currentYear} Alventis. Alle rechten voorbehouden.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a
+                href="#privacy"
+                className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#terms"
+                className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
+              >
+                Algemene Voorwaarden
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
