@@ -1,4 +1,5 @@
 import { CheckCircle, Award, Target } from "lucide-react";
+import cfoWorking from "@/assets/cfo-working.jpg";
 
 const About = () => {
   const expertise = [
@@ -20,14 +21,14 @@ const About = () => {
             
             <p className="text-lg font-lato text-foreground mb-6 leading-relaxed">
               Als voormalig controller en projectmanager bij internationale multinationals 
-              begrijp ik de dagelijkse uitdagingen van finance teams. Van complexe btw-verplichtingen 
-              tot inefficiënte processen – ik help je deze obstakels om te zetten in competitieve voordelen.
+              ken ik jouw frustraties. Te veel tijd aan compliance, handmatige processen die fouten opleveren, 
+              en het gevoel dat je team nooit toekomt aan echte strategische work. Ik help je dit definitief op te lossen.
             </p>
             
             <p className="text-lg font-lato text-muted-foreground mb-8 leading-relaxed">
-              Mijn missie is simpel: finance teams helpen focussen op strategie in plaats van 
-              administratie. Door slimme digitalisering en betrouwbare compliance ondersteuning 
-              kunnen controllers en CFO's weer doen waar ze goed in zijn.
+              Mijn missie? Jouw finance team bevrijden van administratieve stress zodat jullie kunnen doen 
+              waar jullie écht waardevol zijn: strategische business partnering en groei realiseren. 
+              Met 15+ jaar ervaring maak ik dit elke dag waar.
             </p>
 
             <div className="space-y-3">
@@ -42,6 +43,15 @@ const About = () => {
 
           {/* Visual Elements */}
           <div className="space-y-8">
+            {/* Professional Image */}
+            <div className="rounded-2xl overflow-hidden shadow-medium">
+              <img 
+                src={cfoWorking} 
+                alt="Professional CFO working in modern office" 
+                className="w-full h-64 object-cover"
+              />
+            </div>
+
             <div className="bg-sand/20 p-8 rounded-2xl">
               <div className="flex items-center space-x-4 mb-4">
                 <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center">
@@ -58,27 +68,27 @@ const About = () => {
               </div>
               <p className="font-lato text-foreground">
                 Van hands-on controller tot strategisch adviseur – 
-                ik ken beide kanten van de finance wereld.
+                ik ken beide kanten van de finance wereld en weet exact wat werkt.
               </p>
             </div>
 
-            <div className="bg-primary/5 p-8 rounded-2xl">
+            <div className="bg-warm/10 p-8 rounded-2xl">
               <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                  <Target className="h-6 w-6 text-primary-foreground" />
+                <div className="w-12 h-12 bg-warm rounded-xl flex items-center justify-center">
+                  <Target className="h-6 w-6 text-warm-foreground" />
                 </div>
                 <div>
                   <h3 className="font-playfair font-semibold text-primary text-lg">
                     Resultaatgericht
                   </h3>
                   <p className="font-lato text-muted-foreground">
-                    Focus op meetbare verbeteringen
+                    Meetbare verbeteringen binnen 3 maanden
                   </p>
                 </div>
               </div>
               <p className="font-lato text-foreground">
-                Elke samenwerking resulteert in concrete tijdsbesparing, 
-                minder risico's en meer focus op strategie.
+                Jij ziet direct resultaat: minder stress, snellere processen, 
+                en eindelijk tijd voor strategisch werk dat écht impact heeft.
               </p>
             </div>
           </div>

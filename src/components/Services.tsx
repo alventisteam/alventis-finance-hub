@@ -6,23 +6,26 @@ const Services = () => {
     {
       icon: Shield,
       title: "Fiscale vertegenwoordiging & compliance",
-      problem: "Complexe btw-verplichtingen en risico's bij non-compliance",
-      solution: "Volledige fiscale vertegenwoordiging en compliance monitoring",
-      result: "100% compliant en audit-ready zonder zorgen"
+      problem: "Jouw team verliest tijd aan complexe btw-verplichtingen en leeft in constante angst voor compliance risico's en boetes.",
+      solution: "Wij nemen de volledige fiscale vertegenwoordiging over en monitoren alle compliance aspecten proactief.",
+      result: "Jij bent 100% compliant, audit-ready en kunt je volledig focussen op strategie in plaats van administratie.",
+      example: "Multinational bespaart 20 uur per maand en slaagt voor elke audit."
     },
     {
       icon: Cog,
       title: "Digitalisering en optimalisatie van finance processen",
-      problem: "Handmatige processen, fouten en inefficiëntie",
-      solution: "Geautomatiseerde workflows en digitale optimalisatie",
-      result: "50% tijdsbesparing en foutloos proces management"
+      problem: "Handmatige processen kosten teveel tijd, leiden tot fouten en maken jouw team ongelukkig en inefficiënt.",
+      solution: "Wij automatiseren workflows, digitaliseren processen en optimaliseren jouw gehele finance operatie.",
+      result: "Jij bespaart 50% tijd, elimineert fouten en krijgt real-time inzicht in je financiële prestaties.",
+      example: "Finance team sluit nu binnen 3 dagen af in plaats van 10."
     },
     {
       icon: Users,
       title: "Projectbegeleiding en changemanagement",
-      problem: "Weerstand tegen verandering en mislukte implementaties",
-      solution: "Persoonlijke begeleiding van controllers & CFO's",
-      result: "Soepele implementatie met team buy-in en succes"
+      problem: "Veranderingen mislukken door weerstand van jouw team en gebrek aan ervaring met finance transformaties.",
+      solution: "Wij begeleiden persoonlijk controllers en CFO's door elke stap van de transformatie.",
+      result: "Jij krijgt volledige team buy-in, soepele implementatie en duurzame verandering.",
+      example: "100% acceptatie bij finance team binnen 3 maanden."
     }
   ];
 
@@ -34,8 +37,8 @@ const Services = () => {
             Onze diensten
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto">
-            Wij begeleiden finance teams in multinationals bij fiscale vertegenwoordiging, 
-            optimalisatie en digitalisering. Zo blijf jij compliant, efficiënt en klaar voor audit.
+            Van compliance stress naar strategische focus. Ontdek hoe jouw finance team 50% sneller kan werken, 
+            100% compliant blijft en eindelijk tijd krijgt voor wat echt belangrijk is.
           </p>
         </div>
 
@@ -51,20 +54,26 @@ const Services = () => {
                   {service.title}
                 </h3>
                 
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-lato font-semibold text-foreground mb-2">Probleem:</h4>
-                    <p className="font-lato text-muted-foreground text-sm">{service.problem}</p>
+                <div className="space-y-6">
+                  <div className="bg-destructive/10 p-4 rounded-lg border-l-4 border-destructive">
+                    <h4 className="font-lato font-semibold text-destructive mb-2">Probleem:</h4>
+                    <p className="font-lato text-foreground text-sm leading-relaxed">{service.problem}</p>
                   </div>
                   
-                  <div>
-                    <h4 className="font-lato font-semibold text-foreground mb-2">Onze oplossing:</h4>
-                    <p className="font-lato text-muted-foreground text-sm">{service.solution}</p>
+                  <div className="bg-primary/10 p-4 rounded-lg border-l-4 border-primary">
+                    <h4 className="font-lato font-semibold text-primary mb-2">Onze oplossing:</h4>
+                    <p className="font-lato text-foreground text-sm leading-relaxed">{service.solution}</p>
                   </div>
                   
-                  <div>
-                    <h4 className="font-lato font-semibold text-accent mb-2">Resultaat:</h4>
-                    <p className="font-lato text-accent font-medium text-sm">{service.result}</p>
+                  <div className="bg-warm/10 p-4 rounded-lg border-l-4 border-warm">
+                    <h4 className="font-lato font-semibold text-warm mb-2">Jouw voordeel:</h4>
+                    <p className="font-lato text-foreground font-medium text-sm leading-relaxed">{service.result}</p>
+                  </div>
+                  
+                  <div className="bg-accent/5 p-3 rounded-lg">
+                    <p className="font-lato text-accent font-medium text-xs italic">
+                      Praktijkvoorbeeld: {service.example}
+                    </p>
                   </div>
                 </div>
               </CardContent>

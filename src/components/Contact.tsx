@@ -79,9 +79,12 @@ const Contact = () => {
           <h2 className="text-4xl font-playfair font-bold text-primary mb-4">
             Vraag advies aan
           </h2>
-          <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto">
-            Klaar om jouw finance processen te optimaliseren? Plan een gratis kennismaking 
-            en ontdek hoe Alventis jouw team kan helpen.
+          <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto mb-4">
+            Stop met stressen over compliance en inefficiëntie. Plan een gratis kennismaking 
+            en ontdek hoe jouw finance team 50% sneller kan werken.
+          </p>
+          <p className="text-base font-lato text-accent font-medium">
+            We reageren binnen 24 uur – vertrouwelijk en zonder verplichtingen
           </p>
         </div>
 
@@ -162,9 +165,10 @@ const Contact = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-semibold py-3 text-lg"
+                    variant="warm"
+                    className="w-full font-lato font-semibold py-3 text-lg"
                   >
-                    {isSubmitting ? "Verzenden..." : "Verstuur bericht"}
+                    {isSubmitting ? "Verzenden..." : "Plan gratis kennismaking"}
                   </Button>
                 </form>
               </CardContent>
@@ -202,26 +206,33 @@ const Contact = () => {
 
             <div className="bg-sand/20 p-8 rounded-2xl">
               <h4 className="font-playfair font-semibold text-primary text-xl mb-4">
-                Waarom kiezen voor Alventis?
+                Wat levert dit jou op?
               </h4>
               <ul className="space-y-3 font-lato text-foreground">
                 <li className="flex items-start">
-                  <span className="text-accent mr-2">•</span>
-                  15+ jaar ervaring in finance en compliance
+                  <span className="text-warm mr-2 font-bold">✓</span>
+                  50% tijdsbesparing in maandafsluiting en rapportage
                 </li>
                 <li className="flex items-start">
-                  <span className="text-accent mr-2">•</span>
-                  Bewezen track record bij multinationals
+                  <span className="text-warm mr-2 font-bold">✓</span>
+                  100% compliance zonder stress of audit-zorgen
                 </li>
                 <li className="flex items-start">
-                  <span className="text-accent mr-2">•</span>
-                  Persoonlijke aanpak en begeleiding
+                  <span className="text-warm mr-2 font-bold">✓</span>
+                  Meer tijd voor strategische business partnering
                 </li>
                 <li className="flex items-start">
-                  <span className="text-accent mr-2">•</span>
-                  Focus op digitalisering en efficiëntie
+                  <span className="text-warm mr-2 font-bold">✓</span>
+                  Gelukkiger finance team dat zich kan focussen
                 </li>
               </ul>
+              
+              <div className="mt-6 p-4 bg-warm/10 rounded-lg border-l-4 border-warm">
+                <p className="font-lato text-warm font-medium text-sm">
+                  "Binnen 3 maanden zul je merken dat jouw finance team eindelijk kan doen waar ze goed in zijn: 
+                  strategische ondersteuning in plaats van administratief geregel."
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-background.jpg";
+import brusselsCityscape from "@/assets/brussels-cityscape.jpg";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -30,13 +31,14 @@ const Hero = () => {
         </h1>
         
         <p className="text-xl sm:text-2xl font-lato font-light mb-8 max-w-3xl mx-auto leading-relaxed">
-          Alventis helpt finance teams sneller, correct en digitaal compliant werken.
+          Stop met zorgen over compliance en inefficiënte processen. Wij zorgen dat jouw finance team 100% compliant werkt, 50% sneller opereert en audit-ready blijft.
         </p>
 
         <Button
           onClick={() => scrollToSection('contact')}
+          variant="warm"
           size="lg"
-          className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-semibold text-lg px-8 py-6 rounded-xl shadow-medium transition-all duration-300 hover:scale-105"
+          className="font-lato font-semibold text-lg px-8 py-6 rounded-xl transition-all duration-300 hover:scale-105"
         >
           Plan een gratis kennismaking
         </Button>
