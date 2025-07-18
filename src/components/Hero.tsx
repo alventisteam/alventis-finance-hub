@@ -25,12 +25,12 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold mb-6 leading-tight">
-          Fiscale vertegenwoordiging & finance optimalisatie voor{" "}
+          Advies in finance optimalisatie, btw-compliance en business control voor{" "}
           <span className="text-warm">multinationals</span> in België
         </h1>
         
         <p className="text-xl sm:text-2xl font-lato font-light mb-8 max-w-3xl mx-auto leading-relaxed">
-          Stop met zorgen over compliance en inefficiënte processen. Wij zorgen dat jouw finance team 100% compliant werkt, 50% sneller opereert en audit-ready blijft.
+          Als ervaren finance en business controller help ik multinationals bij correcte rapportering, efficiënte processen en digitale finance flows. Zo werk je audit-proof, gestructureerd en met grip op je cijfers.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4">

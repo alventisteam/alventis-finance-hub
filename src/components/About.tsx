@@ -2,10 +2,11 @@ import { CheckCircle, Award, Target } from "lucide-react";
 
 const About = () => {
   const expertise = [
-    "15+ jaar ervaring als controller in multinationals",
-    "Gecertificeerd btw-specialist voor internationale structuren",
-    "Projectmanager voor finance transformaties",
-    "Expert in digitalisering van finance processen"
+    "10+ jaar ervaring als finance & business controller in multinationals",
+    "Btw-advies voor internationale structuren – specialist in Belgische regelgeving",
+    "Begeleiding van finance transformaties & changetrajecten",
+    "Procesoptimalisatie & digitalisering van finance-afdelingen",
+    "Ervaren sparringpartner voor CFO's, controllers en tax leads"
   ];
 
   return (
@@ -19,24 +20,17 @@ const About = () => {
             </h2>
             
             <p className="text-lg font-lato text-foreground mb-6 leading-relaxed">
-              Als voormalig controller en projectmanager bij internationale multinationals 
-              ken ik jouw frustraties met <strong>fiscale vertegenwoordiging België</strong> en inefficiënte processen. 
-              Te veel tijd aan compliance, handmatige finance processen die fouten opleveren, 
-              en het gevoel dat je team nooit toekomt aan echte strategische work. Ik help je dit definitief op te lossen.
+              Als finance & business controller en projectmanager in internationale multinationals begrijp ik exact waar finance teams mee worstelen. Van eindeloze btw-verplichtingen tot manuele processen die vertragen en fouten veroorzaken.
             </p>
             
             <div className="bg-warm/10 p-6 rounded-xl border-l-4 border-warm mb-8">
               <p className="text-lg font-lato text-foreground font-medium italic leading-relaxed">
-                "Mijn missie: finance teams helpen om compliant, efficiënt én audit-ready te zijn – zonder stress. 
-                Jouw team verdient het om te doen waar ze écht goed in zijn: strategische business partnering in plaats van administratief geregel."
+                "Na meer dan 10 jaar in de frontlinie van finance binnen multinationals, weet ik exact waar het spaak loopt. Mijn aanpak? Chaos eruit. Structuur erin. Je team werkt sneller, juister en met focus op waar het écht om draait: strategische impact."
               </p>
             </div>
             
             <p className="text-lg font-lato text-muted-foreground mb-8 leading-relaxed">
-              Met 15+ jaar ervaring in <strong>finance optimalisatie voor multinationals</strong> 
-              en <strong>digitalisering van finance processen</strong> zorg ik ervoor dat jouw team eindelijk 
-              kan focussen op groei en strategie. Betrouwbare fiscale vertegenwoordiging en geautomatiseerde processen 
-              maken dit elke dag waar.
+              Strategisch adviseur in finance optimalisatie en internationale btw-structuren
             </p>
 
             <div className="space-y-4 mb-8">
@@ -60,7 +54,7 @@ const About = () => {
                 className="w-full h-64 object-cover rounded-xl mb-4"
               />
               <p className="font-lato text-sm text-muted-foreground text-center">
-                Expert in fiscale vertegenwoordiging en finance optimalisatie voor multinationals
+                Strategisch adviseur in finance optimalisatie en internationale btw-structuren
               </p>
             </div>
             <div className="bg-sand/20 p-8 rounded-2xl">

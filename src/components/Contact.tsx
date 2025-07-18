@@ -49,20 +49,20 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Telefoon",
-      value: "+32 (0)2 123 45 67",
+      value: "+32 478 83 43 23",
       description: "Ma-vr 9:00-18:00"
     },
     {
       icon: Mail,
       title: "Email",
-      value: "info@alventis.be",
+      value: "viktoria@alventis.be",
       description: "We reageren binnen 4 uur"
     },
     {
       icon: MapPin,
       title: "Locatie",
-      value: "Brussel, België",
-      description: "Ook voor video calls"
+      value: "Kluisbergen, België",
+      description: "Ook voor videocalls"
     },
     {
       icon: Clock,

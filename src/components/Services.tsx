@@ -67,23 +67,23 @@ const Services = () => {
   const services = [
     {
       icon: Shield,
-      title: "Fiscale vertegenwoordiging & compliance",
+      title: "Btw-compliance & rapportering",
       problem: "Jouw team verliest tijd aan complexe btw-verplichtingen en leeft in constante angst voor compliance risico's en boetes.",
       solution: "Wij nemen de volledige fiscale vertegenwoordiging over en monitoren alle compliance aspecten proactief.",
       result: "Jij bent 100% compliant, audit-ready en kunt je volledig focussen op strategie in plaats van administratie.",
-      example: "Multinational bespaart 20 uur per maand en slaagt voor elke audit."
+      example: "Finance team sluit nu binnen 5 dagen af in plaats van 3 weken."
     },
     {
       icon: Cog,
-      title: "Digitalisering en optimalisatie van finance processen",
+      title: "Finance procesoptimalisatie",
       problem: "Handmatige processen kosten teveel tijd, leiden tot fouten en maken jouw team ongelukkig en inefficiënt.",
       solution: "Wij automatiseren workflows, digitaliseren processen en optimaliseren jouw gehele finance operatie.",
       result: "Jij bespaart 50% tijd, elimineert fouten en krijgt real-time inzicht in je financiële prestaties.",
-      example: "Finance team sluit nu binnen 3 dagen af in plaats van 10."
+      example: "Tot 50% efficiëntere processen en sterkere rapportering."
     },
     {
       icon: Users,
-      title: "Projectbegeleiding en changemanagement",
+      title: "Projectbegeleiding & changemanagement",
       problem: "Veranderingen mislukken door weerstand van jouw team en gebrek aan ervaring met finance transformaties.",
       solution: "Wij begeleiden persoonlijk controllers en CFO's door elke stap van de transformatie.",
       result: "Jij krijgt volledige team buy-in, soepele implementatie en duurzame verandering.",
