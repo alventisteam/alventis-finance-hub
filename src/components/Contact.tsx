@@ -77,7 +77,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
-            Plan een gratis kennismaking
+            Contact
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto mb-4">
             Stop met stressen over compliance en inefficiëntie. Plan een gratis kennismaking 

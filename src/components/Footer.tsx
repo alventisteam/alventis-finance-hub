@@ -11,11 +11,18 @@ const Footer = () => {
               Alventis
             </h3>
             <p className="font-lato text-primary-foreground/80 mb-4 leading-relaxed">
-              Fiscale vertegenwoordiging & finance optimalisatie voor multinationals in België.
+              Finance optimalisatie multinationals en btw-compliance België. 
+              Digitalisering finance processen en business control consultant.
             </p>
-            <p className="font-lato text-primary-foreground/80 text-sm">
+            <p className="font-lato text-primary-foreground/80 text-sm mb-6">
               Vertrouwd door finance teams wereldwijd
             </p>
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-warm text-warm-foreground hover:bg-warm/90 font-lato font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105"
+            >
+              Plan een gratis kennismaking
+            </button>
           </div>
 
           {/* Services */}
@@ -38,9 +45,9 @@ const Footer = () => {
               Contact
             </h4>
             <div className="space-y-2 font-lato text-primary-foreground/80 mb-6">
-              <p>Brussel, België</p>
-              <p>+32 (0)2 123 45 67</p>
-              <p>info@alventis.be</p>
+              <p>Kluisbergen, België</p>
+              <p>+32 478 83 43 23</p>
+              <p>viktoria@alventis.be</p>
             </div>
             
             <div className="space-y-3">
@@ -68,6 +75,14 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8">
+          <div className="text-center mb-6">
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-warm text-warm-foreground hover:bg-warm/90 font-lato font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 text-lg"
+            >
+              Plan een gratis kennismaking
+            </button>
+          </div>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="font-lato text-primary-foreground/60 text-sm">
               © {currentYear} Alventis. Alle rechten voorbehouden.

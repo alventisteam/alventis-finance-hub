@@ -50,7 +50,7 @@ const About = () => {
             <div className="bg-card p-6 rounded-2xl shadow-soft">
               <img
                 src="/lovable-uploads/d88621f2-ecdc-492b-b0be-04d9dbedadd0.png"
-                alt="Professionele finance consultant - expert in fiscale vertegenwoordiging België"
+                alt="Finance optimalisatie consultant België - digitalisering finance processen multinationals"
                 className="w-full h-64 object-cover rounded-xl mb-4"
               />
               <p className="font-lato text-sm text-muted-foreground text-center">
