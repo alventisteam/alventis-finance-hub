@@ -120,13 +120,11 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="40" height="24" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="60" rx="8" fill="#1a365d"/>
-                    <text x="50" y="20" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">BUCKMAN</text>
-                    <text x="50" y="35" textAnchor="middle" fill="#fbbf24" fontSize="8">CHEMICALS</text>
-                    <circle cx="20" cy="45" r="3" fill="#fbbf24"/>
-                    <circle cx="50" cy="45" r="3" fill="#fbbf24"/>
-                    <circle cx="80" cy="45" r="3" fill="#fbbf24"/>
+                  <svg width="40" height="20" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="60" y="15" textAnchor="middle" fill="#1a365d" fontSize="10" fontWeight="bold">Buckman</text>
+                    <circle cx="100" cy="12" r="3" fill="#0066cc"/>
+                    <rect x="95" y="18" width="10" height="2" fill="#0066cc"/>
+                    <text x="60" y="30" textAnchor="middle" fill="#666" fontSize="6">Laboratory Solutions</text>
                   </svg>
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Buckman</h4>
@@ -139,12 +137,10 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="40" height="24" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="60" rx="8" fill="#0f172a"/>
-                    <text x="50" y="18" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">LAURELTON</text>
-                    <text x="50" y="30" textAnchor="middle" fill="#a3a3a3" fontSize="8">DIAMONDS</text>
-                    <polygon points="50,35 54,42 46,42" fill="#60a5fa"/>
-                    <text x="50" y="50" textAnchor="middle" fill="#60a5fa" fontSize="6">EST. TIFFANY & CO.</text>
+                  <svg width="40" height="20" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="60" y="15" textAnchor="middle" fill="#333" fontSize="8" fontWeight="normal">Laurelton Diamonds</text>
+                    <polygon points="55,20 60,25 65,20" fill="#60a5fa"/>
+                    <text x="60" y="32" textAnchor="middle" fill="#666" fontSize="6">A Tiffany & Co. Subsidiary</text>
                   </svg>
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Laurelton Diamonds</h4>
@@ -157,12 +153,12 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="40" height="24" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="60" rx="8" fill="#dc2626"/>
-                    <text x="50" y="25" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">RIZLA</text>
-                    <text x="84" y="20" textAnchor="middle" fill="white" fontSize="20" fontWeight="bold">+</text>
-                    <rect x="10" y="35" width="80" height="15" rx="2" fill="white"/>
-                    <text x="50" y="45" textAnchor="middle" fill="#dc2626" fontSize="8">CIGARETTE PAPERS</text>
+                  <svg width="40" height="20" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="15" cy="15" r="8" fill="#ff6b35"/>
+                    <path d="M10 15 L15 10 L20 15 L15 20 Z" fill="white"/>
+                    <text x="45" y="12" textAnchor="middle" fill="#ff6b35" fontSize="10" fontWeight="bold">RIZLA</text>
+                    <text x="70" y="12" textAnchor="middle" fill="#ff6b35" fontSize="10" fontWeight="bold">+</text>
+                    <text x="45" y="25" textAnchor="middle" fill="#333" fontSize="6">CIGARETTE PAPERS</text>
                   </svg>
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Rizla+</h4>
@@ -175,14 +171,12 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="40" height="24" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="60" rx="8" fill="#0369a1"/>
-                    <text x="50" y="18" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">KATOEN</text>
-                    <text x="50" y="30" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">NATIE</text>
-                    <rect x="15" y="35" width="70" height="2" fill="#fbbf24"/>
-                    <circle cx="25" cy="45" r="4" fill="#fbbf24"/>
-                    <circle cx="50" cy="45" r="4" fill="#fbbf24"/>
-                    <circle cx="75" cy="45" r="4" fill="#fbbf24"/>
+                  <svg width="40" height="20" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="15,8 25,8 20,18 10,18" fill="#dc2626"/>
+                    <polygon points="20,18 30,18 25,28 15,28" fill="#dc2626"/>
+                    <polygon points="25,8 35,8 30,18 20,18" fill="#dc2626"/>
+                    <text x="55" y="15" textAnchor="middle" fill="#333" fontSize="8" fontWeight="bold">KATOEN</text>
+                    <text x="55" y="25" textAnchor="middle" fill="#333" fontSize="8" fontWeight="bold">NATIE</text>
                   </svg>
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h4>
@@ -195,13 +189,11 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="40" height="24" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="60" rx="8" fill="#374151"/>
-                    <text x="50" y="20" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">STEELDUXX</text>
-                    <rect x="10" y="25" width="25" height="20" rx="2" fill="#64748b"/>
-                    <rect x="37" y="25" width="25" height="20" rx="2" fill="#64748b"/>
-                    <rect x="65" y="25" width="25" height="20" rx="2" fill="#64748b"/>
-                    <text x="50" y="52" textAnchor="middle" fill="#94a3b8" fontSize="7">STEEL TRADING</text>
+                  <svg width="40" height="20" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="15" height="8" fill="#8b5a3c"/>
+                    <rect x="26" y="10" width="15" height="8" fill="#8b5a3c"/>
+                    <rect x="18" y="19" width="15" height="8" fill="#8b5a3c"/>
+                    <text x="70" y="18" textAnchor="middle" fill="#333" fontSize="10" fontWeight="bold">STEELDUXX</text>
                   </svg>
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Steelduxx</h4>
@@ -214,14 +206,8 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="40" height="24" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="60" rx="8" fill="#000000"/>
-                    <text x="50" y="20" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">BESTSELLER</text>
-                    <rect x="15" y="25" width="15" height="20" rx="2" fill="#ef4444"/>
-                    <rect x="32" y="25" width="15" height="20" rx="2" fill="#3b82f6"/>
-                    <rect x="49" y="25" width="15" height="20" rx="2" fill="#10b981"/>
-                    <rect x="66" y="25" width="15" height="20" rx="2" fill="#f59e0b"/>
-                    <text x="50" y="52" textAnchor="middle" fill="white" fontSize="6">FASHION BRANDS</text>
+                  <svg width="40" height="20" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="50" y="20" textAnchor="middle" fill="#000" fontSize="12" fontWeight="bold">BESTSELLER</text>
                   </svg>
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Bestseller</h4>
@@ -234,16 +220,9 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="40" height="24" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="60" rx="8" fill="#1e40af"/>
-                    <text x="30" y="18" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">AC</text>
-                    <text x="70" y="18" textAnchor="middle" fill="#fbbf24" fontSize="10" fontWeight="bold">PARTNERS</text>
-                    <rect x="10" y="25" width="80" height="2" fill="#fbbf24"/>
-                    <circle cx="20" cy="35" r="2" fill="#60a5fa"/>
-                    <circle cx="40" cy="35" r="2" fill="#60a5fa"/>
-                    <circle cx="60" cy="35" r="2" fill="#60a5fa"/>
-                    <circle cx="80" cy="35" r="2" fill="#60a5fa"/>
-                    <text x="50" y="48" textAnchor="middle" fill="white" fontSize="6">IT CONSULTANCY</text>
+                  <svg width="40" height="20" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="20" y="20" textAnchor="middle" fill="#dc2626" fontSize="14" fontWeight="bold">AC</text>
+                    <text x="65" y="20" textAnchor="middle" fill="#333" fontSize="10" fontWeight="normal">PARTNERS</text>
                   </svg>
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">AC Partners</h4>
@@ -256,13 +235,10 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="40" height="24" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="100" height="60" rx="8" fill="#0066cc"/>
-                    <text x="50" y="18" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">ROBERT HALF</text>
-                    <circle cx="30" cy="30" r="6" fill="white"/>
-                    <circle cx="70" cy="30" r="6" fill="white"/>
-                    <rect x="25" y="35" width="50" height="3" rx="1" fill="white"/>
-                    <text x="50" y="48" textAnchor="middle" fill="white" fontSize="6">STAFFING SOLUTIONS</text>
+                  <svg width="40" height="20" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <text x="30" y="18" textAnchor="middle" fill="#0066cc" fontSize="10" fontWeight="bold">Robert</text>
+                    <text x="70" y="18" textAnchor="middle" fill="#333" fontSize="10" fontWeight="normal">Half</text>
+                    <rect x="10" y="22" width="80" height="1" fill="#0066cc"/>
                   </svg>
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Robert Half</h4>
