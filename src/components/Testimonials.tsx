@@ -109,6 +109,111 @@ const Testimonials = () => {
             * Echte klanten, namen aangepast voor privacy
           </p>
         </div>
+
+        {/* Professional Experience */}
+        <div className="mt-20">
+          <h3 className="text-2xl font-playfair font-semibold text-primary mb-12 text-center">
+            Professionele Ervaring bij:
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <div className="text-primary font-bold text-lg">B</div>
+                </div>
+                <h4 className="font-playfair font-bold text-primary mb-2">Buckman</h4>
+                <p className="font-lato text-muted-foreground text-sm">
+                  Internationale chemie- en technologiepartner
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <div className="text-primary font-bold text-lg">LD</div>
+                </div>
+                <h4 className="font-playfair font-bold text-primary mb-2">Laurelton Diamonds</h4>
+                <p className="font-lato text-muted-foreground text-sm">
+                  High-end diamantverwerking, dochter van Tiffany & Co.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <div className="text-primary font-bold text-lg">R+</div>
+                </div>
+                <h4 className="font-playfair font-bold text-primary mb-2">Rizla+</h4>
+                <p className="font-lato text-muted-foreground text-sm">
+                  Internationaal bekend merk binnen FMCG
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <div className="text-primary font-bold text-lg">KN</div>
+                </div>
+                <h4 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h4>
+                <p className="font-lato text-muted-foreground text-sm">
+                  Belgisch wereldspeler in logistiek en fiscaliteit
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <div className="text-primary font-bold text-lg">SD</div>
+                </div>
+                <h4 className="font-playfair font-bold text-primary mb-2">Steelduxx</h4>
+                <p className="font-lato text-muted-foreground text-sm">
+                  Antwerps bedrijf gespecialiseerd in staalhandel
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <div className="text-primary font-bold text-lg">BS</div>
+                </div>
+                <h4 className="font-playfair font-bold text-primary mb-2">Bestseller</h4>
+                <p className="font-lato text-muted-foreground text-sm">
+                  Internationaal modebedrijf (o.a. Vero Moda, Jack & Jones)
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <div className="text-accent font-bold text-lg">AC</div>
+                </div>
+                <h4 className="font-playfair font-bold text-primary mb-2">AC Partners</h4>
+                <p className="font-lato text-muted-foreground text-sm">
+                  IT-consultancybedrijf gespecialiseerd in softwareontwikkeling, implementatie en integratie van IT-systemen
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <div className="text-primary font-bold text-lg">RH</div>
+                </div>
+                <h4 className="font-playfair font-bold text-primary mb-2">Robert Half</h4>
+                <p className="font-lato text-muted-foreground text-sm">
+                  Internationaal staffing & finance consultancybedrijf
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     </section>
   );
