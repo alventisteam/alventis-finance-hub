@@ -12,32 +12,9 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-32 bg-secondary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Client Logos */}
-        <div className="text-center">
-          <h3 className="text-2xl font-playfair font-semibold text-primary mb-8">
-            Vertrouwd door finance teams bij
-          </h3>
-          
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            {clientLogos.map((logo, index) => (
-              <div 
-                key={index}
-                className="bg-card px-6 py-4 rounded-lg shadow-soft min-w-[200px]"
-              >
-                <div className="font-lato font-semibold text-foreground text-center">
-                  {logo}
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <p className="font-lato text-muted-foreground mt-8 text-sm">
-            * Echte klanten, namen aangepast voor privacy
-          </p>
-        </div>
 
         {/* Professional Experience */}
-        <div className="mt-20">
+        <div className="text-center">
           <h3 className="text-2xl font-playfair font-semibold text-primary mb-12 text-center">
             Professionele Ervaring bij:
           </h3>
