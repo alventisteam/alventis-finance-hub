@@ -50,36 +50,6 @@ const Expertise = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 p-12 rounded-3xl">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-warm/20 rounded-full flex items-center justify-center mx-auto mb-8">
-              <Award className="h-10 w-10 text-warm" />
-            </div>
-            <h3 className="text-3xl font-playfair font-bold text-primary mb-6">
-              Resultaat: tot 50% efficiëntere processen
-            </h3>
-            <p className="text-xl font-lato text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Multinationals die met ons werken, sluiten sneller af, maken minder fouten en winnen opnieuw tijd voor strategisch werk. Sterkere rapportering en meer grip op cijfers – dat is wat je krijgt.
-            </p>
-            <div className="flex flex-wrap justify-center gap-8 text-center">
-              <div className="bg-warm/10 p-6 rounded-xl border border-warm/20">
-                <div className="text-3xl font-playfair font-bold text-warm mb-2">3-5</div>
-                <div className="font-lato text-foreground font-medium">dagen</div>
-                <div className="font-lato text-muted-foreground text-sm">in plaats van 3 weken</div>
-              </div>
-              <div className="bg-primary/10 p-6 rounded-xl border border-primary/20">
-                <div className="text-3xl font-playfair font-bold text-primary mb-2">100%</div>
-                <div className="font-lato text-foreground font-medium">compliant</div>
-                <div className="font-lato text-muted-foreground text-sm">audit-ready</div>
-              </div>
-              <div className="bg-accent/10 p-6 rounded-xl border border-accent/20">
-                <div className="text-3xl font-playfair font-bold text-accent mb-2">50%</div>
-                <div className="font-lato text-foreground font-medium">tijdsbesparing</div>
-                <div className="font-lato text-muted-foreground text-sm">op maandafsluitingen</div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
