@@ -23,12 +23,11 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="60" height="30" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="60" y="18" textAnchor="middle" fill="#1a365d" fontSize="14" fontWeight="bold">Buckman</text>
-                    <circle cx="100" cy="15" r="4" fill="#0066cc"/>
-                    <rect x="95" y="22" width="10" height="3" fill="#0066cc"/>
-                    <text x="60" y="35" textAnchor="middle" fill="#666" fontSize="8">Laboratory Solutions</text>
-                  </svg>
+                  <img 
+                    src="/lovable-uploads/098cdc8d-f6c6-45ef-bc12-aaa87fc4bd16.png" 
+                    alt="Buckman logo" 
+                    className="max-w-full max-h-full object-contain p-2"
+                  />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Buckman</h4>
                 <p className="font-lato text-muted-foreground text-sm">
