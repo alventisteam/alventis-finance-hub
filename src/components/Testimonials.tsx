@@ -71,13 +71,11 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="60" height="30" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="15,8 25,8 20,18 10,18" fill="#dc2626"/>
-                    <polygon points="20,18 30,18 25,28 15,28" fill="#dc2626"/>
-                    <polygon points="25,8 35,8 30,18 20,18" fill="#dc2626"/>
-                    <text x="55" y="18" textAnchor="middle" fill="#333" fontSize="12" fontWeight="bold">KATOEN</text>
-                    <text x="55" y="30" textAnchor="middle" fill="#333" fontSize="12" fontWeight="bold">NATIE</text>
-                  </svg>
+                  <img 
+                    src="/lovable-uploads/bed311b4-e389-45f5-97cb-dbf86bb9a6a2.png" 
+                    alt="Katoen Natie logo" 
+                    className="max-w-full max-h-full object-contain p-2"
+                  />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h4>
                 <p className="font-lato text-muted-foreground text-sm">
