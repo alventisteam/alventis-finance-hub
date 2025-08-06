@@ -31,7 +31,7 @@ const Footer = () => {
               Onze diensten
             </h4>
             <ul className="space-y-2 font-lato text-primary-foreground/80">
-              <li>Fiscale vertegenwoordiging</li>
+              <li>Advies in fiscale vertegenwoordiging</li>
               <li>Finance proces optimalisatie</li>
               <li>Digitalisering & automatisering</li>
               <li>Compliance monitoring</li>
