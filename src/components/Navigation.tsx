@@ -49,7 +49,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection('testimonials')}
                 className="text-foreground hover:text-accent transition-colors font-lato font-medium"
               >
-                Cases
+                Referenties
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
@@ -108,7 +108,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection('testimonials')}
                 className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
               >
-                Cases
+                Referenties
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
