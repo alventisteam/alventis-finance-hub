@@ -69,7 +69,7 @@ const Services = () => {
       icon: Shield,
       title: "Btw-compliance & rapportering",
       problem: "Jouw team verliest tijd aan complexe btw-verplichtingen en leeft in constante angst voor compliance risico's en boetes.",
-      solution: "Wij nemen de volledige fiscale vertegenwoordiging over en monitoren alle compliance aspecten proactief.",
+      solution: "Wij bieden begeleiding in fiscale vertegenwoordiging en monitoren alle compliance aspecten proactief.",
       result: "Jij bent 100% compliant, audit-ready en kunt je volledig focussen op strategie in plaats van administratie.",
       example: "Finance team sluit nu binnen 5 dagen af in plaats van 3 weken."
     },
