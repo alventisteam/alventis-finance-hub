@@ -24,11 +24,11 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="py-32 bg-secondary/30">
+    <section id="faq" className="py-32 bg-secondary/30" role="region" aria-labelledby="faq-heading">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
-            Veelgestelde vragen
+          <h2 id="faq-heading" className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
+            Veelgestelde Vragen BTW-compliance & Finance
           </h2>
           <p className="text-xl font-lato text-muted-foreground leading-relaxed">
             Alles wat je wilt weten over <strong>btw België</strong>, 

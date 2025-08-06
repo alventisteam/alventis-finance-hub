@@ -10,14 +10,14 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-32 bg-secondary/20">
+    <section id="testimonials" className="py-32 bg-secondary/20" role="region" aria-labelledby="testimonials-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Professional Experience */}
         <div className="text-center">
-          <h3 className="text-2xl font-playfair font-semibold text-primary mb-12 text-center">
-            Professionele Ervaring bij:
-          </h3>
+          <h2 id="testimonials-heading" className="text-2xl font-playfair font-semibold text-primary mb-12 text-center">
+            Professionele Ervaring bij Toonaangevende Multinationals:
+          </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">

@@ -21,11 +21,11 @@ const Expertise = () => {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-br from-secondary/10 via-background to-secondary/20">
+    <section className="py-32 bg-gradient-to-br from-secondary/10 via-background to-secondary/20" role="region" aria-labelledby="expertise-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
-            Expertise & Resultaten
+          <h2 id="expertise-heading" className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
+            Bewezen Resultaten & Expertise BTW-compliance
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Ontdek hoe Alventis finance teams helpt om hun doelen te bereiken – via gericht advies rond btw-compliance, digitalisering van finance processen en projectbegeleiding voor controllers en CFO's.

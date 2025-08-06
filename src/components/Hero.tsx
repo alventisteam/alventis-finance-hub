@@ -11,7 +11,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center">
+    <section id="home" className="relative min-h-screen flex items-center justify-center" role="banner">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -25,12 +25,12 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold mb-6 leading-tight">
-          Advies in finance optimalisatie, btw-compliance en business control voor{" "}
-          <span className="text-warm">multinationals</span> in België
+          BTW-compliance & Finance Optimalisatie voor{" "}
+          <span className="text-warm">Multinationals</span> in België
         </h1>
         
         <p className="text-xl sm:text-2xl font-lato font-light mb-8 max-w-3xl mx-auto leading-relaxed">
-          Als ervaren finance en business controller help ik multinationals bij correcte rapportering, efficiënte processen en digitale finance flows. Zo werk je audit-proof, gestructureerd en met grip op je cijfers.
+          10+ jaar ervaring als finance en business controller. Expertise in btw-advies, digitalisering finance processen en audit-ready rapportering voor internationale bedrijven zoals Buckman, Katoen Natie en Imperial Brands.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4">

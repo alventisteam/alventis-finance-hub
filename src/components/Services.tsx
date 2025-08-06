@@ -92,15 +92,15 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-gradient-to-br from-background via-secondary/20 to-background">
+    <section id="services" className="py-24 bg-gradient-to-br from-background via-secondary/20 to-background" role="region" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-            Onze diensten voor finance teams
+          <h2 id="services-heading" className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
+            BTW-compliance & Finance Optimalisatie Diensten
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Van compliance stress naar strategische focus. Ontdek hoe jouw finance team 50% sneller kan werken, 
-            100% compliant blijft en eindelijk tijd krijgt voor digitalisering van finance processen en strategische business partnering.
+            Specialist in btw-compliance en finance optimalisatie voor multinationals in België. 50% tijdsbesparing, 
+            100% audit-ready processen en complete digitalisering voor finance teams met 10+ jaar bewezen expertise.
           </p>
         </div>
 
