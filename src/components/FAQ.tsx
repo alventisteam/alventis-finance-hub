@@ -19,7 +19,7 @@ const FAQ = () => {
     },
     {
       question: "Hoe snel zie ik resultaten van finance optimalisatie?",
-      answer: "Binnen de eerste maand zie je al verbeteringen in efficiency. Na 3 maanden zijn de nieuwe processen volledig geïmplementeerd en ervaar je de volledige tijdsbesparing van 50%. Voor fiscale vertegenwoordiging ben je direct compliant vanaf dag 1."
+      answer: "Binnen de eerste maand zie je al verbeteringen in efficiency. Na 3 maanden zijn de nieuwe processen volledig geïmplementeerd en ervaar je de volledige tijdsbesparing van 50%. Voor btw ben je direct compliant vanaf dag 1."
     }
   ];
 
@@ -31,7 +31,7 @@ const FAQ = () => {
             Veelgestelde vragen
           </h2>
           <p className="text-xl font-lato text-muted-foreground leading-relaxed">
-            Alles wat je wilt weten over <strong>fiscale vertegenwoordiging België</strong>, 
+            Alles wat je wilt weten over <strong>btw België</strong>, 
             <strong>digitalisering van finance processen</strong> en <strong>projectbegeleiding voor controllers en CFO's</strong>
           </p>
         </div>
