@@ -67,7 +67,7 @@ const About = () => {
                     Bewezen expertise
                   </h3>
                   <p className="font-lato text-muted-foreground">
-                    15+ jaar ervaring in finance
+                    10+ jaar ervaring in finance
                   </p>
                 </div>
               </div>
