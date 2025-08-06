@@ -103,9 +103,11 @@ const Testimonials = () => {
             <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <svg width="60" height="30" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <text x="50" y="22" textAnchor="middle" fill="#000" fontSize="16" fontWeight="bold">BESTSELLER</text>
-                  </svg>
+                  <img 
+                    src="/lovable-uploads/764b7f97-8101-4216-af83-4fae4747c165.png" 
+                    alt="Bestseller logo" 
+                    className="max-w-full max-h-full object-contain p-2"
+                  />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Bestseller</h4>
                 <p className="font-lato text-muted-foreground text-sm">
