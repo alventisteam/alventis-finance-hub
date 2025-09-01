@@ -37,7 +37,9 @@ const Contact = () => {
 
       const response = await fetch('https://formspree.io/f/mqabrqyj', {
         method: 'POST',
-        body: data
+        headers: { 'Accept': 'application/json' },
+        body: data,
+        mode: 'cors'
       });
 
       if (response.ok) {
@@ -60,6 +62,7 @@ const Contact = () => {
         });
       }
     } catch (error) {
+      console.error('Formspree submit failed (Contact):', error);
       toast({
         title: "Er is iets misgegaan!",
         description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
