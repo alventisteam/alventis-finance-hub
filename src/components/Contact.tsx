@@ -28,21 +28,46 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const data = new FormData();
+      data.append('name', formData.name);
+      data.append('email', formData.email);
+      data.append('company', formData.company);
+      data.append('message', formData.message);
+
+      const response = await fetch('https://formspree.io/f/mqabrqyj', {
+        method: 'POST',
+        body: data
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Bericht verzonden!",
+          description: "We nemen binnen 24 uur contact met je op voor een gratis kennismaking.",
+        });
+        
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          message: ""
+        });
+      } else {
+        toast({
+          title: "Er is iets misgegaan!",
+          description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Bericht verzonden!",
-        description: "We nemen binnen 24 uur contact met je op voor een gratis kennismaking.",
+        title: "Er is iets misgegaan!",
+        description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
+        variant: "destructive",
       });
-      
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        message: ""
-      });
-      setIsSubmitting(false);
-    }, 1000);
+    }
+    
+    setIsSubmitting(false);
   };
 
   const contactInfo = [

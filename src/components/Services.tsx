@@ -30,37 +30,45 @@ const Services = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Maak FormData van je formData state
-    const data = new FormData();
-    data.append('name', formData.name);
-    data.append('email', formData.email);
-    data.append('company', formData.company);
-    data.append('message', formData.message);
+    try {
+      const data = new FormData();
+      data.append('name', formData.name);
+      data.append('email', formData.email);
+      data.append('company', formData.company);
+      data.append('message', formData.message);
 
-    // Verstuur POST request naar Formspree
-    const response = await fetch('https://formspree.io/f/mqabrqyj', {
-      method: 'POST',
-      body: data
-    });
+      const response = await fetch('https://formspree.io/f/mqabrqyj', {
+        method: 'POST',
+        body: data
+      });
 
-    if (response.ok) {
-      toast({
-        title: "Bericht verzonden!",
-        description: "We nemen binnen 24 uur contact met je op voor een gratis kennismaking.",
-      });
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        message: ""
-      });
-    } else {
+      if (response.ok) {
+        toast({
+          title: "Bericht verzonden!",
+          description: "We nemen binnen 24 uur contact met je op voor een gratis kennismaking.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          message: ""
+        });
+        setIsModalOpen(false);
+      } else {
+        toast({
+          title: "Er is iets misgegaan!",
+          description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
         title: "Er is iets misgegaan!",
-        description: "Probeer het later opnieuw of stuur een mail naar info@alventis.be.",
+        description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
         variant: "destructive",
       });
     }
+    
     setIsSubmitting(false);
   };
 
@@ -183,10 +191,7 @@ const Services = () => {
                 </Button>
               </div>
 
-              <form
-                action="https://formspree.io/f/mqabrqyj"
-                method="POST"
-              >
+              <form onSubmit={handleSubmit}>
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="name" className="text-sm font-lato font-semibold text-foreground">
@@ -197,6 +202,8 @@ const Services = () => {
                       id="name"
                       name="name"
                       required
+                      value={formData.name}
+                      onChange={handleInputChange}
                       className="mt-1"
                       placeholder="Jouw volledige naam"
                     />
@@ -211,6 +218,8 @@ const Services = () => {
                       id="email"
                       name="email"
                       required
+                      value={formData.email}
+                      onChange={handleInputChange}
                       className="mt-1"
                       placeholder="jouw@email.com"
                     />
@@ -224,6 +233,8 @@ const Services = () => {
                       type="text"
                       id="company"
                       name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
                       className="mt-1"
                       placeholder="Naam van jouw bedrijf"
                     />
@@ -237,6 +248,8 @@ const Services = () => {
                       id="message"
                       name="message"
                       rows={4}
+                      value={formData.message}
+                      onChange={handleInputChange}
                       className="mt-1"
                       placeholder="Vertel ons over jouw uitdagingen en wat je hoopt te bereiken..."
                     />
@@ -252,9 +265,13 @@ const Services = () => {
                   >
                     Annuleren
                   </Button>
-                  <button type="submit" className="flex-1 bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors">
-                    Send
-                  </button>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="flex-1"
+                  >
+                    {isSubmitting ? "Verzenden..." : "Verstuur bericht"}
+                  </Button>
                 </div>
               </form>
             </div>
