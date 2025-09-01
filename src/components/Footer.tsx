@@ -62,7 +62,7 @@ const Footer = () => {
               
               <div className="pt-4">
                 <a 
-                  href="https://linkedin.com/in/alventis" 
+                  href="https://www.linkedin.com/in/viktoria-oris-578106306/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-primary-foreground/80 hover:text-warm transition-colors text-sm"
