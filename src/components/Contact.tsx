@@ -143,6 +143,7 @@ const Contact = () => {
                         placeholder={t('contact.form.name.placeholder')}
                       />
                     </div>
+                    <div>
                       <label htmlFor="email" className="block font-lato font-medium text-foreground mb-2">
                         {t('contact.form.email')} *
                       </label>
@@ -189,14 +190,14 @@ const Contact = () => {
                     />
                   </div>
                   
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      variant="warm"
-                      className="w-full font-lato font-semibold py-3 text-lg"
-                    >
-                      {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
-                    </Button>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    variant="warm"
+                    className="w-full font-lato font-semibold py-3 text-lg"
+                  >
+                    {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
+                  </Button>
                 </form>
               </CardContent>
             </Card>
@@ -206,7 +207,7 @@ const Contact = () => {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-playfair font-semibold text-primary mb-6">
-                Contact informatie
+                {t('contact.info.title')}
               </h3>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -233,31 +234,30 @@ const Contact = () => {
 
             <div className="bg-sand/20 p-8 rounded-2xl">
               <h4 className="font-playfair font-semibold text-primary text-xl mb-4">
-                Wat levert dit jou op?
+                {t('contact.benefits.title')}
               </h4>
               <ul className="space-y-3 font-lato text-foreground">
                 <li className="flex items-start">
                   <span className="text-warm mr-2 font-bold">✓</span>
-                  50% tijdsbesparing in maandafsluiting en rapportage
+                  {t('contact.benefit.1')}
                 </li>
                 <li className="flex items-start">
                   <span className="text-warm mr-2 font-bold">✓</span>
-                  100% compliance zonder stress of audit-zorgen
+                  {t('contact.benefit.2')}
                 </li>
                 <li className="flex items-start">
                   <span className="text-warm mr-2 font-bold">✓</span>
-                  Meer tijd voor strategische business partnering
+                  {t('contact.benefit.3')}
                 </li>
                 <li className="flex items-start">
                   <span className="text-warm mr-2 font-bold">✓</span>
-                  Gelukkiger finance team dat zich kan focussen
+                  {t('contact.benefit.4')}
                 </li>
               </ul>
               
               <div className="mt-6 p-4 bg-warm/10 rounded-lg border-l-4 border-warm">
                 <p className="font-lato text-warm font-medium text-sm">
-                  "Binnen 3 maanden zul je merken dat jouw finance team eindelijk kan doen waar ze goed in zijn: 
-                  strategische ondersteuning in plaats van administratief geregel."
+                  {t('contact.testimonial')}
                 </p>
               </div>
             </div>
