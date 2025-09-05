@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -34,38 +42,67 @@ const Navigation = () => {
                 onClick={() => scrollToSection('home')}
                 className="text-foreground hover:text-accent transition-colors font-lato font-medium"
               >
-                Home
+                {t('nav.home')}
               </button>
               <button
                 onClick={() => scrollToSection('services')}
                 className="text-foreground hover:text-accent transition-colors font-lato font-medium"
               >
-                Diensten
+                {t('nav.services')}
               </button>
               <button
                 onClick={() => scrollToSection('about')}
                 className="text-foreground hover:text-accent transition-colors font-lato font-medium"
               >
-                Over ons
+                {t('nav.about')}
               </button>
               <button
                 onClick={() => scrollToSection('testimonials')}
                 className="text-foreground hover:text-accent transition-colors font-lato font-medium"
               >
-                Referenties
+                {t('nav.testimonials')}
               </button>
               <button
                 onClick={() => scrollToSection('faq')}
                 className="text-foreground hover:text-accent transition-colors font-lato font-medium"
               >
-                FAQ
+                {t('nav.faq')}
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="text-foreground hover:text-accent transition-colors font-lato font-medium"
               >
-                Contact
+                {t('nav.contact')}
               </button>
+              
+              {/* Language Switcher */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="p-2">
+                    <Globe className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-background border z-50">
+                  <DropdownMenuItem 
+                    onClick={() => setLanguage('nl')}
+                    className={language === 'nl' ? 'bg-accent' : ''}
+                  >
+                    Nederlands
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => setLanguage('en')}
+                    className={language === 'en' ? 'bg-accent' : ''}
+                  >
+                    English
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => setLanguage('es')}
+                    className={language === 'es' ? 'bg-accent' : ''}
+                  >
+                    Español
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
 
@@ -75,7 +112,7 @@ const Navigation = () => {
               onClick={() => scrollToSection('contact')}
               className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium"
             >
-              Plan een gratis kennismaking
+              {t('nav.cta')}
             </Button>
           </div>
 
@@ -99,44 +136,68 @@ const Navigation = () => {
                 onClick={() => scrollToSection('home')}
                 className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
               >
-                Home
+                {t('nav.home')}
               </button>
               <button
                 onClick={() => scrollToSection('services')}
                 className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
               >
-                Diensten
+                {t('nav.services')}
               </button>
               <button
                 onClick={() => scrollToSection('about')}
                 className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
               >
-                Over ons
+                {t('nav.about')}
               </button>
               <button
                 onClick={() => scrollToSection('testimonials')}
                 className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
               >
-                Referenties
+                {t('nav.testimonials')}
               </button>
               <button
                 onClick={() => scrollToSection('faq')}
                 className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
               >
-                FAQ
+                {t('nav.faq')}
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
               >
-                Contact
+                {t('nav.contact')}
               </button>
+              
+              {/* Mobile Language Switcher */}
+              <div className="px-3 py-2">
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setLanguage('nl')}
+                    className={`px-2 py-1 text-sm rounded ${language === 'nl' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
+                  >
+                    NL
+                  </button>
+                  <button
+                    onClick={() => setLanguage('en')}
+                    className={`px-2 py-1 text-sm rounded ${language === 'en' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
+                  >
+                    EN
+                  </button>
+                  <button
+                    onClick={() => setLanguage('es')}
+                    className={`px-2 py-1 text-sm rounded ${language === 'es' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
+                  >
+                    ES
+                  </button>
+                </div>
+              </div>
               <div className="px-3 py-2">
                 <Button
                   onClick={() => scrollToSection('contact')}
                   className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium w-full"
                 >
-                  Plan een gratis kennismaking
+                  {t('nav.cta')}
                 </Button>
               </div>
             </div>

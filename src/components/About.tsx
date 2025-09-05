@@ -1,12 +1,15 @@
 import { CheckCircle, Award, Target } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+  
   const expertise = [
-    "10+ jaar ervaring als finance & business controller in multinationals",
-    "Btw-advies voor internationale structuren – specialist in Belgische regelgeving",
-    "Begeleiding van finance transformaties & changetrajecten",
-    "Procesoptimalisatie & digitalisering van finance-afdelingen",
-    "Ervaren sparringpartner voor CFO's, controllers en tax leads"
+    t('about.expertise.1'),
+    t('about.expertise.2'),
+    t('about.expertise.3'),
+    t('about.expertise.4'),
+    t('about.expertise.5')
   ];
 
   return (
@@ -16,25 +19,25 @@ const About = () => {
           {/* Content */}
           <div className="mb-12">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-8">
-              Over Alventis
+              {t('about.title')}
             </h2>
             
             <p className="text-lg font-lato text-foreground mb-6 leading-relaxed">
-              Als finance & business controller en projectmanager in internationale multinationals begrijp ik exact waar finance teams mee worstelen. Van eindeloze btw-verplichtingen tot manuele processen die vertragen en fouten veroorzaken.
+              {t('about.intro1')}
             </p>
             
             <div className="bg-warm/10 p-6 rounded-xl border-l-4 border-warm mb-8">
               <p className="text-lg font-lato text-foreground font-medium italic leading-relaxed">
-                "Na meer dan 10 jaar in de frontlinie van finance binnen multinationals, weet ik exact waar het spaak loopt. Mijn aanpak? Chaos eruit. Structuur erin. Je team werkt sneller, juister en met focus op waar het écht om draait: strategische impact."
+                {t('about.quote')}
               </p>
             </div>
             
             <p className="text-lg font-lato text-muted-foreground mb-8 leading-relaxed">
-              Strategisch adviseur in finance optimalisatie en internationale btw-structuren
+              {t('about.subtitle')}
             </p>
 
             <div className="space-y-4 mb-8">
-              <h3 className="text-xl font-playfair font-semibold text-primary mb-4">Mijn expertise:</h3>
+              <h3 className="text-xl font-playfair font-semibold text-primary mb-4">{t('about.expertise.title')}</h3>
               {expertise.map((item, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   <CheckCircle className="h-5 w-5 text-warm flex-shrink-0" />
@@ -54,7 +57,7 @@ const About = () => {
                 className="w-full h-64 object-cover rounded-xl mb-4"
               />
               <p className="font-lato text-sm text-muted-foreground text-center">
-                Strategisch adviseur in finance optimalisatie en internationale btw-structuren
+                {t('about.subtitle')}
               </p>
             </div>
             <div className="bg-sand/20 p-8 rounded-2xl">
@@ -64,16 +67,15 @@ const About = () => {
                 </div>
                 <div>
                   <h3 className="font-playfair font-semibold text-primary text-lg">
-                    Bewezen expertise
+                    {t('about.proven.title')}
                   </h3>
                   <p className="font-lato text-muted-foreground">
-                    10+ jaar ervaring in finance
+                    {t('about.proven.subtitle')}
                   </p>
                 </div>
               </div>
               <p className="font-lato text-foreground">
-                Van hands-on controller tot strategisch adviseur – 
-                ik ken beide kanten van de finance wereld en weet exact wat werkt.
+                {t('about.proven.text')}
               </p>
             </div>
 
@@ -84,16 +86,15 @@ const About = () => {
                 </div>
                 <div>
                   <h3 className="font-playfair font-semibold text-primary text-lg">
-                    Resultaatgericht
+                    {t('about.results.title')}
                   </h3>
                   <p className="font-lato text-muted-foreground">
-                    Meetbare verbeteringen binnen 3 maanden
+                    {t('about.results.subtitle')}
                   </p>
                 </div>
               </div>
               <p className="font-lato text-foreground">
-                Jij ziet direct resultaat: minder stress, snellere processen, 
-                en eindelijk tijd voor strategisch werk dat écht impact heeft.
+                {t('about.results.text')}
               </p>
             </div>
           </div>

@@ -5,8 +5,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,8 +46,8 @@ const Contact = () => {
 
       if (response.ok) {
         toast({
-          title: "Bericht verzonden!",
-          description: "We nemen binnen 24 uur contact met je op voor een gratis kennismaking.",
+          title: t('toast.success.title'),
+          description: t('toast.success.description'),
         });
         
         setFormData({
@@ -56,16 +58,16 @@ const Contact = () => {
         });
       } else {
         toast({
-          title: "Er is iets misgegaan!",
-          description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
+          title: t('toast.error.title'),
+          description: t('toast.error.description'),
           variant: "destructive",
         });
       }
     } catch (error) {
       console.error('Formspree submit failed (Contact):', error);
       toast({
-        title: "Er is iets misgegaan!",
-        description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
+        title: t('toast.error.title'),
+        description: t('toast.error.description'),
         variant: "destructive",
       });
     }
@@ -76,27 +78,27 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Phone,
-      title: "Telefoon",
+      title: t('contact.phone'),
       value: "+32 478 83 43 23",
-      description: "Ma-vr 9:00-18:00"
+      description: t('contact.phone.description')
     },
     {
       icon: Mail,
-      title: "Email",
+      title: t('contact.email'),
       value: "viktoria@alventis.be",
-      description: "We reageren binnen 4 uur"
+      description: t('contact.email.description')
     },
     {
       icon: MapPin,
-      title: "Locatie",
+      title: t('contact.location'),
       value: "Kluisbergen, België",
-      description: "Ook voor videocalls"
+      description: t('contact.location.description')
     },
     {
       icon: Clock,
-      title: "Responstijd",
-      value: "Binnen 24 uur",
-      description: "Voor alle vragen"
+      title: t('contact.response_time'),
+      value: t('contact.response_time.description').split(' ')[0] + ' ' + t('contact.response_time.description').split(' ')[1],
+      description: t('contact.response_time.description').split(' ').slice(2).join(' ')
     }
   ];
 
@@ -105,14 +107,13 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
-            Contact
+            {t('contact.title')}
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto mb-4">
-            Stop met stressen over compliance en inefficiëntie. Plan een gratis kennismaking 
-            en ontdek hoe jouw finance team 50% sneller kan werken.
+            {t('contact.subtitle')}
           </p>
           <p className="text-base font-lato text-accent font-medium">
-            We reageren binnen 24 uur – vertrouwelijk en zonder verplichtingen
+            {t('contact.response')}
           </p>
         </div>
 
@@ -122,14 +123,14 @@ const Contact = () => {
             <Card className="shadow-medium">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-playfair font-semibold text-primary mb-6">
-                  Plan een gratis kennismaking
+                  {t('contact.form.title')}
                 </h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block font-lato font-medium text-foreground mb-2">
-                        Naam *
+                        {t('contact.form.name')} *
                       </label>
                       <Input
                         id="name"
@@ -139,13 +140,11 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         className="font-lato"
-                        placeholder="Jouw naam"
+                        placeholder={t('contact.form.name.placeholder')}
                       />
                     </div>
-                    
-                    <div>
                       <label htmlFor="email" className="block font-lato font-medium text-foreground mb-2">
-                        Email *
+                        {t('contact.form.email')} *
                       </label>
                       <Input
                         id="email"
@@ -155,14 +154,14 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         className="font-lato"
-                        placeholder="jouw@bedrijf.com"
+                        placeholder={t('contact.form.email.placeholder')}
                       />
                     </div>
                   </div>
                   
                   <div>
                     <label htmlFor="company" className="block font-lato font-medium text-foreground mb-2">
-                      Bedrijf
+                      {t('contact.form.company')}
                     </label>
                     <Input
                       id="company"
@@ -171,13 +170,13 @@ const Contact = () => {
                       value={formData.company}
                       onChange={handleInputChange}
                       className="font-lato"
-                      placeholder="Jouw bedrijf"
+                      placeholder={t('contact.form.company.placeholder')}
                     />
                   </div>
                   
                   <div>
                     <label htmlFor="message" className="block font-lato font-medium text-foreground mb-2">
-                      Bericht
+                      {t('contact.form.message')}
                     </label>
                     <Textarea
                       id="message"
@@ -186,18 +185,18 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       className="font-lato"
-                      placeholder="Vertel ons over jouw uitdagingen of vragen..."
+                      placeholder={t('contact.form.message.placeholder')}
                     />
                   </div>
                   
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    variant="warm"
-                    className="w-full font-lato font-semibold py-3 text-lg"
-                  >
-                    {isSubmitting ? "Verzenden..." : "Plan gratis kennismaking"}
-                  </Button>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      variant="warm"
+                      className="w-full font-lato font-semibold py-3 text-lg"
+                    >
+                      {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
+                    </Button>
                 </form>
               </CardContent>
             </Card>

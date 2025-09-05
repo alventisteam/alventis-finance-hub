@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@/assets/hero-background-new.jpg";
 
 const Hero = () => {
+  const { t } = useLanguage();
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -25,12 +27,20 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold mb-6 leading-tight">
-          BTW-compliance & Finance Optimalisatie voor{" "}
-          <span className="text-warm">Multinationals</span> in België
+          {t('hero.title').split(' ').map((word, index, array) => {
+            if (index === array.length - 3 && word === 'Multinationals') { // "Multinationals" in Dutch
+              return <span key={index} className="text-warm">{word} </span>;
+            } else if (index === array.length - 3 && word === 'Multinationales') { // "Multinationales" in Spanish  
+              return <span key={index} className="text-warm">{word} </span>;
+            } else if (array.includes('Multinationals') && word === 'Multinationals') { // "Multinationals" in English
+              return <span key={index} className="text-warm">{word} </span>;
+            }
+            return word + ' ';
+          })}
         </h1>
         
         <p className="text-xl sm:text-2xl font-lato font-light mb-8 max-w-3xl mx-auto leading-relaxed">
-          10+ jaar ervaring als finance en business controller. Expertise in btw-advies, digitalisering finance processen en audit-ready rapportering voor internationale bedrijven zoals Buckman, Katoen Natie en Imperial Brands.
+          {t('hero.subtitle')}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4">
@@ -40,7 +50,7 @@ const Hero = () => {
             size="lg"
             className="font-lato font-semibold text-xl px-12 py-6 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
           >
-            Plan een gratis kennismaking
+            {t('hero.cta1')}
           </Button>
           <Button
             onClick={() => scrollToSection('services')}
@@ -48,7 +58,7 @@ const Hero = () => {
             size="lg"
             className="font-lato font-semibold text-xl px-12 py-6 border-2 border-warm text-warm hover:bg-warm/10 rounded-xl transition-all duration-300"
           >
-            Bekijk onze diensten
+            {t('hero.cta2')}
           </Button>
         </div>
       </div>
@@ -58,7 +68,7 @@ const Hero = () => {
         <button
           onClick={() => scrollToSection('services')}
           className="text-white/80 hover:text-white transition-colors p-2"
-          aria-label="Scroll naar diensten"
+          aria-label={t('hero.scroll')}
         >
           <ChevronDown className="h-8 w-8 animate-bounce" />
         </button>
