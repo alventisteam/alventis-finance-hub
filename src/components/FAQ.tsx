@@ -1,25 +1,27 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FAQ = () => {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
     {
-      question: "Wat zijn de grootste fouten bij btw-compliance in multinationals?",
-      answer: "De grootste fouten zijn vaak late aangifte, verkeerde registratie van transacties en onvoldoende kennis van lokale regelgeving. Dit leidt tot boetes en compliance risico's. Wij zorgen voor proactieve monitoring en correcte afhandeling van alle btw-verplichtingen."
+      question: t('faq.question1'),
+      answer: t('faq.answer1')
     },
     {
-      question: "Hoeveel tijd kan digitalisering van finance processen mij besparen?",
-      answer: "Onze klanten besparen gemiddeld 50% tijd op maandafsluitingen en rapportage. Dat betekent dat waar je finance team voorheen 10 dagen nodig had, dit nu binnen 5 dagen klaar is. Deze tijdsbesparing komt door slimme automatisering van handmatige processen en betere workflows."
+      question: t('faq.question2'),
+      answer: t('faq.answer2')
     },
     {
-      question: "Voor welke multinationals is Alventis geschikt?",
-      answer: "Wij werken met finance teams van internationale bedrijven die actief zijn in België. Of je nu 50 of 5000 medewerkers hebt, als je team worstelt met compliance, handmatige processen of inefficiëntie, dan kunnen wij helpen. Onze expertise ligt vooral bij complexe btw-structuren en finance optimalisatie."
+      question: t('faq.question3'),
+      answer: t('faq.answer3')
     },
     {
-      question: "Hoe snel zie ik resultaten van finance optimalisatie?",
-      answer: "Binnen de eerste maand zie je al verbeteringen in efficiency. Na 3 maanden zijn de nieuwe processen volledig geïmplementeerd en ervaar je de volledige tijdsbesparing van 50%. Voor btw ben je direct compliant vanaf dag 1."
+      question: t('faq.question4'),
+      answer: t('faq.answer4')
     }
   ];
 
@@ -28,11 +30,11 @@ const FAQ = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
           <h2 id="faq-heading" className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
-            Veelgestelde Vragen BTW-compliance & Finance
+            {t('faq.title')}
           </h2>
           <p className="text-xl font-lato text-muted-foreground leading-relaxed">
-            Alles wat je wilt weten over <strong>btw België</strong>, 
-            <strong>digitalisering van finance processen</strong> en <strong>projectbegeleiding voor controllers en CFO's</strong>
+            {t('faq.subtitle.part1')} <strong>{t('faq.subtitle.part2')}</strong>, {' '}
+            <strong>{t('faq.subtitle.part3')}</strong> en <strong>{t('faq.subtitle.part4')}</strong>
           </p>
         </div>
 
@@ -66,13 +68,13 @@ const FAQ = () => {
 
         <div className="text-center mt-12">
           <p className="font-lato text-muted-foreground mb-6">
-            Heb je nog een andere vraag? We helpen je graag verder.
+            {t('faq.cta.text')}
           </p>
           <button 
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="bg-warm text-warm-foreground hover:bg-warm/90 font-lato font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
           >
-            Stel je vraag
+            {t('faq.cta.button')}
           </button>
         </div>
       </div>

@@ -1,22 +1,25 @@
 import { Award, TrendingUp, Clock, Target } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Expertise = () => {
+  const { t } = useLanguage();
+  
   const results = [
     {
       icon: TrendingUp,
-      title: "50% efficiëntere processen",
-      description: "Multinationals die met ons werken, sluiten sneller af, maken minder fouten en winnen opnieuw tijd voor strategisch werk."
+      title: t('expertise.result1.title'),
+      description: t('expertise.result1.description')
     },
     {
       icon: Clock,
-      title: "Sterkere rapportering",
-      description: "Van 3 weken naar 5 dagen - onze klanten ervaren dramatische verbeteringen in hun finance cyclus."
+      title: t('expertise.result2.title'),
+      description: t('expertise.result2.description')
     },
     {
       icon: Target,
-      title: "Meer grip op cijfers",
-      description: "Real-time inzicht en geautomatiseerde processen zorgen voor volledige controle over je financiële data."
+      title: t('expertise.result3.title'),
+      description: t('expertise.result3.description')
     }
   ];
 
@@ -25,10 +28,10 @@ const Expertise = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 id="expertise-heading" className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
-            Bewezen Resultaten & Expertise BTW-compliance
+            {t('expertise.title')}
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Ontdek hoe Alventis finance teams helpt om hun doelen te bereiken – via gericht advies rond btw-compliance, digitalisering van finance processen en projectbegeleiding voor controllers en CFO's.
+            {t('expertise.subtitle')}
           </p>
         </div>
 

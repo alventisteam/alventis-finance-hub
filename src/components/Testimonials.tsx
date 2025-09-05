@@ -1,6 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Testimonials = () => {
+  const { t } = useLanguage();
+  
   const clientLogos = [
     "TechCorp International",
     "European Manufacturing",
@@ -16,7 +19,7 @@ const Testimonials = () => {
         {/* Professional Experience */}
         <div className="text-center">
           <h2 id="testimonials-heading" className="text-2xl font-playfair font-semibold text-primary mb-12 text-center">
-            Professionele Ervaring bij Toonaangevende Multinationals:
+            {t('testimonials.title')}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -31,7 +34,7 @@ const Testimonials = () => {
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Buckman</h4>
                 <p className="font-lato text-muted-foreground text-sm">
-                  Internationale chemie- en technologiepartner
+                  {t('testimonials.buckman.description')}
                 </p>
               </CardContent>
             </Card>
@@ -47,7 +50,7 @@ const Testimonials = () => {
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Laurelton Diamonds</h4>
                 <p className="font-lato text-muted-foreground text-sm">
-                  High-end diamantverwerking, dochter van Tiffany & Co.
+                  {t('testimonials.laurelton.description')}
                 </p>
               </CardContent>
             </Card>
@@ -63,7 +66,7 @@ const Testimonials = () => {
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Imperial Brands</h4>
                 <p className="font-lato text-muted-foreground text-sm">
-                  Internationaal tabak- en consumentengoederenbedrijf
+                  {t('testimonials.imperial.description')}
                 </p>
               </CardContent>
             </Card>
@@ -79,7 +82,7 @@ const Testimonials = () => {
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h4>
                 <p className="font-lato text-muted-foreground text-sm">
-                  Belgisch wereldspeler in logistiek en fiscaliteit
+                  {t('testimonials.katoen.description')}
                 </p>
               </CardContent>
             </Card>
@@ -95,7 +98,7 @@ const Testimonials = () => {
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Steelduxx</h4>
                 <p className="font-lato text-muted-foreground text-sm">
-                  Antwerps bedrijf gespecialiseerd in staalhandel
+                  {t('testimonials.steelduxx.description')}
                 </p>
               </CardContent>
             </Card>
@@ -111,7 +114,7 @@ const Testimonials = () => {
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Bestseller</h4>
                 <p className="font-lato text-muted-foreground text-sm">
-                  Internationaal modebedrijf (o.a. Vero Moda, Jack & Jones)
+                  {t('testimonials.bestseller.description')}
                 </p>
               </CardContent>
             </Card>
@@ -127,7 +130,7 @@ const Testimonials = () => {
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">AC Partners</h4>
                 <p className="font-lato text-muted-foreground text-sm">
-                  IT-consultancybedrijf gespecialiseerd in softwareontwikkeling, implementatie en integratie van IT-systemen
+                  {t('testimonials.acpartners.description')}
                 </p>
               </CardContent>
             </Card>
@@ -143,7 +146,7 @@ const Testimonials = () => {
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Robert Half</h4>
                 <p className="font-lato text-muted-foreground text-sm">
-                  Internationaal staffing & finance consultancybedrijf
+                  {t('testimonials.roberthalf.description')}
                 </p>
               </CardContent>
             </Card>

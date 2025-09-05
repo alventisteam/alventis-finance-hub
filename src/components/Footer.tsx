@@ -1,4 +1,7 @@
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -8,56 +11,55 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-2xl font-playfair font-bold mb-4">
-              Alventis
+              {t('footer.company')}
             </h3>
             <p className="font-lato text-primary-foreground/80 mb-4 leading-relaxed">
-              Finance optimalisatie multinationals en btw-compliance België. 
-              Digitalisering finance processen en business control consultant.
+              {t('footer.description')}
             </p>
             <p className="font-lato text-primary-foreground/80 text-sm mb-6">
-              Vertrouwd door finance teams wereldwijd
+              {t('footer.trust')}
             </p>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-warm text-warm-foreground hover:bg-warm/90 font-lato font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105"
             >
-              Plan een gratis kennismaking
+              {t('footer.cta')}
             </button>
           </div>
 
           {/* Services */}
           <div>
             <h4 className="font-playfair font-semibold text-lg mb-4">
-              Onze diensten
+              {t('footer.services.title')}
             </h4>
             <ul className="space-y-2 font-lato text-primary-foreground/80">
-              <li>Advies in fiscale vertegenwoordiging</li>
-              <li>Finance proces optimalisatie</li>
-              <li>Digitalisering & automatisering</li>
-              <li>Compliance monitoring</li>
-              <li>Projectbegeleiding</li>
+              <li>{t('footer.service1')}</li>
+              <li>{t('footer.service2')}</li>
+              <li>{t('footer.service3')}</li>
+              <li>{t('footer.service4')}</li>
+              <li>{t('footer.service5')}</li>
             </ul>
           </div>
 
           {/* Contact & Social Proof */}
           <div>
             <h4 className="font-playfair font-semibold text-lg mb-4">
-              Contact
+              {t('footer.contact.title')}
             </h4>
             <div className="space-y-2 font-lato text-primary-foreground/80 mb-6">
-              <p>Kluisbergen, België</p>
+              <p>{t('footer.location')}</p>
               <p>+32 478 83 43 23</p>
               <p>viktoria@alventis.be</p>
             </div>
             
             <div className="space-y-3">
               <h5 className="font-lato font-semibold text-primary-foreground text-sm">
-                Vertrouwd door:
+                {t('footer.trusted.title')}
               </h5>
               <div className="space-y-1 font-lato text-primary-foreground/60 text-sm">
-                <p>• Internationale multinationals</p>
-                <p>• Finance teams in heel Europa</p>
-                <p>• Controllers & CFO's sinds 2008</p>
+                <p>{t('footer.trusted1')}</p>
+                <p>{t('footer.trusted2')}</p>
+                <p>{t('footer.trusted3')}</p>
               </div>
               
               <div className="pt-4">
@@ -67,7 +69,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-primary-foreground/80 hover:text-warm transition-colors text-sm"
                 >
-                  LinkedIn →
+                  {t('footer.linkedin')}
                 </a>
               </div>
             </div>
@@ -80,25 +82,25 @@ const Footer = () => {
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-warm text-warm-foreground hover:bg-warm/90 font-lato font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 text-lg"
             >
-              Plan een gratis kennismaking
+              {t('footer.cta')}
             </button>
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="font-lato text-primary-foreground/60 text-sm">
-              © {currentYear} Alventis. Alle rechten voorbehouden.
+              © {currentYear} {t('footer.company')}. {t('footer.copyright')}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a
                 href="#privacy"
                 className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
               >
-                Privacy Policy
+                {t('footer.privacy')}
               </a>
               <a
                 href="#terms"
                 className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
               >
-                Algemene Voorwaarden
+                {t('footer.terms')}
               </a>
             </div>
           </div>

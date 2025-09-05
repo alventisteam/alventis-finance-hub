@@ -6,8 +6,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -46,8 +48,8 @@ const Services = () => {
 
       if (response.ok) {
         toast({
-          title: "Bericht verzonden!",
-          description: "We nemen binnen 24 uur contact met je op voor een gratis kennismaking.",
+          title: t('toast.success.title'),
+          description: t('toast.success.description'),
         });
         setFormData({
           name: "",
@@ -58,16 +60,16 @@ const Services = () => {
         setIsModalOpen(false);
       } else {
         toast({
-          title: "Er is iets misgegaan!",
-          description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
+          title: t('toast.error.title'),
+          description: t('toast.error.description'),
           variant: "destructive",
         });
       }
     } catch (error) {
       console.error('Formspree submit failed (Services):', error);
       toast({
-        title: "Er is iets misgegaan!",
-        description: "Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.",
+        title: t('toast.error.title'),
+        description: t('toast.error.description'),
         variant: "destructive",
       });
     }
@@ -78,27 +80,27 @@ const Services = () => {
   const services = [
     {
       icon: Shield,
-      title: "Btw-compliance & rapportering",
-      problem: "Jouw team verliest tijd aan complexe btw-verplichtingen en leeft in constante angst voor compliance risico's en boetes.",
-      solution: "Wij bieden begeleiding in fiscale vertegenwoordiging en monitoren alle compliance aspecten proactief.",
-      result: "Jij bent 100% compliant, audit-ready en kunt je volledig focussen op strategie in plaats van administratie.",
-      example: "Finance team sluit nu binnen 5 dagen af in plaats van 3 weken."
+      title: t('services.service1.title'),
+      problem: t('services.service1.problem'),
+      solution: t('services.service1.solution'),
+      result: t('services.service1.result'),
+      example: t('services.service1.example')
     },
     {
       icon: Cog,
-      title: "Finance procesoptimalisatie",
-      problem: "Handmatige processen kosten teveel tijd, leiden tot fouten en maken jouw team ongelukkig en inefficiënt.",
-      solution: "Wij automatiseren workflows, digitaliseren processen en optimaliseren jouw gehele finance operatie.",
-      result: "Jij bespaart 50% tijd, elimineert fouten en krijgt real-time inzicht in je financiële prestaties.",
-      example: "Tot 50% efficiëntere processen en sterkere rapportering."
+      title: t('services.service2.title'),
+      problem: t('services.service2.problem'),
+      solution: t('services.service2.solution'),
+      result: t('services.service2.result'),
+      example: t('services.service2.example')
     },
     {
       icon: Users,
-      title: "Projectbegeleiding & changemanagement",
-      problem: "Veranderingen mislukken door weerstand van jouw team en gebrek aan ervaring met finance transformaties.",
-      solution: "Wij begeleiden persoonlijk controllers en CFO's door elke stap van de transformatie.",
-      result: "Jij krijgt volledige team buy-in, soepele implementatie en duurzame verandering.",
-      example: "100% acceptatie bij finance team binnen 3 maanden."
+      title: t('services.service3.title'),
+      problem: t('services.service3.problem'),
+      solution: t('services.service3.solution'),
+      result: t('services.service3.result'),
+      example: t('services.service3.example')
     }
   ];
 
@@ -107,11 +109,10 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 id="services-heading" className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-            BTW-compliance & Finance Optimalisatie Diensten
+            {t('services.title')}
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Specialist in btw-compliance en finance optimalisatie voor multinationals in België. 50% tijdsbesparing, 
-            100% audit-ready processen en complete digitalisering voor finance teams met 10+ jaar bewezen expertise.
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -129,23 +130,23 @@ const Services = () => {
                 
                 <div className="space-y-8">
                   <div className="border-l-4 border-muted pl-6 py-2">
-                    <h4 className="font-lato font-bold text-muted-foreground mb-3 text-sm uppercase tracking-wide">Probleem</h4>
+                    <h4 className="font-lato font-bold text-muted-foreground mb-3 text-sm uppercase tracking-wide">{t('services.problem')}</h4>
                     <p className="font-lato text-muted-foreground leading-relaxed">{service.problem}</p>
                   </div>
                   
                   <div className="border-l-4 border-primary pl-6 py-2">
-                    <h4 className="font-lato font-bold text-primary mb-3 text-sm uppercase tracking-wide">Onze oplossing</h4>
+                    <h4 className="font-lato font-bold text-primary mb-3 text-sm uppercase tracking-wide">{t('services.solution')}</h4>
                     <p className="font-lato text-foreground leading-relaxed">{service.solution}</p>
                   </div>
                   
                   <div className="border-l-4 border-warm pl-6 py-2">
-                    <h4 className="font-lato font-bold text-warm mb-3 text-sm uppercase tracking-wide">Jouw voordeel</h4>
+                    <h4 className="font-lato font-bold text-warm mb-3 text-sm uppercase tracking-wide">{t('services.benefit')}</h4>
                     <p className="font-lato text-foreground font-semibold leading-relaxed">{service.result}</p>
                   </div>
                   
                   <div className="bg-accent/10 p-4 rounded-lg border border-accent/20">
                     <p className="font-lato text-accent font-medium text-sm">
-                      <span className="font-bold text-primary">Resultaat:</span> {service.example}
+                      <span className="font-bold text-primary">{t('services.result')}:</span> {service.example}
                     </p>
                   </div>
                 </div>
@@ -158,10 +159,10 @@ const Services = () => {
         <div className="mt-24 text-center">
           <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 p-12 rounded-3xl max-w-4xl mx-auto shadow-lg">
             <h3 className="text-3xl font-playfair font-bold text-foreground mb-6">
-              Klaar om jouw finance team te transformeren?
+              {t('services.cta.title')}
             </h3>
             <p className="text-xl font-lato text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              Plan een gratis kennismaking en ontdek hoe jouw team 50% sneller kan werken en 100% compliant blijft.
+              {t('services.cta.subtitle')}
             </p>
             <Button 
               variant="default" 
@@ -169,7 +170,7 @@ const Services = () => {
               className="font-lato font-semibold text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               onClick={() => setIsModalOpen(true)}
             >
-              Plan gratis kennismaking
+              {t('services.cta.button')}
             </Button>
           </div>
         </div>
@@ -182,7 +183,7 @@ const Services = () => {
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-playfair font-bold text-foreground">
-                  Plan gratis kennismaking
+                  {t('services.modal.title')}
                 </h3>
                 <Button
                   variant="ghost"
@@ -198,7 +199,7 @@ const Services = () => {
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="name" className="text-sm font-lato font-semibold text-foreground">
-                      Naam *
+                      {t('services.form.name')} *
                     </Label>
                     <Input
                       type="text"
@@ -208,13 +209,13 @@ const Services = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       className="mt-1"
-                      placeholder="Jouw volledige naam"
+                      placeholder={t('services.form.name.placeholder')}
                     />
                   </div>
 
                   <div>
                     <Label htmlFor="email" className="text-sm font-lato font-semibold text-foreground">
-                      E-mail *
+                      {t('services.form.email')} *
                     </Label>
                     <Input
                       type="email"
@@ -224,13 +225,13 @@ const Services = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       className="mt-1"
-                      placeholder="jouw@email.com"
+                      placeholder={t('services.form.email.placeholder')}
                     />
                   </div>
 
                   <div>
                     <Label htmlFor="company" className="text-sm font-lato font-semibold text-foreground">
-                      Bedrijf
+                      {t('services.form.company')}
                     </Label>
                     <Input
                       type="text"
@@ -239,13 +240,13 @@ const Services = () => {
                       value={formData.company}
                       onChange={handleInputChange}
                       className="mt-1"
-                      placeholder="Naam van jouw bedrijf"
+                      placeholder={t('services.form.company.placeholder')}
                     />
                   </div>
 
                   <div>
                     <Label htmlFor="message" className="text-sm font-lato font-semibold text-foreground">
-                      Bericht
+                      {t('services.form.message')}
                     </Label>
                     <Textarea
                       id="message"
@@ -254,7 +255,7 @@ const Services = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       className="mt-1"
-                      placeholder="Vertel ons over jouw uitdagingen en wat je hoopt te bereiken..."
+                      placeholder={t('services.form.message.placeholder')}
                     />
                   </div>
                 </div>
@@ -266,14 +267,14 @@ const Services = () => {
                     onClick={() => setIsModalOpen(false)}
                     className="flex-1"
                   >
-                    Annuleren
+                    {t('services.form.cancel')}
                   </Button>
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
                     className="flex-1"
                   >
-                    {isSubmitting ? "Verzenden..." : "Verstuur bericht"}
+                    {isSubmitting ? t('services.form.submitting') : t('services.form.submit')}
                   </Button>
                 </div>
               </form>
