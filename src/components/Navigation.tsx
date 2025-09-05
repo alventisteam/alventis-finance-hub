@@ -19,9 +19,12 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-playfair font-bold text-primary">
-              Alventis
-            </h1>
+            <img 
+              src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
+              alt="Alventis Logo" 
+              className="h-10 w-auto cursor-pointer" 
+              onClick={() => scrollToSection('home')}
+            />
           </div>
 
           {/* Desktop Navigation */}
