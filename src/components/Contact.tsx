@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import modernBuilding from "@/assets/modern-finance-building.png";
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -103,19 +104,54 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
-            {t('contact.title')}
-          </h2>
-          <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto mb-4">
-            {t('contact.subtitle')}
-          </p>
-          <p className="text-base font-lato text-accent font-medium">
-            {t('contact.response')}
-          </p>
+    <>
+      {/* Stel je vraag section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={modernBuilding}
+            alt="Modern finance building in Belgium"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-primary/80"></div>
         </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <p className="text-lg sm:text-xl font-lato font-light mb-6 max-w-2xl mx-auto leading-relaxed">
+            Heb je nog een andere vraag? We helpen je graag verder.
+          </p>
+          
+          <Button
+            onClick={() => {
+              const contactSection = document.getElementById('contact-form');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            variant="warm"
+            size="lg"
+            className="font-lato font-semibold text-lg px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            Stel je vraag
+          </Button>
+        </div>
+      </section>
+
+      <section id="contact-form" className="py-32 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
+              {t('contact.title')}
+            </h2>
+            <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto mb-4">
+              {t('contact.subtitle')}
+            </p>
+            <p className="text-base font-lato text-accent font-medium">
+              {t('contact.response')}
+            </p>
+          </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Form */}
@@ -265,6 +301,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
