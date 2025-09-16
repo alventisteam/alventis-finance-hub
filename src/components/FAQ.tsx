@@ -66,17 +66,6 @@ const FAQ = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="font-lato text-muted-foreground mb-6">
-            {t('faq.cta.text')}
-          </p>
-          <button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-warm text-warm-foreground hover:bg-warm/90 font-lato font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
-          >
-            {t('faq.cta.button')}
-          </button>
-        </div>
       </div>
     </section>
   );
