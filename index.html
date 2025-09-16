@@ -190,6 +190,51 @@
       "alumniOf": "Finance expertise 10+ jaar"
     }
     </script>
+    
+    <!-- Osano Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener("load", function(){
+      window.cookieconsent.initialise({
+        palette: {
+          popup: { background: "#000000" },
+          button: { background: "#f1d600" }
+        },
+        theme: "classic",
+        position: "bottom",
+        type: "opt-in",
+        content: {
+          message: "We use cookies to analyse traffic and improve your experience.",
+          dismiss: "Reject",
+          allow: "Accept",
+          link: "Learn more",
+          href: "/privacy-policy"
+        },
+        onInitialise: function(status) {
+          if (status == 'allow') { loadAnalytics(); }
+        },
+        onStatusChange: function(status) {
+          if (status == 'allow') { loadAnalytics(); }
+        }
+      });
+    });
+
+    function loadAnalytics() {
+      // Google Analytics loads only after consent
+      var gtagScript = document.createElement('script');
+      gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-ZV5408R1NP";
+      gtagScript.async = true;
+      document.head.appendChild(gtagScript);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+
+      gtag('js', new Date());
+      gtag('config', 'G-ZV5408R1NP');
+    }
+    </script>
   </head>
 
   <body>
