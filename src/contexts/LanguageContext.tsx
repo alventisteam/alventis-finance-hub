@@ -173,7 +173,22 @@ export const translations = {
     'footer.linkedin': 'LinkedIn →',
     'footer.copyright': 'Alle rechten voorbehouden.',
     'footer.privacy': 'Privacy Policy',
+    'footer.legal': 'Juridische Vermelding',
     'footer.terms': 'Algemene Voorwaarden',
+
+    // Legal Notice
+    'legal.title': 'Juridische Vermelding',
+    'legal.metaDescription': 'Juridische vermelding van Alventis - contactgegevens en verantwoordelijke persoon volgens Belgische wetgeving.',
+    'legal.lastUpdated': 'Laatst bijgewerkt: 16/09/2025',
+    'legal.backToHome': 'Terug naar home',
+    'legal.content.name': 'Viktoria Ovis',
+    'legal.content.address': 'Bergstraat 39',
+    'legal.content.city': '9690 Kluisbergen',
+    'legal.content.country': 'België',
+    'legal.content.email': 'viktoria@alventis.be',
+    'legal.content.phone': '+32 478 83 43 23',
+    'legal.content.vat': 'BE1019135844',
+    'legal.content.responsibility': 'Verantwoordelijk voor de inhoud van deze website: Viktoria Ovis',
 
     // Privacy Section
     'privacy.title': 'Privacy',
@@ -395,7 +410,22 @@ export const translations = {
     'footer.linkedin': 'LinkedIn →',
     'footer.copyright': 'All rights reserved.',
     'footer.privacy': 'Privacy Policy',
+    'footer.legal': 'Legal Notice',
     'footer.terms': 'Terms & Conditions',
+
+    // Legal Notice
+    'legal.title': 'Legal Notice',
+    'legal.metaDescription': 'Legal notice for Alventis - contact information and responsible person according to Belgian law.',
+    'legal.lastUpdated': 'Last updated: 16/09/2025',
+    'legal.backToHome': 'Back to home',
+    'legal.content.name': 'Viktoria Ovis',
+    'legal.content.address': 'Bergstraat 39',
+    'legal.content.city': '9690 Kluisbergen',
+    'legal.content.country': 'Belgium',
+    'legal.content.email': 'viktoria@alventis.be',
+    'legal.content.phone': '+32 478 83 43 23',
+    'legal.content.vat': 'BE1019135844',
+    'legal.content.responsibility': 'Responsible for the content of this website: Viktoria Ovis',
 
     // Privacy Section
     'privacy.title': 'Privacy',
@@ -617,7 +647,22 @@ export const translations = {
     'footer.linkedin': 'LinkedIn →',
     'footer.copyright': 'Todos los derechos reservados.',
     'footer.privacy': 'Política de Privacidad',
+    'footer.legal': 'Aviso Legal',
     'footer.terms': 'Términos y Condiciones',
+
+    // Legal Notice
+    'legal.title': 'Aviso Legal',
+    'legal.metaDescription': 'Aviso legal de Alventis - información de contacto y persona responsable según la ley belga.',
+    'legal.lastUpdated': 'Última actualización: 16/09/2025',
+    'legal.backToHome': 'Volver al inicio',
+    'legal.content.name': 'Viktoria Ovis',
+    'legal.content.address': 'Bergstraat 39',
+    'legal.content.city': '9690 Kluisbergen',
+    'legal.content.country': 'Bélgica',
+    'legal.content.email': 'viktoria@alventis.be',
+    'legal.content.phone': '+32 478 83 43 23',
+    'legal.content.vat': 'BE1019135844',
+    'legal.content.responsibility': 'Responsable del contenido de este sitio web: Viktoria Ovis',
 
     // Toast messages
     'toast.success.title': '¡Mensaje enviado!',
