@@ -6,8 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
-import modernBuilding from "@/assets/modern-finance-building-belgium.png";
-
+import modernBuilding from "@/assets/modern-finance-building.png";
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -105,28 +104,51 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="relative min-h-screen flex items-center justify-center">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={modernBuilding}
-          alt="Modern finance building in Belgium"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-primary/80"></div>
-      </div>
+    <>
+      {/* Stel je vraag section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={modernBuilding}
+            alt="Modern finance building in Belgium"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-primary/80"></div>
+        </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full py-32">
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <p className="text-lg sm:text-xl font-lato font-light mb-6 max-w-2xl mx-auto leading-relaxed">
+            Heb je nog een andere vraag? We helpen je graag verder.
+          </p>
+          
+          <Button
+            onClick={() => {
+              const contactSection = document.getElementById('contact-form');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            variant="warm"
+            size="lg"
+            className="font-lato font-semibold text-lg px-10 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            Stel je vraag
+          </Button>
+        </div>
+      </section>
+
+      <section id="contact-form" className="py-32 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
               {t('contact.title')}
             </h2>
-            <p className="text-xl font-lato text-white/90 leading-relaxed max-w-3xl mx-auto mb-4">
+            <p className="text-xl font-lato text-muted-foreground max-w-3xl mx-auto mb-4">
               {t('contact.subtitle')}
             </p>
-            <p className="text-base font-lato text-warm font-medium">
+            <p className="text-base font-lato text-accent font-medium">
               {t('contact.response')}
             </p>
           </div>
@@ -134,7 +156,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Form */}
           <div>
-            <Card className="shadow-medium bg-card/95 backdrop-blur-sm">
+            <Card className="shadow-medium">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-playfair font-semibold text-primary mb-6">
                   {t('contact.form.title')}
@@ -219,25 +241,25 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div className="space-y-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-              <h3 className="text-2xl font-playfair font-semibold text-white mb-6">
+            <div>
+              <h3 className="text-2xl font-playfair font-semibold text-primary mb-6">
                 {t('contact.info.title')}
               </h3>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-warm/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <info.icon className="h-6 w-6 text-warm" />
+                    <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <info.icon className="h-6 w-6 text-accent" />
                     </div>
                     <div>
-                      <h4 className="font-lato font-semibold text-white mb-1">
+                      <h4 className="font-lato font-semibold text-foreground mb-1">
                         {info.title}
                       </h4>
-                      <p className="font-lato text-warm font-medium">
+                      <p className="font-lato text-primary font-medium">
                         {info.value}
                       </p>
-                      <p className="font-lato text-white/80 text-sm">
+                      <p className="font-lato text-muted-foreground text-sm">
                         {info.description}
                       </p>
                     </div>
@@ -245,13 +267,12 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-            </div>
 
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl">
-              <h4 className="font-playfair font-semibold text-white text-xl mb-4">
+            <div className="bg-sand/20 p-8 rounded-2xl">
+              <h4 className="font-playfair font-semibold text-primary text-xl mb-4">
                 {t('contact.benefits.title')}
               </h4>
-              <ul className="space-y-3 font-lato text-white/90">
+              <ul className="space-y-3 font-lato text-foreground">
                 <li className="flex items-start">
                   <span className="text-warm mr-2 font-bold">✓</span>
                   {t('contact.benefit.1')}
@@ -280,6 +301,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
