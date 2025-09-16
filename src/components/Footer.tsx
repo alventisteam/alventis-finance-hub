@@ -91,10 +91,10 @@ const Footer = () => {
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a
-                href="#privacy"
+                href="/privacy"
                 className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
               >
-                {t('footer.privacy')}
+                Privacy
               </a>
               <a
                 href="#terms"
