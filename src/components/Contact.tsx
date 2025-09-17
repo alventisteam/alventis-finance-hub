@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
-import modernBuilding from "@/assets/modern-finance-building.png";
+import modernBuilding from "@/assets/modern-finance-building.webp";
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -111,7 +111,7 @@ const Contact = () => {
         <div className="absolute inset-0 z-0">
           <img
             src={modernBuilding}
-            alt="Modern finance building in Belgium"
+            alt="Modern glass office building in Belgium representing Alventis finance consultancy for multinationals"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-primary/80"></div>
