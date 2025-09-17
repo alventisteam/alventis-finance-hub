@@ -97,7 +97,7 @@ const Footer = () => {
                 Privacy
               </a>
               <a
-                href="/legal-notice"
+                href="/impressum"
                 className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
               >
                 Juridische Vermelding

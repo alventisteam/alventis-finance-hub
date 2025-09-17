@@ -30,7 +30,7 @@ const LegalNotice = () => {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', window.location.origin + '/legal-notice');
+    canonical.setAttribute('href', window.location.origin + '/impressum');
   }, [t]);
 
   return (
