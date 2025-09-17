@@ -10,7 +10,6 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { preloadImage, markCriticalResource } from "@/lib/performance";
-import heroImage from "@/assets/hero-background-new.webp";
 
 const Index = () => {
   useEffect(() => {
@@ -24,7 +23,7 @@ const Index = () => {
     canonical.setAttribute('href', 'https://alventis.be/');
     
     // Preload critical images for LCP optimization
-    preloadImage(heroImage, 'high');
+    preloadImage('/assets/finance-consulting-office-belgium.webp', 'high');
     preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
     
     // Mark critical images after component mount

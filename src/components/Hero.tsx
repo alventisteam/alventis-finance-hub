@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import heroImage from "@/assets/hero-background-new.webp";
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -17,10 +16,10 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroImage}
-          srcSet={`${heroImage} 1920w`}
+          src="/assets/finance-consulting-office-belgium.webp"
+          srcSet="/assets/finance-consulting-office-belgium.webp 1920w"
           sizes="100vw"
-          alt="Finance optimalisatie multinationals België - btw-compliance en business control consultant"
+          alt="Modern office building representing Alventis, a finance consulting and VAT compliance firm in Belgium"
           className="w-full h-full object-cover"
           width="1920"
           height="1080"
