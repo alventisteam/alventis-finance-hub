@@ -26,19 +26,38 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
+            // Split React and React DOM into separate chunk
+            if (id.includes("react") || id.includes("react-dom")) return "react-vendor";
             if (id.includes("@radix-ui")) return "ui-vendor";
+            if (id.includes("lucide-react")) return "icons-vendor";
             return "vendor";
           }
         },
+        // Optimize chunk names for caching
+        chunkFileNames: (chunkInfo) => {
+          if (chunkInfo.name === "react-vendor") return "assets/react-[hash].js";
+          if (chunkInfo.name === "ui-vendor") return "assets/ui-[hash].js";
+          if (chunkInfo.name === "icons-vendor") return "assets/icons-[hash].js";
+          return "assets/[name]-[hash].js";
+        },
       },
     },
-    // Use esbuild minifier (default, faster and no additional dependencies)
+    // Optimize build for production
     minify: mode === 'production' ? 'esbuild' : false,
-    // Drop console/debugger statements in production
+    target: 'es2020',
+    // Drop console/debugger statements in production and remove unused code
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
+      treeShaking: true,
     },
+    // Optimize CSS extraction
+    cssMinify: mode === 'production',
   },
   // Optimize assets
   assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.webp', '**/*.avif'],
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+    exclude: ['@radix-ui/react-*'], // Bundle separately for better caching
+  },
 }));
