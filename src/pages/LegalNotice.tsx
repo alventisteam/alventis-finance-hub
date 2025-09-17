@@ -10,28 +10,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { setSEOTags } from "@/lib/seo";
 
 const LegalNotice = () => {
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    // Set page title and meta description
-    document.title = t('legalNotice.title');
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', t('legalNotice.metaDescription'));
-    }
-    
-    // Add canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', 'https://alventis.be/impressum');
+    // Use centralized SEO utility
+    setSEOTags({
+      title: t('legalNotice.title'),
+      description: t('legalNotice.metaDescription'),
+      canonicalUrl: 'https://alventis.be/impressum',
+      breadcrumbs: [
+        { name: 'Home', url: 'https://alventis.be/' },
+        { name: 'Impressum', url: 'https://alventis.be/impressum' }
+      ]
+    });
   }, [t]);
 
   return (

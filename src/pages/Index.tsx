@@ -10,120 +10,54 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { preloadImage, markCriticalResource } from "@/lib/performance";
+import { setSEOTags } from "@/lib/seo";
 
 const Index = () => {
   useEffect(() => {
-    // Set page title and meta description
-    document.title = "BTW-compliance & Finance Optimalisatie voor Multinationals | Alventis";
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', '10+ jaar ervaring in btw-advies, finance procesoptimalisatie en audit-ready rapportering. Bespaar 50% tijd en blijf 100% compliant. Plan een gratis kennismaking.');
-    } else {
-      const newMetaDescription = document.createElement('meta');
-      newMetaDescription.setAttribute('name', 'description');
-      newMetaDescription.setAttribute('content', '10+ jaar ervaring in btw-advies, finance procesoptimalisatie en audit-ready rapportering. Bespaar 50% tijd en blijf 100% compliant. Plan een gratis kennismaking.');
-      document.head.appendChild(newMetaDescription);
-    }
-
-    // Add Open Graph meta tags
-    const ogTags = [
-      { property: 'og:title', content: 'Viktoria Oris – BTW & Finance Consultant België' },
-      { property: 'og:description', content: 'Alventis helpt multinationals met btw-compliance, finance procesoptimalisatie en digitalisering. 10+ jaar ervaring. Plan een gratis kennismaking.' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: 'https://alventis.be' },
-      { property: 'og:site_name', content: 'Alventis' },
+    // Set meta description and other meta tags
+    const metaTags = [
+      { name: 'description', content: 'BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.' },
+      { name: 'keywords', content: 'btw-compliance, finance optimalisatie, multinationals België, btw-advies, digitalisering finance processen, audit-ready rapportering, finance controller, business controller' },
+      { name: 'author', content: 'Viktoria Oris - Alventis' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      
+      // Open Graph tags
+      { property: 'og:title', content: 'BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België' },
+      { property: 'og:description', content: 'BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.' },
       { property: 'og:image', content: 'https://alventis.be/assets/alventis-og-image.webp' },
-      { property: 'og:image:width', content: '1200' },
-      { property: 'og:image:height', content: '630' },
-      { property: 'og:locale', content: 'nl_BE' }
-    ];
-
-    ogTags.forEach(tag => {
-      let existingTag = document.querySelector(`meta[property="${tag.property}"]`);
-      if (existingTag) {
-        existingTag.setAttribute('content', tag.content);
-      } else {
-        const newTag = document.createElement('meta');
-        newTag.setAttribute('property', tag.property);
-        newTag.setAttribute('content', tag.content);
-        document.head.appendChild(newTag);
-      }
-    });
-
-    // Add Twitter Card meta tags
-    const twitterTags = [
+      { property: 'og:url', content: 'https://alventis.be/' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:locale', content: 'nl_BE' },
+      
+      // Twitter Card tags
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Viktoria Oris – BTW & Finance Consultant België' },
-      { name: 'twitter:description', content: 'Alventis helpt multinationals met btw-compliance, finance procesoptimalisatie en digitalisering. 10+ jaar ervaring. Plan een gratis kennismaking.' },
-      { name: 'twitter:image', content: 'https://alventis.be/assets/alventis-og-image.webp' },
-      { name: 'twitter:site', content: '@alventis' },
-      { name: 'twitter:creator', content: '@viktoria_oris' }
+      { name: 'twitter:title', content: 'BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België' },
+      { name: 'twitter:description', content: 'BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.' },
+      { name: 'twitter:image', content: 'https://alventis.be/assets/alventis-og-image.webp' }
     ];
-
-    twitterTags.forEach(tag => {
-      let existingTag = document.querySelector(`meta[name="${tag.name}"]`);
+    
+    metaTags.forEach(tag => {
+      const attribute = tag.property ? 'property' : 'name';
+      const existingTag = document.querySelector(`meta[${attribute}="${tag.property || tag.name}"]`);
       if (existingTag) {
         existingTag.setAttribute('content', tag.content);
       } else {
         const newTag = document.createElement('meta');
-        newTag.setAttribute('name', tag.name);
+        newTag.setAttribute(attribute, tag.property || tag.name);
         newTag.setAttribute('content', tag.content);
         document.head.appendChild(newTag);
       }
     });
     
-    // Add canonical URL for homepage
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', 'https://alventis.be/');
-    
-    // Add JSON-LD Organization schema
-    const existingJsonLd = document.querySelector('script[type="application/ld+json"]');
-    if (!existingJsonLd) {
-      const jsonLdScript = document.createElement('script');
-      jsonLdScript.type = 'application/ld+json';
-      jsonLdScript.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Alventis",
-        "description": "BTW-compliance en finance optimalisatie voor multinationals in België. Specialist in btw-advies, digitalisering finance processen en audit-ready rapportering.",
-        "url": "https://alventis.be",
-        "logo": "https://alventis.be/favicon-optimized.webp",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+32478834323",
-          "contactType": "customer service",
-          "email": "viktoria@alventis.be",
-          "availableLanguage": ["Dutch", "English", "Spanish"]
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Bergstraat 39",
-          "addressLocality": "Kluisbergen",
-          "postalCode": "9690",
-          "addressCountry": "BE"
-        },
-        "founder": {
-          "@type": "Person",
-          "name": "Viktoria Oris"
-        },
-        "areaServed": "Belgium",
-        "serviceType": [
-          "BTW-compliance advies",
-          "Finance procesoptimalisatie", 
-          "Digitalisering finance processen",
-          "Audit-ready rapportering",
-          "Projectbegeleiding finance transformaties"
-        ]
-      });
-      document.head.appendChild(jsonLdScript);
-    }
+    // Use centralized SEO utility
+    setSEOTags({
+      title: "BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België",
+      description: "BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.",
+      canonicalUrl: "https://alventis.be/",
+      image: "https://alventis.be/assets/alventis-og-image.webp",
+      hasFAQ: true
+    });
     
     // Preload critical images for LCP optimization
     preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');

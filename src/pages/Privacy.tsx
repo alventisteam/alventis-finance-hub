@@ -10,28 +10,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { setSEOTags } from "@/lib/seo";
 
 const Privacy = () => {
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    // Set page title and meta description
-    document.title = t('privacy.title');
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Privacybeleid voor deze website. Informatie over gegevensverwerking, cookies, rechten en beveiliging.');
-    }
-    
-    // Add canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', 'https://alventis.be/privacy');
+    // Use centralized SEO utility
+    setSEOTags({
+      title: t('privacy.title'),
+      description: 'Privacybeleid voor deze website. Informatie over gegevensverwerking, cookies, rechten en beveiliging.',
+      canonicalUrl: 'https://alventis.be/privacy',
+      breadcrumbs: [
+        { name: 'Home', url: 'https://alventis.be/' },
+        { name: 'Privacy', url: 'https://alventis.be/privacy' }
+      ]
+    });
   }, [t]);
 
   return (
