@@ -14,40 +14,21 @@ import { setSEOTags } from "@/lib/seo";
 
 const Index = () => {
   useEffect(() => {
-    // Set meta description and other meta tags
-    const metaTags = [
-      { name: 'description', content: 'BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.' },
+    // Set additional meta tags not handled by centralized SEO utility
+    const additionalMetaTags = [
       { name: 'keywords', content: 'btw-compliance, finance optimalisatie, multinationals België, btw-advies, digitalisering finance processen, audit-ready rapportering, finance controller, business controller' },
       { name: 'author', content: 'Viktoria Oris - Alventis' },
       { name: 'robots', content: 'index, follow' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-      
-      // Open Graph tags
-      { property: 'og:title', content: 'BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België' },
-      { property: 'og:description', content: 'BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.' },
-      { property: 'og:image', content: '/assets/alventis-og-image.webp' },
-      { property: 'og:image:width', content: '1200' },
-      { property: 'og:image:height', content: '630' },
-      { property: 'og:image:type', content: 'image/webp' },
-      { property: 'og:url', content: 'https://alventis.be/' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:locale', content: 'nl_BE' },
-      
-      // Twitter Card tags
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België' },
-      { name: 'twitter:description', content: 'BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.' },
-      { name: 'twitter:image', content: '/assets/alventis-og-image.webp' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     ];
     
-    metaTags.forEach(tag => {
-      const attribute = tag.property ? 'property' : 'name';
-      const existingTag = document.querySelector(`meta[${attribute}="${tag.property || tag.name}"]`);
+    additionalMetaTags.forEach(tag => {
+      const existingTag = document.querySelector(`meta[name="${tag.name}"]`);
       if (existingTag) {
         existingTag.setAttribute('content', tag.content);
       } else {
         const newTag = document.createElement('meta');
-        newTag.setAttribute(attribute, tag.property || tag.name);
+        newTag.setAttribute('name', tag.name);
         newTag.setAttribute('content', tag.content);
         document.head.appendChild(newTag);
       }

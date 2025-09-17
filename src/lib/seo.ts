@@ -234,6 +234,45 @@ export function setSEOTags(pageData: PageSEO): void {
   }
   canonical.setAttribute('href', pageData.canonicalUrl);
   
+  // Set OG and Twitter meta tags
+  const metaTags = [
+    { property: 'og:title', content: pageData.title },
+    { property: 'og:description', content: pageData.description },
+    { property: 'og:url', content: pageData.canonicalUrl },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'nl_BE' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: pageData.title },
+    { name: 'twitter:description', content: pageData.description }
+  ];
+  
+  // Add image-specific meta tags if image is provided
+  if (pageData.image) {
+    metaTags.push(
+      { property: 'og:image', content: pageData.image },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:image:type', content: 'image/webp' },
+      { name: 'twitter:image', content: pageData.image }
+    );
+  }
+  
+  // Remove existing meta tags
+  const existingMetas = document.querySelectorAll('meta[property^="og:"], meta[name^="twitter:"]');
+  existingMetas.forEach(meta => meta.remove());
+  
+  // Add new meta tags
+  metaTags.forEach(tag => {
+    const meta = document.createElement('meta');
+    if (tag.property) {
+      meta.setAttribute('property', tag.property);
+    } else if (tag.name) {
+      meta.setAttribute('name', tag.name);
+    }
+    meta.setAttribute('content', tag.content);
+    document.head.appendChild(meta);
+  });
+  
   // Remove any existing JSON-LD scripts
   const existingJsonLd = document.querySelectorAll('script[type="application/ld+json"]');
   existingJsonLd.forEach(script => script.remove());
