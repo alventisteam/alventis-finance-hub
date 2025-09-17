@@ -97,10 +97,10 @@ const Footer = () => {
                 Privacy
               </a>
               <a
-                href="#terms"
+                href="/legal-notice"
                 className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
               >
-                {t('footer.terms')}
+                Juridische Vermelding
               </a>
             </div>
           </div>

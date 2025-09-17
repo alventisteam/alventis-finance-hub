@@ -180,7 +180,7 @@ export const translations = {
     'privacy.lastUpdated': 'Laatst bijgewerkt: 16/09/2025',
     'privacy.backToHome': 'Terug naar Home',
     'privacy.section1.title': '1. Verwerkingsverantwoordelijke',
-    'privacy.section1.content.name': 'Viktoria Ovis',
+    'privacy.section1.content.name': 'Viktoria Oris',
     'privacy.section1.content.address': 'Bergstraat 39',
     'privacy.section1.content.city': '9690 Kluisbergen',
     'privacy.section1.content.country': 'België',
@@ -225,6 +225,19 @@ export const translations = {
     'privacy.section8.description': 'Wij nemen passende technische en organisatorische maatregelen om persoonsgegevens te beschermen tegen verlies, misbruik en onbevoegde toegang.',
     'privacy.section9.title': '9. Wijzigingen',
     'privacy.section9.description': 'Wij kunnen dit privacybeleid van tijd tot tijd bijwerken. De meest recente versie is altijd beschikbaar op deze pagina.',
+
+    // Legal Notice Section
+    'legalNotice.title': 'Juridische Vermelding',
+    'legalNotice.metaDescription': 'Juridische vermelding en impressum. Bedrijfsinformatie en verantwoordelijkheid voor website inhoud.',
+    'legalNotice.backToHome': 'Terug naar Home',
+    'legalNotice.content.name': 'Viktoria Oris',
+    'legalNotice.content.address': 'Bergstraat 39',
+    'legalNotice.content.city': '9690 Kluisbergen',
+    'legalNotice.content.country': 'België',
+    'legalNotice.content.email': 'viktoria@alventis.be',
+    'legalNotice.content.phone': '+32 478 83 43 23',
+    'legalNotice.content.vat': 'BE1019135844',
+    'legalNotice.content.responsibility': 'Verantwoordelijk voor de inhoud van deze website: Viktoria Oris',
 
     // Toast messages
     'toast.success.title': 'Bericht verzonden!',
@@ -402,7 +415,7 @@ export const translations = {
     'privacy.lastUpdated': 'Last updated: 16/09/2025',
     'privacy.backToHome': 'Back to Home',
     'privacy.section1.title': '1. Data Controller',
-    'privacy.section1.content.name': 'Viktoria Ovis',
+    'privacy.section1.content.name': 'Viktoria Oris',
     'privacy.section1.content.address': 'Bergstraat 39',
     'privacy.section1.content.city': '9690 Kluisbergen',
     'privacy.section1.content.country': 'Belgium',
@@ -447,6 +460,19 @@ export const translations = {
     'privacy.section8.description': 'We take appropriate technical and organizational measures to protect personal data against loss, misuse and unauthorized access.',
     'privacy.section9.title': '9. Changes',
     'privacy.section9.description': 'We may update this privacy policy from time to time. The most recent version is always available on this page.',
+
+    // Legal Notice Section
+    'legalNotice.title': 'Legal Notice',
+    'legalNotice.metaDescription': 'Legal notice and impressum. Business information and responsibility for website content.',
+    'legalNotice.backToHome': 'Back to Home',
+    'legalNotice.content.name': 'Viktoria Oris',
+    'legalNotice.content.address': 'Bergstraat 39',
+    'legalNotice.content.city': '9690 Kluisbergen',
+    'legalNotice.content.country': 'Belgium',
+    'legalNotice.content.email': 'viktoria@alventis.be',
+    'legalNotice.content.phone': '+32 478 83 43 23',
+    'legalNotice.content.vat': 'BE1019135844',
+    'legalNotice.content.responsibility': 'Responsible for the content of this website: Viktoria Oris',
 
     // Toast messages
     'toast.success.title': 'Message sent!',
@@ -618,6 +644,19 @@ export const translations = {
     'footer.copyright': 'Todos los derechos reservados.',
     'footer.privacy': 'Política de Privacidad',
     'footer.terms': 'Términos y Condiciones',
+
+    // Legal Notice Section
+    'legalNotice.title': 'Aviso Legal',
+    'legalNotice.metaDescription': 'Aviso legal e información empresarial. Información de la empresa y responsabilidad del contenido del sitio web.',
+    'legalNotice.backToHome': 'Volver a Inicio',
+    'legalNotice.content.name': 'Viktoria Oris',
+    'legalNotice.content.address': 'Bergstraat 39',
+    'legalNotice.content.city': '9690 Kluisbergen',
+    'legalNotice.content.country': 'Bélgica',
+    'legalNotice.content.email': 'viktoria@alventis.be',
+    'legalNotice.content.phone': '+32 478 83 43 23',
+    'legalNotice.content.vat': 'BE1019135844',
+    'legalNotice.content.responsibility': 'Responsable del contenido de este sitio web: Viktoria Oris',
 
     // Toast messages
     'toast.success.title': '¡Mensaje enviado!',
