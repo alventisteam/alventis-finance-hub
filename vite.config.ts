@@ -31,13 +31,11 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
-    // Minify for production
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: mode === 'production',
-        drop_debugger: mode === 'production',
-      },
+    // Use esbuild minifier (default, faster and no additional dependencies)
+    minify: mode === 'production' ? 'esbuild' : false,
+    // Drop console/debugger statements in production
+    esbuild: {
+      drop: mode === 'production' ? ['console', 'debugger'] : [],
     },
   },
   // Optimize assets
