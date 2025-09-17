@@ -3,6 +3,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Globe, Home } from "lucide-react";
 import { Link } from "react-router-dom";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -78,6 +79,7 @@ const LegalNotice = () => {
 
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-[70ch] mx-auto">
+          <Breadcrumbs />
           <header className="mb-8">
             <h1 className="text-4xl font-bold text-foreground mb-2">{t('legalNotice.title')}</h1>
           </header>
@@ -128,7 +130,13 @@ const LegalNotice = () => {
             {/* Privacy Section */}
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-6">{t('legalNotice.privacy.title')}</h2>
-              <p>{t('legalNotice.privacy.content')}</p>
+              <p className="mb-4">{t('legalNotice.privacy.content')}</p>
+              <Link 
+                to="/privacy" 
+                className="inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors"
+              >
+                Lees ons volledige privacybeleid →
+              </Link>
             </section>
           </div>
         </div>

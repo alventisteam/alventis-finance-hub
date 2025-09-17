@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -90,18 +91,18 @@ const Footer = () => {
               © {currentYear} {t('footer.company')}. {t('footer.copyright')}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a
-                href="/privacy"
+              <Link
+                to="/privacy"
                 className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
               >
                 Privacy
-              </a>
-              <a
-                href="/impressum"
+              </Link>
+              <Link
+                to="/impressum"
                 className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
               >
                 Juridische Vermelding
-              </a>
+              </Link>
             </div>
           </div>
         </div>

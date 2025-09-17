@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link, useLocation } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +13,7 @@ import {
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -21,63 +23,128 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
+  const handleLogoClick = () => {
+    if (location.pathname === '/') {
+      scrollToSection('home');
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img 
-              src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
-              alt="Alventis Logo" 
-              className="h-10 w-auto cursor-pointer" 
-              onClick={() => scrollToSection('home')}
-              width="120"
-              height="40"
-              loading="eager"
-              fetchPriority="high"
-            />
+            {location.pathname === '/' ? (
+              <img 
+                src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
+                alt="Alventis Logo" 
+                className="h-10 w-auto cursor-pointer" 
+                onClick={handleLogoClick}
+                width="120"
+                height="40"
+                loading="eager"
+                fetchPriority="high"
+              />
+            ) : (
+              <Link to="/">
+                <img 
+                  src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
+                  alt="Alventis Logo" 
+                  className="h-10 w-auto cursor-pointer" 
+                  width="120"
+                  height="40"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </Link>
+            )}
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              <button
-                onClick={() => scrollToSection('home')}
-                className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+            <div className="ml-10 flex items-baseline space-x-6">
+              {location.pathname === '/' ? (
+                <>
+                  <button
+                    onClick={() => scrollToSection('home')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.home')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('services')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.services')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('about')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.about')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('testimonials')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.testimonials')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('faq')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.faq')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.contact')}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/"
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.home')}
+                  </Link>
+                  <Link
+                    to="/#services"
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.services')}
+                  </Link>
+                  <Link
+                    to="/#about"
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.about')}
+                  </Link>
+                  <Link
+                    to="/#contact"
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.contact')}
+                  </Link>
+                </>
+              )}
+              
+              {/* Page Navigation Links */}
+              <Link
+                to="/privacy"
+                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/privacy' ? 'text-accent' : ''}`}
               >
-                {t('nav.home')}
-              </button>
-              <button
-                onClick={() => scrollToSection('services')}
-                className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                Privacy
+              </Link>
+              <Link
+                to="/impressum"
+                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/impressum' ? 'text-accent' : ''}`}
               >
-                {t('nav.services')}
-              </button>
-              <button
-                onClick={() => scrollToSection('about')}
-                className="text-foreground hover:text-accent transition-colors font-lato font-medium"
-              >
-                {t('nav.about')}
-              </button>
-              <button
-                onClick={() => scrollToSection('testimonials')}
-                className="text-foreground hover:text-accent transition-colors font-lato font-medium"
-              >
-                {t('nav.testimonials')}
-              </button>
-              <button
-                onClick={() => scrollToSection('faq')}
-                className="text-foreground hover:text-accent transition-colors font-lato font-medium"
-              >
-                {t('nav.faq')}
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="text-foreground hover:text-accent transition-colors font-lato font-medium"
-              >
-                {t('nav.contact')}
-              </button>
+                Impressum
+              </Link>
               
               {/* Language Switcher */}
               <DropdownMenu>
@@ -112,12 +179,18 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button
-              onClick={() => scrollToSection('contact')}
-              className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium"
-            >
-              {t('nav.cta')}
-            </Button>
+            {location.pathname === '/' ? (
+              <Button
+                onClick={() => scrollToSection('contact')}
+                className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium"
+              >
+                {t('nav.cta')}
+              </Button>
+            ) : (
+              <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium">
+                <Link to="/#contact">{t('nav.cta')}</Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -136,42 +209,86 @@ const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden navigation-mobile">
             <div className="px-4 pt-2 pb-3 space-y-1 bg-background border-t shadow-lg max-w-full">
-              <button
-                onClick={() => scrollToSection('home')}
-                className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+              {location.pathname === '/' ? (
+                <>
+                  <button
+                    onClick={() => scrollToSection('home')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                  >
+                    {t('nav.home')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('services')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                  >
+                    {t('nav.services')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('about')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                  >
+                    {t('nav.about')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('testimonials')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                  >
+                    {t('nav.testimonials')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('faq')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                  >
+                    {t('nav.faq')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                  >
+                    {t('nav.contact')}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/"
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {t('nav.home')}
+                  </Link>
+                  <Link
+                    to="/#services"
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {t('nav.services')}
+                  </Link>
+                  <Link
+                    to="/#contact"
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {t('nav.contact')}
+                  </Link>
+                </>
+              )}
+              
+              {/* Page Navigation Links */}
+              <Link
+                to="/privacy"
+                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/privacy' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+                onClick={() => setIsMenuOpen(false)}
               >
-                {t('nav.home')}
-              </button>
-              <button
-                onClick={() => scrollToSection('services')}
-                className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
+                Privacy
+              </Link>
+              <Link
+                to="/impressum"
+                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/impressum' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+                onClick={() => setIsMenuOpen(false)}
               >
-                {t('nav.services')}
-              </button>
-              <button
-                onClick={() => scrollToSection('about')}
-                className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
-              >
-                {t('nav.about')}
-              </button>
-              <button
-                onClick={() => scrollToSection('testimonials')}
-                className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
-              >
-                {t('nav.testimonials')}
-              </button>
-              <button
-                onClick={() => scrollToSection('faq')}
-                className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
-              >
-                {t('nav.faq')}
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
-              >
-                {t('nav.contact')}
-              </button>
+                Impressum
+              </Link>
               
               {/* Mobile Language Switcher */}
               <div className="px-3 py-2">
@@ -197,12 +314,18 @@ const Navigation = () => {
                 </div>
               </div>
               <div className="px-3 py-2">
-                <Button
-                  onClick={() => scrollToSection('contact')}
-                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium w-full"
-                >
-                  {t('nav.cta')}
-                </Button>
+                {location.pathname === '/' ? (
+                  <Button
+                    onClick={() => scrollToSection('contact')}
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium w-full"
+                  >
+                    {t('nav.cta')}
+                  </Button>
+                ) : (
+                  <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium w-full">
+                    <Link to="/#contact" onClick={() => setIsMenuOpen(false)}>{t('nav.cta')}</Link>
+                  </Button>
+                )}
               </div>
             </div>
           </div>

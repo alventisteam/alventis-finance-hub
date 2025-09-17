@@ -3,6 +3,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Globe, Home } from "lucide-react";
 import { Link } from "react-router-dom";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -78,6 +79,7 @@ const Privacy = () => {
 
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-[70ch] mx-auto">
+          <Breadcrumbs />
           <header className="mb-8">
             <h1 className="text-4xl font-bold text-foreground mb-2">{t('privacy.title')}</h1>
             <p className="text-muted-foreground italic">{t('privacy.lastUpdated')}</p>
@@ -215,6 +217,19 @@ const Privacy = () => {
             <section>
               <h2 className="text-2xl font-semibold mb-4">{t('privacy.section9.title')}</h2>
               <p>{t('privacy.section9.description')}</p>
+            </section>
+
+            <div className="w-full h-px bg-border my-8"></div>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">Gerelateerde Informatie</h2>
+              <p className="mb-4">Voor meer juridische informatie over onze onderneming, zie ook onze:</p>
+              <Link 
+                to="/impressum" 
+                className="inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors"
+              >
+                Juridische Vermelding (Impressum) →
+              </Link>
             </section>
           </div>
         </div>
