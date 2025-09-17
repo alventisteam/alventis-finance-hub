@@ -36,6 +36,48 @@ const Index = () => {
     }
     canonical.setAttribute('href', 'https://alventis.be/');
     
+    // Add JSON-LD Organization schema
+    const existingJsonLd = document.querySelector('script[type="application/ld+json"]');
+    if (!existingJsonLd) {
+      const jsonLdScript = document.createElement('script');
+      jsonLdScript.type = 'application/ld+json';
+      jsonLdScript.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Alventis",
+        "description": "BTW-compliance en finance optimalisatie voor multinationals in België. Specialist in btw-advies, digitalisering finance processen en audit-ready rapportering.",
+        "url": "https://alventis.be",
+        "logo": "https://alventis.be/favicon-optimized.webp",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+32478834323",
+          "contactType": "customer service",
+          "email": "viktoria@alventis.be",
+          "availableLanguage": ["Dutch", "English", "Spanish"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Bergstraat 39",
+          "addressLocality": "Kluisbergen",
+          "postalCode": "9690",
+          "addressCountry": "BE"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Viktoria Oris"
+        },
+        "areaServed": "Belgium",
+        "serviceType": [
+          "BTW-compliance advies",
+          "Finance procesoptimalisatie", 
+          "Digitalisering finance processen",
+          "Audit-ready rapportering",
+          "Projectbegeleiding finance transformaties"
+        ]
+      });
+      document.head.appendChild(jsonLdScript);
+    }
+    
     // Preload critical images for LCP optimization
     preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
     preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
