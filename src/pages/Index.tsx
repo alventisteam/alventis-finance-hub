@@ -26,6 +26,53 @@ const Index = () => {
       newMetaDescription.setAttribute('content', '10+ jaar ervaring in btw-advies, finance procesoptimalisatie en audit-ready rapportering. Bespaar 50% tijd en blijf 100% compliant. Plan een gratis kennismaking.');
       document.head.appendChild(newMetaDescription);
     }
+
+    // Add Open Graph meta tags
+    const ogTags = [
+      { property: 'og:title', content: 'BTW-compliance & Finance Optimalisatie voor Multinationals | Alventis' },
+      { property: 'og:description', content: '10+ jaar ervaring in btw-advies, finance procesoptimalisatie en audit-ready rapportering. Bespaar 50% tijd en blijf 100% compliant. Plan een gratis kennismaking.' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://alventis.be/' },
+      { property: 'og:site_name', content: 'Alventis' },
+      { property: 'og:image', content: 'https://alventis.be/assets/finance-consulting-office-belgium-2.webp' },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:locale', content: 'nl_BE' }
+    ];
+
+    ogTags.forEach(tag => {
+      let existingTag = document.querySelector(`meta[property="${tag.property}"]`);
+      if (existingTag) {
+        existingTag.setAttribute('content', tag.content);
+      } else {
+        const newTag = document.createElement('meta');
+        newTag.setAttribute('property', tag.property);
+        newTag.setAttribute('content', tag.content);
+        document.head.appendChild(newTag);
+      }
+    });
+
+    // Add Twitter Card meta tags
+    const twitterTags = [
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'BTW-compliance & Finance Optimalisatie voor Multinationals | Alventis' },
+      { name: 'twitter:description', content: '10+ jaar ervaring in btw-advies, finance procesoptimalisatie en audit-ready rapportering. Bespaar 50% tijd en blijf 100% compliant. Plan een gratis kennismaking.' },
+      { name: 'twitter:image', content: 'https://alventis.be/assets/finance-consulting-office-belgium-2.webp' },
+      { name: 'twitter:site', content: '@alventis' },
+      { name: 'twitter:creator', content: '@viktoria_oris' }
+    ];
+
+    twitterTags.forEach(tag => {
+      let existingTag = document.querySelector(`meta[name="${tag.name}"]`);
+      if (existingTag) {
+        existingTag.setAttribute('content', tag.content);
+      } else {
+        const newTag = document.createElement('meta');
+        newTag.setAttribute('name', tag.name);
+        newTag.setAttribute('content', tag.content);
+        document.head.appendChild(newTag);
+      }
+    });
     
     // Add canonical URL for homepage
     let canonical = document.querySelector('link[rel="canonical"]');
