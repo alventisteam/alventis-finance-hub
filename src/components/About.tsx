@@ -55,6 +55,8 @@ const About = () => {
                 src="/lovable-uploads/d88621f2-ecdc-492b-b0be-04d9dbedadd0.png"
                 alt="Finance optimalisatie consultant België - digitalisering finance processen multinationals"
                 className="w-full h-64 object-cover rounded-xl mb-4"
+                width="400"
+                height="256"
               />
               <p className="font-lato text-sm text-muted-foreground text-center">
                 {t('about.subtitle')}
