@@ -28,7 +28,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                   <img 
                     src="/lovable-uploads/098cdc8d-f6c6-45ef-bc12-aaa87fc4bd16.png" 
-                    alt="Buckman logo" 
+                    alt="Buckman multinational - BTW-compliance en finance optimalisatie klant" 
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
@@ -47,7 +47,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                   <img 
                     src="/lovable-uploads/4852a606-69ea-448a-a552-755511e08e27.png" 
-                    alt="Laurelton Diamonds logo" 
+                    alt="Laurelton Diamonds - finance procesoptimalisatie diamantverwerking klant" 
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
@@ -66,7 +66,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                   <img 
                     src="/lovable-uploads/5c81a807-f80e-43dc-a419-49faf43cfb4a.png" 
-                    alt="Imperial Brands logo" 
+                    alt="Imperial Brands - BTW-advies internationale tabak multinational klant" 
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
@@ -85,7 +85,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                   <img 
                     src="/lovable-uploads/bed311b4-e389-45f5-97cb-dbf86bb9a6a2.png" 
-                    alt="Katoen Natie logo" 
+                    alt="Katoen Natie - logistiek en fiscaliteit digitalisering finance klant" 
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
@@ -104,7 +104,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                    <img 
                      src="/lovable-uploads/7f7f314b-0db8-4714-a3e4-9bc2ed4f72bd.png" 
-                     alt="Steelduxx logo" 
+                     alt="Steelduxx - staalhandel finance procesoptimalisatie Antwerpen klant" 
                      className="max-w-full max-h-full object-contain p-2"
                      width="80"
                      height="80"
@@ -123,7 +123,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                    <img 
                      src="/lovable-uploads/764b7f97-8101-4216-af83-4fae4747c165.png" 
-                     alt="Bestseller logo" 
+                     alt="Bestseller modebedrijf - internationaal BTW-compliance digitalisering klant" 
                      className="max-w-full max-h-full object-contain p-2"
                      width="80"
                      height="80"
@@ -142,7 +142,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                    <img 
                      src="/lovable-uploads/8f4192f6-a279-421a-9749-a1985b7e3b12.png" 
-                     alt="AC Partners logo" 
+                     alt="AC Partners IT-consultancy - software implementatie finance optimalisatie klant" 
                      className="max-w-full max-h-full object-contain p-2"
                      width="80"
                      height="80"
@@ -161,7 +161,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                    <img 
                      src="/lovable-uploads/3d1a9afd-cc96-492b-be8b-73835e5c3a31.png" 
-                     alt="Robert Half logo" 
+                     alt="Robert Half staffing - finance consultancy procesoptimalisatie klant" 
                      className="max-w-full max-h-full object-contain p-2"
                      width="80"
                      height="80"

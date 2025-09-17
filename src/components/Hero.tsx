@@ -19,7 +19,7 @@ const Hero = () => {
           src="/assets/finance-consulting-office-belgium-2.webp"
           srcSet="/assets/finance-consulting-office-belgium-2.webp 1920w, /assets/finance-consulting-office-belgium-2.webp 1200w, /assets/finance-consulting-office-belgium-2.webp 800w"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-          alt="Modern office building representing Alventis, a finance consulting and VAT compliance firm in Belgium"
+          alt="BTW-compliance kantoor België - finance procesoptimalisatie en digitalisering voor multinationals"
           className="w-full h-full object-cover"
           width="1920"
           height="1080"

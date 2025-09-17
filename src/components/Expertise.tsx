@@ -24,10 +24,10 @@ const Expertise = () => {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-br from-secondary/10 via-background to-secondary/20" role="region" aria-labelledby="expertise-heading">
+    <section id="expertise" className="py-32 bg-gradient-to-br from-secondary/10 via-background to-secondary/20" role="region" aria-labelledby="expertise-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 id="expertise-heading" className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
+          <h2 id="procesoptimalisatie" className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">
             {t('expertise.title')}
           </h2>
           <p className="text-xl font-lato text-muted-foreground max-w-4xl mx-auto leading-relaxed">

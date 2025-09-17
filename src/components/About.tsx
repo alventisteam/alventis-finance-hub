@@ -18,7 +18,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <div className="mb-12">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-8">
+            <h2 id="btw-compliance" className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-8">
               {t('about.title')}
             </h2>
             
@@ -53,7 +53,7 @@ const About = () => {
             <div className="bg-card p-6 rounded-2xl shadow-soft">
               <img
                 src="/lovable-uploads/d88621f2-ecdc-492b-b0be-04d9dbedadd0.png"
-                alt="Finance optimalisatie consultant België - digitalisering finance processen multinationals"
+                alt="BTW-adviseur en finance controller België - digitalisering processen voor multinationals"
                 className="w-full h-64 object-cover rounded-xl mb-4"
                 width="400"
                 height="256"
