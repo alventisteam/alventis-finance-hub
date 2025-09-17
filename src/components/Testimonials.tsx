@@ -32,6 +32,7 @@ const Testimonials = () => {
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
+                    loading="lazy"
                   />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Buckman</h4>
@@ -50,6 +51,7 @@ const Testimonials = () => {
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
+                    loading="lazy"
                   />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Laurelton Diamonds</h4>
@@ -68,6 +70,7 @@ const Testimonials = () => {
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
+                    loading="lazy"
                   />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Imperial Brands</h4>
@@ -86,6 +89,7 @@ const Testimonials = () => {
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
+                    loading="lazy"
                   />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h4>
@@ -104,6 +108,7 @@ const Testimonials = () => {
                      className="max-w-full max-h-full object-contain p-2"
                      width="80"
                      height="80"
+                     loading="lazy"
                    />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Steelduxx</h4>
@@ -122,6 +127,7 @@ const Testimonials = () => {
                      className="max-w-full max-h-full object-contain p-2"
                      width="80"
                      height="80"
+                     loading="lazy"
                    />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Bestseller</h4>
@@ -140,6 +146,7 @@ const Testimonials = () => {
                      className="max-w-full max-h-full object-contain p-2"
                      width="80"
                      height="80"
+                     loading="lazy"
                    />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">AC Partners</h4>
@@ -158,6 +165,7 @@ const Testimonials = () => {
                      className="max-w-full max-h-full object-contain p-2"
                      width="80"
                      height="80"
+                     loading="lazy"
                    />
                 </div>
                 <h4 className="font-playfair font-bold text-primary mb-2">Robert Half</h4>

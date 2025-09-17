@@ -57,6 +57,7 @@ const About = () => {
                 className="w-full h-64 object-cover rounded-xl mb-4"
                 width="400"
                 height="256"
+                loading="lazy"
               />
               <p className="font-lato text-sm text-muted-foreground text-center">
                 {t('about.subtitle')}

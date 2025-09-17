@@ -8,10 +8,22 @@
     <meta name="description" content="Viktoria Oris - BTW expert en finance consultant België. Specialist in btw-compliance en finance optimalisatie voor multinationals. 10+ jaar ervaring. Contacteer Viktoria Oris voor professioneel advies." />
     <meta name="keywords" content="Viktoria Oris, Viktoria Oris België, Viktoria Oris btw expert, Viktoria Oris finance consultant, Viktoria Oris Alventis, btw expert België, finance consultant België, btw-compliance specialist, Alventis consultant" />
     <meta name="author" content="Alventis" />
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <!-- Preconnect for critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical hero image -->
+    <link rel="preload" href="/src/assets/hero-background-new.jpg" as="image" type="image/jpeg">
+    
+    <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;500;600&display=swap"></noscript>
 
     <meta property="og:title" content="Viktoria Oris | BTW Expert & Finance Consultant België" />
     <meta property="og:description" content="Viktoria Oris - BTW expert en finance consultant België. Specialist in btw-compliance en finance optimalisatie voor multinationals. Contacteer Viktoria Oris voor professioneel advies." />
@@ -192,11 +204,13 @@
     }
     </script>
     
-    <!-- Osano Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-    <script>
-    window.addEventListener("load", function(){
+    <!-- Defer non-critical cookie consent CSS/JS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"></noscript>
+    <script defer src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script defer>
+    // Use requestIdleCallback to defer non-critical cookie consent initialization
+    function initCookieConsent() {
       // Check if cookieconsent is available before initializing
       if (window.cookieconsent && typeof window.cookieconsent.initialise === 'function') {
         window.cookieconsent.initialise({
@@ -224,7 +238,18 @@
       } else {
         console.warn("CookieConsent library not loaded properly");
       }
-    });
+    }
+    
+    // Defer cookie consent initialization until after page load
+    if ('requestIdleCallback' in window) {
+      window.addEventListener('load', () => {
+        requestIdleCallback(initCookieConsent);
+      });
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(initCookieConsent, 1);
+      });
+    }
 
     function loadAnalytics() {
       // Google Analytics loads only after consent

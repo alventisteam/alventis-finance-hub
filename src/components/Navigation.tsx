@@ -34,6 +34,8 @@ const Navigation = () => {
               onClick={() => scrollToSection('home')}
               width="120"
               height="40"
+              loading="eager"
+              fetchPriority="high"
             />
           </div>
 
