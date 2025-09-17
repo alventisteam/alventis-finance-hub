@@ -30,7 +30,7 @@ const Privacy = () => {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', window.location.origin + '/privacy');
+    canonical.setAttribute('href', 'https://alventis.be/privacy');
   }, [t]);
 
   return (

@@ -30,7 +30,7 @@ const LegalNotice = () => {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', window.location.origin + '/impressum');
+    canonical.setAttribute('href', 'https://alventis.be/impressum');
   }, [t]);
 
   return (

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -10,6 +11,16 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
+  useEffect(() => {
+    // Add canonical URL for homepage
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', 'https://alventis.be/');
+  }, []);
   return (
     <div className="min-h-screen">
       <Navigation />
