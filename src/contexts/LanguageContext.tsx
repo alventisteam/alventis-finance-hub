@@ -176,7 +176,8 @@ export const translations = {
     'footer.terms': 'Algemene Voorwaarden',
 
     // Privacy Section
-    'privacy.title': 'Privacy',
+    'privacy.title': 'Privacybeleid | Alventis',
+    'privacy.metaDescription': 'Privacybeleid van Alventis: gegevensverwerking, cookies, rechten en contact.',
     'privacy.lastUpdated': 'Laatst bijgewerkt: 16/09/2025',
     'privacy.backToHome': 'Terug naar Home',
     'privacy.section1.title': '1. Verwerkingsverantwoordelijke',
@@ -227,8 +228,8 @@ export const translations = {
     'privacy.section9.description': 'Wij kunnen dit privacybeleid van tijd tot tijd bijwerken. De meest recente versie is altijd beschikbaar op deze pagina.',
 
     // Legal Notice Section
-    'legalNotice.title': 'Juridische Vermelding',
-    'legalNotice.metaDescription': 'Juridische vermelding en impressum. Bedrijfsinformatie en verantwoordelijkheid voor website inhoud.',
+    'legalNotice.title': 'Impressum / Legal | Alventis',
+    'legalNotice.metaDescription': 'Bedrijfsgegevens en contactinformatie van Alventis.',
     'legalNotice.backToHome': 'Terug naar Home',
     'legalNotice.content.name': 'Viktoria Oris',
     'legalNotice.content.address': 'Bergstraat 39',

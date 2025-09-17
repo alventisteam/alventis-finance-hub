@@ -13,6 +13,20 @@ import { preloadImage, markCriticalResource } from "@/lib/performance";
 
 const Index = () => {
   useEffect(() => {
+    // Set page title and meta description
+    document.title = "BTW-compliance & Finance Optimalisatie voor Multinationals | Alventis";
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', '10+ jaar ervaring in btw-advies, finance procesoptimalisatie en audit-ready rapportering. Bespaar 50% tijd en blijf 100% compliant. Plan een gratis kennismaking.');
+    } else {
+      const newMetaDescription = document.createElement('meta');
+      newMetaDescription.setAttribute('name', 'description');
+      newMetaDescription.setAttribute('content', '10+ jaar ervaring in btw-advies, finance procesoptimalisatie en audit-ready rapportering. Bespaar 50% tijd en blijf 100% compliant. Plan een gratis kennismaking.');
+      document.head.appendChild(newMetaDescription);
+    }
+    
     // Add canonical URL for homepage
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
