@@ -18,7 +18,44 @@ const routesToPrerender = [
   // Example: '/blog', '/blog/post-1', '/about', etc.
 ]
 
+// Sitemap generation function
+function generateSitemap() {
+  const BASE_URL = process.env.SITE_URL || 'https://alventis.be'
+  
+  const urls = routesToPrerender.map(route => {
+    const url = `${BASE_URL}${route === '/' ? '' : route}`
+    const lastmod = new Date().toISOString().split('T')[0] // Current date in YYYY-MM-DD format
+    
+    return `  <url>
+    <loc>${url}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${route === '/' ? '1.0' : '0.8'}</priority>
+  </url>`
+  }).join('\n')
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`
+
+  const sitemapPath = toAbsolute('dist/sitemap.xml')
+  
+  // Ensure dist directory exists
+  const distDir = path.dirname(sitemapPath)
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true })
+  }
+  
+  fs.writeFileSync(sitemapPath, sitemap)
+  console.log('Generated sitemap.xml with', routesToPrerender.length, 'routes')
+}
+
 ;(async () => {
+  // Generate sitemap first
+  generateSitemap()
+  
+  // Then prerender all pages
   for (const url of routesToPrerender) {
     const appHtml = render(url);
     const html = template.replace(`<!--app-html-->`, appHtml)
