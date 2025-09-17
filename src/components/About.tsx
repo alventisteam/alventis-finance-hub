@@ -15,7 +15,7 @@ const About = () => {
   return (
     <section id="about" className="py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <div className="mb-12">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-8">
