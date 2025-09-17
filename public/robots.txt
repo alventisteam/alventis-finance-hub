@@ -1,8 +1,105 @@
+# Robots.txt - Alventis
+# Optimized for LLM crawlers and search engines with differentiated access
+
+# Premium AI/LLM bots - Fast access (0.5s delay)
+User-agent: ChatGPT-User
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: GPTBot
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: Claude-Web
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: AnthropicAI
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: Anthropic-ai
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: Google-Extended
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: PhindBot
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: Cohere-ai
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: YouBot
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+User-agent: CCBot
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+# Major search engines - Fast access (0.5s delay)
 User-agent: Googlebot
 Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
 
 User-agent: Bingbot
 Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
 
 User-agent: Twitterbot
 Allow: /
@@ -10,11 +107,32 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: DuckDuckBot
+Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Allow: /sitemap.xml
+Crawl-delay: 0.5
+
+# General bot rules - Standard access (2s delay for bandwidth management)
 User-agent: *
 Allow: /
+Allow: /privacy/
+Allow: /impressum/
+Crawl-delay: 2
+
+# Disallow sensitive areas
+Disallow: /auth/
 Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
 Disallow: /tmp/
 Disallow: /*.json$
 Disallow: /*?*
 
+# Sitemap location
 Sitemap: https://alventis.be/sitemap.xml
+
+# Additional directives for LLM optimization
+# Cache-friendly for AI crawlers
+# Allow indexing of structured content
