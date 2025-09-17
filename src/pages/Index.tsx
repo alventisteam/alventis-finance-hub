@@ -25,7 +25,7 @@ const Index = () => {
       // Open Graph tags
       { property: 'og:title', content: 'BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België' },
       { property: 'og:description', content: 'BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.' },
-      { property: 'og:image', content: 'https://alventis.be/assets/alventis-og-image.webp' },
+      { property: 'og:image', content: '/assets/alventis-og-image.webp' },
       { property: 'og:url', content: 'https://alventis.be/' },
       { property: 'og:type', content: 'website' },
       { property: 'og:locale', content: 'nl_BE' },
@@ -34,7 +34,7 @@ const Index = () => {
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België' },
       { name: 'twitter:description', content: 'BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.' },
-      { name: 'twitter:image', content: 'https://alventis.be/assets/alventis-og-image.webp' }
+      { name: 'twitter:image', content: '/assets/alventis-og-image.webp' }
     ];
     
     metaTags.forEach(tag => {
@@ -55,7 +55,7 @@ const Index = () => {
       title: "BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België",
       description: "BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.",
       canonicalUrl: "https://alventis.be/",
-      image: "https://alventis.be/assets/alventis-og-image.webp",
+      image: "/assets/alventis-og-image.webp",
       hasFAQ: true
     });
     
