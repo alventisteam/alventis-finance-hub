@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import heroImage from "@/assets/hero-background-new.jpg";
+import heroImage from "@/assets/hero-background-new.webp";
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -18,6 +18,8 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
+          srcSet={`${heroImage} 1920w`}
+          sizes="100vw"
           alt="Finance optimalisatie multinationals België - btw-compliance en business control consultant"
           className="w-full h-full object-cover"
           width="1920"

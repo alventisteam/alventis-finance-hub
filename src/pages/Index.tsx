@@ -10,7 +10,7 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { preloadImage, markCriticalResource } from "@/lib/performance";
-import heroImage from "@/assets/hero-background-new.jpg";
+import heroImage from "@/assets/hero-background-new.webp";
 
 const Index = () => {
   useEffect(() => {
