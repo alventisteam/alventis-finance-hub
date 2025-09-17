@@ -94,13 +94,7 @@ const Footer = () => {
                 href="/privacy"
                 className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
               >
-                {t('footer.privacy')}
-              </a>
-              <a
-                href="/legal-notice"
-                className="font-lato text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors"
-              >
-                {t('footer.legal')}
+                Privacy
               </a>
               <a
                 href="#terms"
