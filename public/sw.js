@@ -1,5 +1,5 @@
 // Service Worker for caching critical resources
-const CACHE_NAME = 'alventis-v3';
+const CACHE_NAME = 'alventis-v4';
 const CRITICAL_RESOURCES = [
   '/',
   '/assets/finance-consulting-office-belgium-2.webp',
@@ -7,8 +7,8 @@ const CRITICAL_RESOURCES = [
   '/favicon-optimized.webp'
 ];
 
-const IMAGE_CACHE_NAME = 'alventis-images-v3';
-const STATIC_CACHE_NAME = 'alventis-static-v3';
+const IMAGE_CACHE_NAME = 'alventis-images-v4';
+const STATIC_CACHE_NAME = 'alventis-static-v4';
 
 // Install event - cache critical resources
 self.addEventListener('install', (event) => {

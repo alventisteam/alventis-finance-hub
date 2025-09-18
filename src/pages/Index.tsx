@@ -1,7 +1,4 @@
 import { useEffect, Suspense } from "react";
-
-// SSR detection
-const isSSR = typeof window === 'undefined';
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Expertise from "@/components/Expertise";
@@ -77,45 +74,22 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        {isSSR ? (
-          // During SSR/SSG, render components directly to avoid hydration mismatches
-          <>
-            <LazyServices />
-            <LazyAbout />
-          </>
-        ) : (
-          // Client-side lazy loading for performance
-          <>
-            <Suspense fallback={<ServicesLoading />}>
-              <LazyServices />
-            </Suspense>
-            <Suspense fallback={<AboutLoading />}>
-              <LazyAbout />
-            </Suspense>
-          </>
-        )}
+        <Suspense fallback={<ServicesLoading />}>
+          <LazyServices />
+        </Suspense>
+        <Suspense fallback={<AboutLoading />}>
+          <LazyAbout />
+        </Suspense>
         <Expertise />
-        {isSSR ? (
-          // During SSR/SSG, render components directly to avoid hydration mismatches
-          <>
-            <LazyTestimonials />
-            <LazyFAQ />
-            <LazyContact />
-          </>
-        ) : (
-          // Client-side lazy loading for performance
-          <>
-            <Suspense fallback={<TestimonialsLoading />}>
-              <LazyTestimonials />
-            </Suspense>
-            <Suspense fallback={<FAQLoading />}>
-              <LazyFAQ />
-            </Suspense>
-            <Suspense fallback={<ContactLoading />}>
-              <LazyContact />
-            </Suspense>
-          </>
-        )}
+        <Suspense fallback={<TestimonialsLoading />}>
+          <LazyTestimonials />
+        </Suspense>
+        <Suspense fallback={<FAQLoading />}>
+          <LazyFAQ />
+        </Suspense>
+        <Suspense fallback={<ContactLoading />}>
+          <LazyContact />
+        </Suspense>
       </main>
       <Footer />
       <Toaster />
