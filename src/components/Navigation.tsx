@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,35 +12,8 @@ import {
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentPath, setCurrentPath] = useState('/');
-  const [isClient, setIsClient] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  
-  // SSR-safe location handling
-  useEffect(() => {
-    setIsClient(true);
-    if (typeof window !== 'undefined') {
-      setCurrentPath(window.location.pathname);
-    }
-  }, []);
-
-  // Only use useLocation after client-side hydration
-  let routerLocation = { pathname: currentPath };
-  if (isClient && typeof window !== 'undefined') {
-    try {
-      // Import useLocation dynamically to avoid SSR issues
-      const { useLocation } = require('react-router-dom');
-      routerLocation = useLocation();
-    } catch (error) {
-      console.warn('[Navigation] Router hook failed, using fallback:', error);
-    }
-  }
-
-  useEffect(() => {
-    if (isClient) {
-      setCurrentPath(routerLocation.pathname);
-    }
-  }, [routerLocation.pathname, isClient]);
+  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
     // Ensure we're on the client side and DOM is ready
@@ -70,7 +43,7 @@ const Navigation = () => {
   };
 
   const handleLogoClick = () => {
-    if (currentPath === '/') {
+    if (location.pathname === '/') {
       scrollToSection('home');
     }
   };
@@ -81,7 +54,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            {currentPath === '/' ? (
+            {location.pathname === '/' ? (
               <img 
                 src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
                 alt="Alventis Logo" 
@@ -110,7 +83,7 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-6">
-              {currentPath === '/' ? (
+              {location.pathname === '/' ? (
                 <>
                   <button
                     onClick={() => scrollToSection('home')}
@@ -181,13 +154,13 @@ const Navigation = () => {
               {/* Page Navigation Links */}
               <Link
                 to="/privacy"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${currentPath === '/privacy' ? 'text-accent' : ''}`}
+                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/privacy' ? 'text-accent' : ''}`}
               >
                 Privacy
               </Link>
               <Link
                 to="/impressum"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${currentPath === '/impressum' ? 'text-accent' : ''}`}
+                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/impressum' ? 'text-accent' : ''}`}
               >
                 Impressum
               </Link>
@@ -225,7 +198,7 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            {currentPath === '/' ? (
+            {location.pathname === '/' ? (
               <Button
                 onClick={() => scrollToSection('contact')}
                 className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium"
@@ -255,7 +228,7 @@ const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden navigation-mobile">
             <div className="px-4 pt-2 pb-3 space-y-1 bg-background border-t shadow-lg max-w-full">
-              {currentPath === '/' ? (
+              {location.pathname === '/' ? (
                 <>
                   <button
                     onClick={() => scrollToSection('home')}
@@ -323,14 +296,14 @@ const Navigation = () => {
               {/* Page Navigation Links */}
               <Link
                 to="/privacy"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${currentPath === '/privacy' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/privacy' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Privacy
               </Link>
               <Link
                 to="/impressum"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${currentPath === '/impressum' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/impressum' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Impressum
@@ -360,7 +333,7 @@ const Navigation = () => {
                 </div>
               </div>
               <div className="px-3 py-2">
-                {currentPath === '/' ? (
+                {location.pathname === '/' ? (
                   <Button
                     onClick={() => scrollToSection('contact')}
                     className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium w-full"
