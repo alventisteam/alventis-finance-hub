@@ -10,22 +10,9 @@ const app = (
   </BrowserRouter>
 );
 
-// Enhanced error handling for hydration
-function renderApp() {
-  try {
-    if (import.meta.env.PROD && root.innerHTML.trim()) {
-      // Try hydration if there's SSR content
-      hydrateRoot(root, app);
-    } else {
-      // Fall back to client-side rendering
-      createRoot(root).render(app);
-    }
-  } catch (error) {
-    console.warn('Hydration failed, falling back to client-side rendering:', error);
-    // Clear any partial SSR content and render fresh
-    root.innerHTML = '';
-    createRoot(root).render(app);
-  }
+// Use hydration for SSR in production
+if (import.meta.env.PROD) {
+  hydrateRoot(root, app);
+} else {
+  createRoot(root).render(app);
 }
-
-renderApp();
