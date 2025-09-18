@@ -1,15 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { createScrollHandler, useScrollReady } from "@/lib/scroll-utils";
 
 const Hero = () => {
   const { t } = useLanguage();
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const isScrollReady = useScrollReady();
+
+  const handleContactClick = createScrollHandler('contact');
+  const handleServicesClick = createScrollHandler('services');
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center" role="banner">
@@ -51,18 +50,20 @@ const Hero = () => {
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4">
           <Button
-            onClick={() => scrollToSection('contact')}
+            onClick={handleContactClick}
+            disabled={!isScrollReady}
             variant="warm"
             size="lg"
-            className="font-lato font-semibold text-xl px-12 py-6 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+            className="font-lato font-semibold text-xl px-12 py-6 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-70"
           >
             {t('hero.cta1')}
           </Button>
           <Button
-            onClick={() => scrollToSection('services')}
+            onClick={handleServicesClick}
+            disabled={!isScrollReady}
             variant="outline"
             size="lg"
-            className="font-lato font-semibold text-xl px-12 py-6 border-2 border-warm text-warm hover:bg-warm/10 rounded-xl transition-all duration-300"
+            className="font-lato font-semibold text-xl px-12 py-6 border-2 border-warm text-warm hover:bg-warm/10 rounded-xl transition-all duration-300 disabled:opacity-70"
           >
             {t('hero.cta2')}
           </Button>
@@ -72,8 +73,9 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
         <button
-          onClick={() => scrollToSection('services')}
-          className="text-white/80 hover:text-white transition-colors p-2"
+          onClick={handleServicesClick}
+          disabled={!isScrollReady}
+          className="text-white/80 hover:text-white transition-colors p-2 disabled:opacity-70"
           aria-label={t('hero.scroll')}
         >
           <ChevronDown className="h-8 w-8 animate-bounce" />
