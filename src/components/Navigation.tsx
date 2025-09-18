@@ -13,7 +13,9 @@ import {
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const location = useLocation();
+  
+  // SSR safety check for useLocation
+  const location = typeof window !== 'undefined' ? useLocation() : { pathname: '/' };
 
   const scrollToSection = (sectionId: string) => {
     // Ensure we're on the client side and DOM is ready

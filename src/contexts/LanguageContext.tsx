@@ -704,6 +704,10 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('nl');
 
   const t = (key: string): string => {
+    // SSR safety check - ensure translations exist
+    if (typeof translations === 'undefined' || !translations[language]) {
+      return key;
+    }
     return translations[language][key as keyof typeof translations[typeof language]] || key;
   };
 
@@ -717,6 +721,14 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
+    // SSR safety - provide fallback during server-side rendering
+    if (typeof window === 'undefined') {
+      return {
+        language: 'nl' as Language,
+        setLanguage: () => {},
+        t: (key: string) => key
+      };
+    }
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
