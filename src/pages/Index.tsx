@@ -22,9 +22,6 @@ import {
 
 const Index = () => {
   useEffect(() => {
-    // Only run browser-specific code on the client side
-    if (typeof window === 'undefined') return;
-    
     // Set additional meta tags not handled by centralized SEO utility
     const additionalMetaTags = [
       { name: 'keywords', content: 'btw-compliance, finance optimalisatie, multinationals België, btw-advies, digitalisering finance processen, audit-ready rapportering, finance controller, business controller' },

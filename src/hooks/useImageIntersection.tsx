@@ -6,12 +6,6 @@ export const useImageIntersection = (threshold = 0.1) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // SSR compatibility check
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      setIsVisible(true); // Show content immediately on server or unsupported browsers
-      return;
-    }
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasLoaded) {

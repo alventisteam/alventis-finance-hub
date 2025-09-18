@@ -19,13 +19,6 @@ export const useIntersectionObserver = ({
     const element = ref.current;
     if (!element) return;
 
-    // SSR compatibility check
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      setIsIntersecting(true); // Show content immediately on server or unsupported browsers
-      if (triggerOnce) setHasTriggered(true);
-      return;
-    }
-
     // If already triggered and triggerOnce is true, don't observe again
     if (triggerOnce && hasTriggered) return;
 

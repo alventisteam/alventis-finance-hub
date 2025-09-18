@@ -2,7 +2,7 @@
 import { lazy } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
-// Simple lazy loading for all components
+// Lazy load heavy components
 export const LazyServices = lazy(() => import('./Services'));
 export const LazyAbout = lazy(() => import('./About'));
 export const LazyTestimonials = lazy(() => import('./Testimonials'));
