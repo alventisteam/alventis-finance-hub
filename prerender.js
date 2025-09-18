@@ -23,7 +23,7 @@ const routesToPrerender = [
     const appHtml = render(url);
     const html = template.replace(`<!--app-html-->`, appHtml)
 
-    const filePath = `dist${url === '/' ? '/index' : url}.html`
+    const filePath = `dist${url === '/' ? '/index' : url + '/index'}.html`
     const absoluteFilePath = toAbsolute(filePath)
     
     // Ensure directory exists before writing file
