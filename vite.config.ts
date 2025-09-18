@@ -30,16 +30,7 @@ export default defineConfig(({ mode }) => ({
             if (id.includes("react") || id.includes("react-dom")) return "react-vendor";
             if (id.includes("@radix-ui")) return "ui-vendor";
             if (id.includes("lucide-react")) return "icons-vendor";
-            if (id.includes("@tanstack/react-query")) return "query-vendor";
             return "vendor";
-          }
-          // Split translation files
-          if (id.includes("translations/")) {
-            return "translations";
-          }
-          // Split lazy components
-          if (id.includes("Services") || id.includes("About") || id.includes("Testimonials") || id.includes("FAQ") || id.includes("Contact")) {
-            return "lazy-components";
           }
         },
         // Optimize chunk names for caching
@@ -47,9 +38,6 @@ export default defineConfig(({ mode }) => ({
           if (chunkInfo.name === "react-vendor") return "assets/react-[hash].js";
           if (chunkInfo.name === "ui-vendor") return "assets/ui-[hash].js";
           if (chunkInfo.name === "icons-vendor") return "assets/icons-[hash].js";
-          if (chunkInfo.name === "query-vendor") return "assets/query-[hash].js";
-          if (chunkInfo.name === "translations") return "assets/translations-[hash].js";
-          if (chunkInfo.name === "lazy-components") return "assets/components-[hash].js";
           return "assets/[name]-[hash].js";
         },
       },

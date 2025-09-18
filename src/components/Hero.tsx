@@ -15,28 +15,18 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center" role="banner">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <picture>
-          <source 
-            media="(max-width: 768px)" 
-            srcSet="/assets/hero-mobile.webp"
-            type="image/webp"
-          />
-          <source 
-            media="(min-width: 769px) and (max-width: 1200px)" 
-            srcSet="/assets/hero-tablet.webp"
-            type="image/webp"
-          />
-          <img
-            src="/assets/finance-consulting-office-belgium-2.webp"
-            alt="Professional finance consulting office in Belgium - BTW compliance and process optimization for multinationals"
-            className="w-full h-full object-cover"
-            width="1920"
-            height="1080"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src="/assets/finance-consulting-office-belgium-2.webp"
+          srcSet="/assets/finance-consulting-office-belgium-2.webp 1920w, /assets/finance-consulting-office-belgium-2.webp 1200w, /assets/finance-consulting-office-belgium-2.webp 800w"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          alt="BTW-compliance kantoor België - finance procesoptimalisatie en digitalisering voor multinationals"
+          className="w-full h-full object-cover"
+          width="1920"
+          height="1080"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
         <div className="absolute inset-0 bg-primary/80"></div>
       </div>
 
