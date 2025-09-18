@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, command }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -24,9 +24,10 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     rollupOptions: {
       output: {
+        // Simplified chunking to avoid SSR issues
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // Split React and React DOM into separate chunk
+            // Keep React together to avoid context issues
             if (id.includes("react") || id.includes("react-dom")) return "react-vendor";
             if (id.includes("@radix-ui")) return "ui-vendor";
             if (id.includes("lucide-react")) return "icons-vendor";
@@ -57,7 +58,11 @@ export default defineConfig(({ mode }) => ({
   assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.webp', '**/*.avif'],
   // Optimize dependencies
   optimizeDeps: {
-    include: ['react', 'react-dom'],
+    include: ['react', 'react-dom', 'react/jsx-runtime'],
     exclude: ['@radix-ui/react-*'], // Bundle separately for better caching
+  },
+  // SSR configuration
+  ssr: {
+    noExternal: ['react', 'react-dom'], // Ensure React is available during SSR
   },
 }));
