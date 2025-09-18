@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, Suspense } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, Suspense } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export type Language = 'nl' | 'en' | 'es';
@@ -63,12 +63,12 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [initialTranslations, setInitialTranslations] = useState<Record<string, string>>({});
 
   // Load default translations on mount
-  useState(() => {
+  useEffect(() => {
     loadTranslations('nl').then((translations) => {
       setInitialTranslations(translations);
       setIsLoading(false);
     });
-  });
+  }, []);
 
   if (isLoading) {
     return (

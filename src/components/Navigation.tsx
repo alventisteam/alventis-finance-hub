@@ -55,27 +55,17 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             {location.pathname === '/' ? (
-              <img 
-                src="/assets/logo-optimized.webp" 
-                alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
-                className="h-10 w-auto cursor-pointer" 
+              <div 
+                className="h-10 flex items-center cursor-pointer font-playfair font-bold text-2xl text-primary"
                 onClick={handleLogoClick}
-                width="120"
-                height="40"
-                loading="eager"
-                fetchPriority="high"
-              />
+              >
+                Alventis
+              </div>
             ) : (
               <Link to="/">
-                <img 
-                  src="/assets/logo-optimized.webp" 
-                  alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
-                  className="h-10 w-auto cursor-pointer" 
-                  width="120"
-                  height="40"
-                  loading="eager"
-                  fetchPriority="high"
-                />
+                <div className="h-10 flex items-center cursor-pointer font-playfair font-bold text-2xl text-primary">
+                  Alventis
+                </div>
               </Link>
             )}
           </div>

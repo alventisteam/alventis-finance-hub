@@ -1,11 +1,10 @@
 // Service Worker for caching critical resources
-const CACHE_NAME = 'alventis-v1';
+const CACHE_NAME = 'alventis-v2';
 const CRITICAL_RESOURCES = [
   '/',
   '/assets/finance-consulting-office-belgium-2.webp',
   '/assets/hero-mobile.webp',
-  '/assets/hero-tablet.webp',
-  '/assets/logo-optimized.webp'
+  '/favicon-optimized.webp'
 ];
 
 // Install event - cache critical resources

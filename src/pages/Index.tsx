@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { setSEOTags } from "@/lib/seo";
 import { preloadImage, markCriticalResource } from "@/lib/performance";
+import { trackPerformanceMetrics, registerServiceWorker } from "@/lib/mobile-performance";
 import { 
   LazyServices, 
   LazyAbout, 
@@ -52,7 +53,13 @@ const Index = () => {
     
     // Preload critical images for LCP optimization
     preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
-    preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
+    preloadImage('/assets/hero-mobile.webp', 'high');
+    
+    // Register service worker for caching
+    registerServiceWorker();
+    
+    // Track performance metrics
+    trackPerformanceMetrics();
     
     // Mark critical images after component mount
     setTimeout(() => {

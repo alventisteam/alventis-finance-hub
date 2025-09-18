@@ -21,11 +21,6 @@ const Hero = () => {
             srcSet="/assets/hero-mobile.webp"
             type="image/webp"
           />
-          <source 
-            media="(min-width: 769px) and (max-width: 1200px)" 
-            srcSet="/assets/hero-tablet.webp"
-            type="image/webp"
-          />
           <img
             src="/assets/finance-consulting-office-belgium-2.webp"
             alt="Professional finance consulting office in Belgium - BTW compliance and process optimization for multinationals"
