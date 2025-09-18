@@ -1,5 +1,5 @@
 // Service Worker for caching critical resources
-const CACHE_NAME = 'alventis-v2';
+const CACHE_NAME = 'alventis-v3';
 const CRITICAL_RESOURCES = [
   '/',
   '/assets/finance-consulting-office-belgium-2.webp',
@@ -7,12 +7,17 @@ const CRITICAL_RESOURCES = [
   '/favicon-optimized.webp'
 ];
 
+const IMAGE_CACHE_NAME = 'alventis-images-v3';
+const STATIC_CACHE_NAME = 'alventis-static-v3';
+
 // Install event - cache critical resources
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(CRITICAL_RESOURCES))
-      .then(() => self.skipWaiting())
+    Promise.all([
+      caches.open(CACHE_NAME).then((cache) => cache.addAll(CRITICAL_RESOURCES)),
+      caches.open(IMAGE_CACHE_NAME),
+      caches.open(STATIC_CACHE_NAME)
+    ]).then(() => self.skipWaiting())
   );
 });
 
@@ -23,7 +28,7 @@ self.addEventListener('activate', (event) => {
       .then((cacheNames) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
-            if (cacheName !== CACHE_NAME) {
+            if (![CACHE_NAME, IMAGE_CACHE_NAME, STATIC_CACHE_NAME].includes(cacheName)) {
               return caches.delete(cacheName);
             }
           })
@@ -33,26 +38,50 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event - serve from cache first for images, network first for HTML
+// Fetch event - optimized caching strategies
 self.addEventListener('fetch', (event) => {
   const { request } = event;
+  const url = new URL(request.url);
   
-  // Cache first strategy for images
-  if (request.destination === 'image') {
+  // Cache first strategy for images with aggressive caching
+  if (request.destination === 'image' || url.pathname.match(/\.(webp|jpg|jpeg|png|gif|svg)$/)) {
     event.respondWith(
-      caches.match(request)
+      caches.open(IMAGE_CACHE_NAME)
+        .then((cache) => cache.match(request))
         .then((response) => {
           if (response) {
             return response;
           }
           return fetch(request)
-            .then((response) => {
-              if (response.status === 200) {
-                const responseClone = response.clone();
-                caches.open(CACHE_NAME)
+            .then((fetchResponse) => {
+              if (fetchResponse.status === 200) {
+                const responseClone = fetchResponse.clone();
+                caches.open(IMAGE_CACHE_NAME)
                   .then((cache) => cache.put(request, responseClone));
               }
-              return response;
+              return fetchResponse;
+            });
+        })
+    );
+  }
+  
+  // Cache first for static assets (JS, CSS, fonts)
+  else if (url.pathname.match(/\.(js|css|woff2|woff)$/)) {
+    event.respondWith(
+      caches.open(STATIC_CACHE_NAME)
+        .then((cache) => cache.match(request))
+        .then((response) => {
+          if (response) {
+            return response;
+          }
+          return fetch(request)
+            .then((fetchResponse) => {
+              if (fetchResponse.status === 200) {
+                const responseClone = fetchResponse.clone();
+                caches.open(STATIC_CACHE_NAME)
+                  .then((cache) => cache.put(request, responseClone));
+              }
+              return fetchResponse;
             });
         })
     );

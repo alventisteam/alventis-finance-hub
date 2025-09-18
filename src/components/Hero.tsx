@@ -19,6 +19,7 @@ const Hero = () => {
           <source 
             media="(max-width: 768px)" 
             srcSet="/assets/hero-mobile.webp"
+            sizes="100vw"
             type="image/webp"
           />
           <img
@@ -27,6 +28,7 @@ const Hero = () => {
             className="w-full h-full object-cover"
             width="1920"
             height="1080"
+            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             decoding="async"

@@ -29,6 +29,15 @@
 
 *.webp
   Cache-Control: public, max-age=31536000, immutable
+  Accept-Ranges: bytes
+  Content-Encoding: identity
 
 *.woff2
   Cache-Control: public, max-age=31536000, immutable
+  Cross-Origin-Resource-Policy: cross-origin
+
+# Image optimization headers
+/assets/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Accept-Ranges: bytes
+  Vary: Accept-Encoding
