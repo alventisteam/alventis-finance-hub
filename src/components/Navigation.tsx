@@ -56,7 +56,7 @@ const Navigation = () => {
           <div className="flex-shrink-0">
             {location.pathname === '/' ? (
               <img 
-                src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
+                src="/assets/logo-optimized.webp" 
                 alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
                 className="h-10 w-auto cursor-pointer" 
                 onClick={handleLogoClick}
@@ -68,7 +68,7 @@ const Navigation = () => {
             ) : (
               <Link to="/">
                 <img 
-                  src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
+                  src="/assets/logo-optimized.webp" 
                   alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
                   className="h-10 w-auto cursor-pointer" 
                   width="120"
@@ -218,6 +218,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
