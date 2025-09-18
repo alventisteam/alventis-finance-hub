@@ -32,7 +32,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold mb-6 leading-tight">
+        <h1 className="text-4xl sm:text-6xl lg:text-8xl font-playfair font-bold mb-8 leading-tight">
           {t('hero.title').split(' ').map((word, index, array) => {
             if (index === array.length - 3 && word === 'Multinationals') { // "Multinationals" in Dutch
               return <span key={index} className="text-warm">{word} </span>;
@@ -45,7 +45,7 @@ const Hero = () => {
           })}
         </h1>
         
-        <p className="text-xl sm:text-2xl font-lato font-light mb-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-2xl sm:text-3xl font-lato font-light mb-12 max-w-4xl mx-auto leading-relaxed">
           {t('hero.subtitle')}
         </p>
 
