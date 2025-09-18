@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 export type Language = 'nl' | 'en' | 'es';
 
@@ -8,7 +8,12 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
+// SSR-safe context with default fallback
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+// Default fallback values for SSR
+const DEFAULT_LANGUAGE: Language = 'nl';
+const isServerSide = () => typeof window === 'undefined';
 
 export const translations = {
   nl: {
@@ -702,17 +707,52 @@ export const translations = {
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('nl');
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // SSR-safe initialization
+  useEffect(() => {
+    setIsHydrated(true);
+    // Only run client-side language detection after hydration
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('language') as Language;
+      if (savedLanguage && ['nl', 'en', 'es'].includes(savedLanguage)) {
+        setLanguage(savedLanguage);
+      }
+    }
+  }, []);
 
   const t = (key: string): string => {
-    // SSR safety check - ensure translations exist
-    if (typeof translations === 'undefined' || !translations[language]) {
+    try {
+      // SSR safety check - ensure translations exist
+      if (typeof translations === 'undefined' || !translations[language]) {
+        return key;
+      }
+      return translations[language][key as keyof typeof translations[typeof language]] || key;
+    } catch (error) {
+      console.warn('[LanguageContext] Translation error:', error);
       return key;
     }
-    return translations[language][key as keyof typeof translations[typeof language]] || key;
+  };
+
+  // Safe setLanguage that works during SSR
+  const safeSetLanguage = (newLanguage: Language) => {
+    if (typeof window === 'undefined') {
+      return; // No-op during SSR
+    }
+    setLanguage(newLanguage);
+    try {
+      localStorage.setItem('language', newLanguage);
+    } catch (error) {
+      console.warn('[LanguageContext] Could not save language:', error);
+    }
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ 
+      language, 
+      setLanguage: safeSetLanguage, 
+      t 
+    }}>
       {children}
     </LanguageContext.Provider>
   );

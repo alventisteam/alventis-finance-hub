@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,16 +16,31 @@ const Navigation = () => {
   const [isClient, setIsClient] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   
-  // Only use router hooks on client-side
-  let location = { pathname: '/' };
-  if (typeof window !== 'undefined') {
-    location = useLocation();
+  // SSR-safe location handling
+  useEffect(() => {
+    setIsClient(true);
+    if (typeof window !== 'undefined') {
+      setCurrentPath(window.location.pathname);
+    }
+  }, []);
+
+  // Only use useLocation after client-side hydration
+  let routerLocation = { pathname: currentPath };
+  if (isClient && typeof window !== 'undefined') {
+    try {
+      // Import useLocation dynamically to avoid SSR issues
+      const { useLocation } = require('react-router-dom');
+      routerLocation = useLocation();
+    } catch (error) {
+      console.warn('[Navigation] Router hook failed, using fallback:', error);
+    }
   }
 
   useEffect(() => {
-    setIsClient(true);
-    setCurrentPath(location.pathname);
-  }, [location.pathname]);
+    if (isClient) {
+      setCurrentPath(routerLocation.pathname);
+    }
+  }, [routerLocation.pathname, isClient]);
 
   const scrollToSection = (sectionId: string) => {
     // Ensure we're on the client side and DOM is ready
