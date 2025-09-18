@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -12,10 +12,20 @@ import {
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState('/');
+  const [isClient, setIsClient] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   
-  // SSR safety check for useLocation
-  const location = typeof window !== 'undefined' ? useLocation() : { pathname: '/' };
+  // Only use router hooks on client-side
+  let location = { pathname: '/' };
+  if (typeof window !== 'undefined') {
+    location = useLocation();
+  }
+
+  useEffect(() => {
+    setIsClient(true);
+    setCurrentPath(location.pathname);
+  }, [location.pathname]);
 
   const scrollToSection = (sectionId: string) => {
     // Ensure we're on the client side and DOM is ready
@@ -45,7 +55,7 @@ const Navigation = () => {
   };
 
   const handleLogoClick = () => {
-    if (location.pathname === '/') {
+    if (currentPath === '/') {
       scrollToSection('home');
     }
   };
@@ -56,7 +66,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            {location.pathname === '/' ? (
+            {currentPath === '/' ? (
               <img 
                 src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
                 alt="Alventis Logo" 
@@ -85,7 +95,7 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-6">
-              {location.pathname === '/' ? (
+              {currentPath === '/' ? (
                 <>
                   <button
                     onClick={() => scrollToSection('home')}
@@ -156,13 +166,13 @@ const Navigation = () => {
               {/* Page Navigation Links */}
               <Link
                 to="/privacy"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/privacy' ? 'text-accent' : ''}`}
+                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${currentPath === '/privacy' ? 'text-accent' : ''}`}
               >
                 Privacy
               </Link>
               <Link
                 to="/impressum"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/impressum' ? 'text-accent' : ''}`}
+                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${currentPath === '/impressum' ? 'text-accent' : ''}`}
               >
                 Impressum
               </Link>
@@ -200,7 +210,7 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            {location.pathname === '/' ? (
+            {currentPath === '/' ? (
               <Button
                 onClick={() => scrollToSection('contact')}
                 className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium"
@@ -230,7 +240,7 @@ const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden navigation-mobile">
             <div className="px-4 pt-2 pb-3 space-y-1 bg-background border-t shadow-lg max-w-full">
-              {location.pathname === '/' ? (
+              {currentPath === '/' ? (
                 <>
                   <button
                     onClick={() => scrollToSection('home')}
@@ -298,14 +308,14 @@ const Navigation = () => {
               {/* Page Navigation Links */}
               <Link
                 to="/privacy"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/privacy' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${currentPath === '/privacy' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Privacy
               </Link>
               <Link
                 to="/impressum"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/impressum' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
+                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${currentPath === '/impressum' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Impressum
@@ -335,7 +345,7 @@ const Navigation = () => {
                 </div>
               </div>
               <div className="px-3 py-2">
-                {location.pathname === '/' ? (
+                {currentPath === '/' ? (
                   <Button
                     onClick={() => scrollToSection('contact')}
                     className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium w-full"
