@@ -9,6 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import logoSmall from "@/assets/alventis-logo-small.webp";
+import logoMedium from "@/assets/alventis-logo-medium.webp";
+import logoLarge from "@/assets/alventis-logo-large.webp";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,15 +59,39 @@ const Navigation = () => {
           <div className="flex-shrink-0">
             {location.pathname === '/' ? (
               <div 
-                className="h-10 flex items-center cursor-pointer font-playfair font-bold text-2xl text-primary"
+                className="h-10 flex items-center cursor-pointer"
                 onClick={handleLogoClick}
               >
-                Alventis
+                <picture>
+                  <source media="(max-width: 640px)" srcSet={logoSmall} />
+                  <source media="(max-width: 1024px)" srcSet={logoMedium} />
+                  <img
+                    src={logoLarge}
+                    alt="Alventis - BTW Expert & Finance Consultant België"
+                    className="h-8 sm:h-10 w-auto object-contain"
+                    width="320"
+                    height="80"
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+                </picture>
               </div>
             ) : (
               <Link to="/">
-                <div className="h-10 flex items-center cursor-pointer font-playfair font-bold text-2xl text-primary">
-                  Alventis
+                <div className="h-10 flex items-center cursor-pointer">
+                  <picture>
+                    <source media="(max-width: 640px)" srcSet={logoSmall} />
+                    <source media="(max-width: 1024px)" srcSet={logoMedium} />
+                    <img
+                      src={logoLarge}
+                      alt="Alventis - BTW Expert & Finance Consultant België"
+                      className="h-8 sm:h-10 w-auto object-contain"
+                      width="320"
+                      height="80"
+                      loading="eager"
+                      fetchPriority="high"
+                    />
+                  </picture>
                 </div>
               </Link>
             )}
