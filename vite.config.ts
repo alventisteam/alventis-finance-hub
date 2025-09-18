@@ -42,6 +42,7 @@ export default defineConfig(({ mode, command }) => ({
   },
   // SSR configuration
   ssr: {
-    noExternal: ['react', 'react-dom'], // Ensure React is available during SSR
+    noExternal: ['react', 'react-dom', '@radix-ui/react-*'], // Ensure React and Radix UI components are available during SSR
+    external: ['fs', 'path', 'url'],
   },
 }));
