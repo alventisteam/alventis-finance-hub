@@ -53,7 +53,7 @@ const About = () => {
             <div className="bg-card p-6 rounded-2xl shadow-soft">
               <img
                 src="/lovable-uploads/d88621f2-ecdc-492b-b0be-04d9dbedadd0.png"
-                alt="BTW-adviseur en finance controller België - digitalisering processen voor multinationals"
+                alt="Professional finance team member working on digital process optimization for multinational companies"
                 className="w-full h-64 object-cover rounded-xl mb-4"
                 width="400"
                 height="256"

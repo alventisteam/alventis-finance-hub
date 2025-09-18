@@ -57,7 +57,7 @@ const Navigation = () => {
             {location.pathname === '/' ? (
               <img 
                 src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
-                alt="Alventis Logo" 
+                alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
                 className="h-10 w-auto cursor-pointer" 
                 onClick={handleLogoClick}
                 width="120"
@@ -69,7 +69,7 @@ const Navigation = () => {
               <Link to="/">
                 <img 
                   src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
-                  alt="Alventis Logo" 
+                  alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
                   className="h-10 w-auto cursor-pointer" 
                   width="120"
                   height="40"

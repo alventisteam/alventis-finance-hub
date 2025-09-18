@@ -28,7 +28,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                   <img 
                     src="/lovable-uploads/098cdc8d-f6c6-45ef-bc12-aaa87fc4bd16.png" 
-                    alt="Buckman multinational - BTW-compliance en finance optimalisatie klant" 
+                    alt="Buckman multinational chemical company logo - satisfied client of Alventis BTW compliance services" 
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
@@ -47,7 +47,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                   <img 
                     src="/lovable-uploads/4852a606-69ea-448a-a552-755511e08e27.png" 
-                    alt="Laurelton Diamonds - finance procesoptimalisatie diamantverwerking klant" 
+                    alt="Laurelton Diamonds logo - client benefiting from Alventis finance process optimization services" 
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"
@@ -66,7 +66,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
                   <img 
                     src="/lovable-uploads/5c81a807-f80e-43dc-a419-49faf43cfb4a.png" 
-                    alt="Imperial Brands - BTW-advies internationale tabak multinational klant" 
+                    alt="Imperial Brands tobacco company logo - international client receiving Alventis BTW advisory services" 
                     className="max-w-full max-h-full object-contain p-2"
                     width="80"
                     height="80"

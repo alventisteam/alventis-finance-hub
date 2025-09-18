@@ -18,8 +18,8 @@ const LegalNotice = () => {
   useEffect(() => {
     // Use centralized SEO utility
     setSEOTags({
-      title: t('legalNotice.title'),
-      description: t('legalNotice.metaDescription'),
+      title: 'Juridische Vermelding | Alventis Impressum',
+      description: 'Juridische vermelding Alventis: bedrijfsinformatie, contactgegevens, auteursrechten en aansprakelijkheid voor onze finance consultancy diensten.',
       canonicalUrl: 'https://alventis.be/impressum',
       breadcrumbs: [
         { name: 'Home', url: 'https://alventis.be/' },
