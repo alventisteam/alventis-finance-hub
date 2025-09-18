@@ -125,9 +125,11 @@ const Contact = () => {
           
           <Button
             onClick={() => {
-              const contactSection = document.getElementById('contact-form');
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
+              if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
               }
             }}
             variant="warm"
@@ -139,7 +141,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <section id="contact-form" className="py-32 bg-background">
+      <section id="contact" className="py-32 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">

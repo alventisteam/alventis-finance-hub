@@ -16,10 +16,29 @@ const Navigation = () => {
   const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Ensure we're on the client side and DOM is ready
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    
+    const scrollToElement = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
+        return true;
+      }
+      return false;
+    };
+
+    // Try immediately first
+    if (scrollToElement()) return;
+
+    // If element not found, retry after a short delay (for hydration)
+    setTimeout(() => {
+      if (!scrollToElement()) {
+        console.warn(`Element with id "${sectionId}" not found for scrolling`);
+      }
+    }, 100);
+    
     setIsMenuOpen(false);
   };
 
