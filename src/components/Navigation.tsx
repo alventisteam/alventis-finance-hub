@@ -9,29 +9,42 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { createScrollHandler, useScrollReady } from "@/lib/scroll-utils";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
-  const isScrollReady = useScrollReady();
 
-  const createNavScrollHandler = (sectionId: string) => {
-    return createScrollHandler(sectionId, () => setIsMenuOpen(false));
+  const scrollToSection = (sectionId: string) => {
+    // Ensure we're on the client side and DOM is ready
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    
+    const scrollToElement = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
+        return true;
+      }
+      return false;
+    };
+
+    // Try immediately first
+    if (scrollToElement()) return;
+
+    // If element not found, retry after a short delay (for hydration)
+    setTimeout(() => {
+      if (!scrollToElement()) {
+        console.warn(`Element with id "${sectionId}" not found for scrolling`);
+      }
+    }, 100);
+    
+    setIsMenuOpen(false);
   };
 
-  // Create all scroll handlers
-  const handleHomeClick = createNavScrollHandler('home');
-  const handleServicesClick = createNavScrollHandler('services');
-  const handleAboutClick = createNavScrollHandler('about');
-  const handleTestimonialsClick = createNavScrollHandler('testimonials');
-  const handleFaqClick = createNavScrollHandler('faq');
-  const handleContactClick = createNavScrollHandler('contact');
-
-  const handleLogoClick = (event: React.MouseEvent) => {
-    if (location.pathname === '/' && isScrollReady) {
-      handleHomeClick(event);
+  const handleLogoClick = () => {
+    if (location.pathname === '/') {
+      scrollToSection('home');
     }
   };
 
@@ -73,44 +86,38 @@ const Navigation = () => {
               {location.pathname === '/' ? (
                 <>
                   <button
-                    onClick={handleHomeClick}
-                    disabled={!isScrollReady}
-                    className="text-foreground hover:text-accent transition-colors font-lato font-medium disabled:opacity-70"
+                    onClick={() => scrollToSection('home')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
                   >
                     {t('nav.home')}
                   </button>
                   <button
-                    onClick={handleServicesClick}
-                    disabled={!isScrollReady}
-                    className="text-foreground hover:text-accent transition-colors font-lato font-medium disabled:opacity-70"
+                    onClick={() => scrollToSection('services')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
                   >
                     {t('nav.services')}
                   </button>
                   <button
-                    onClick={handleAboutClick}
-                    disabled={!isScrollReady}
-                    className="text-foreground hover:text-accent transition-colors font-lato font-medium disabled:opacity-70"
+                    onClick={() => scrollToSection('about')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
                   >
                     {t('nav.about')}
                   </button>
                   <button
-                    onClick={handleTestimonialsClick}
-                    disabled={!isScrollReady}
-                    className="text-foreground hover:text-accent transition-colors font-lato font-medium disabled:opacity-70"
+                    onClick={() => scrollToSection('testimonials')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
                   >
                     {t('nav.testimonials')}
                   </button>
                   <button
-                    onClick={handleFaqClick}
-                    disabled={!isScrollReady}
-                    className="text-foreground hover:text-accent transition-colors font-lato font-medium disabled:opacity-70"
+                    onClick={() => scrollToSection('faq')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
                   >
                     {t('nav.faq')}
                   </button>
                   <button
-                    onClick={handleContactClick}
-                    disabled={!isScrollReady}
-                    className="text-foreground hover:text-accent transition-colors font-lato font-medium disabled:opacity-70"
+                    onClick={() => scrollToSection('contact')}
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
                   >
                     {t('nav.contact')}
                   </button>
@@ -193,9 +200,8 @@ const Navigation = () => {
           <div className="hidden md:block">
             {location.pathname === '/' ? (
               <Button
-                onClick={handleContactClick}
-                disabled={!isScrollReady}
-                className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium disabled:opacity-70"
+                onClick={() => scrollToSection('contact')}
+                className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium"
               >
                 {t('nav.cta')}
               </Button>
@@ -225,44 +231,38 @@ const Navigation = () => {
               {location.pathname === '/' ? (
                 <>
                   <button
-                    onClick={handleHomeClick}
-                    disabled={!isScrollReady}
-                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left disabled:opacity-70"
+                    onClick={() => scrollToSection('home')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
                   >
                     {t('nav.home')}
                   </button>
                   <button
-                    onClick={handleServicesClick}
-                    disabled={!isScrollReady}
-                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left disabled:opacity-70"
+                    onClick={() => scrollToSection('services')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
                   >
                     {t('nav.services')}
                   </button>
                   <button
-                    onClick={handleAboutClick}
-                    disabled={!isScrollReady}
-                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left disabled:opacity-70"
+                    onClick={() => scrollToSection('about')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
                   >
                     {t('nav.about')}
                   </button>
                   <button
-                    onClick={handleTestimonialsClick}
-                    disabled={!isScrollReady}
-                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left disabled:opacity-70"
+                    onClick={() => scrollToSection('testimonials')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
                   >
                     {t('nav.testimonials')}
                   </button>
                   <button
-                    onClick={handleFaqClick}
-                    disabled={!isScrollReady}
-                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left disabled:opacity-70"
+                    onClick={() => scrollToSection('faq')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
                   >
                     {t('nav.faq')}
                   </button>
                   <button
-                    onClick={handleContactClick}
-                    disabled={!isScrollReady}
-                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left disabled:opacity-70"
+                    onClick={() => scrollToSection('contact')}
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
                   >
                     {t('nav.contact')}
                   </button>
@@ -335,9 +335,8 @@ const Navigation = () => {
               <div className="px-3 py-2">
                 {location.pathname === '/' ? (
                   <Button
-                    onClick={handleContactClick}
-                    disabled={!isScrollReady}
-                    className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium w-full disabled:opacity-70"
+                    onClick={() => scrollToSection('contact')}
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 font-lato font-medium w-full"
                   >
                     {t('nav.cta')}
                   </Button>
