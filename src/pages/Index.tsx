@@ -1,30 +1,19 @@
-import { useEffect, Suspense } from "react";
+import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import Services from "@/components/Services";
+import About from "@/components/About";
 import Expertise from "@/components/Expertise";
+import Testimonials from "@/components/Testimonials";
+import Contact from "@/components/Contact";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { setSEOTags } from "@/lib/seo";
 import { preloadImage, markCriticalResource } from "@/lib/performance";
-import { trackPerformanceMetrics, registerServiceWorker } from "@/lib/mobile-performance";
-import { 
-  LazyServices, 
-  LazyAbout, 
-  LazyTestimonials, 
-  LazyFAQ, 
-  LazyContact,
-  ServicesLoading,
-  AboutLoading,
-  TestimonialsLoading,
-  FAQLoading,
-  ContactLoading
-} from "@/components/LazyComponents";
+import { setSEOTags } from "@/lib/seo";
 
 const Index = () => {
   useEffect(() => {
-    // Only run browser-specific code after hydration is complete
-    if (typeof window === 'undefined') return;
-    
     // Set additional meta tags not handled by centralized SEO utility
     const additionalMetaTags = [
       { name: 'keywords', content: 'btw-compliance, finance optimalisatie, multinationals België, btw-advies, digitalisering finance processen, audit-ready rapportering, finance controller, business controller' },
@@ -54,49 +43,26 @@ const Index = () => {
       hasFAQ: true
     });
     
-    // Delay performance optimizations to avoid hydration conflicts
-    const timer = setTimeout(() => {
-      try {
-        // Preload critical images for LCP optimization
-        preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
-        preloadImage('/assets/hero-mobile.webp', 'high');
-        
-        // Register service worker for caching
-        registerServiceWorker();
-        
-        // Track performance metrics
-        trackPerformanceMetrics();
-        
-        // Mark critical images after component mount
-        markCriticalResource('img[fetchpriority="high"]');
-      } catch (error) {
-        console.warn('Performance optimization failed:', error);
-      }
+    // Preload critical images for LCP optimization
+    preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
+    preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
+    
+    // Mark critical images after component mount
+    setTimeout(() => {
+      markCriticalResource('img[fetchpriority="high"]');
     }, 100);
-
-    return () => clearTimeout(timer);
   }, []);
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
-      <main>
+      <main role="main">
         <Hero />
-        <Suspense fallback={<ServicesLoading />}>
-          <LazyServices />
-        </Suspense>
-        <Suspense fallback={<AboutLoading />}>
-          <LazyAbout />
-        </Suspense>
+        <Services />
+        <About />
         <Expertise />
-        <Suspense fallback={<TestimonialsLoading />}>
-          <LazyTestimonials />
-        </Suspense>
-        <Suspense fallback={<FAQLoading />}>
-          <LazyFAQ />
-        </Suspense>
-        <Suspense fallback={<ContactLoading />}>
-          <LazyContact />
-        </Suspense>
+        <Testimonials />
+        <FAQ />
+        <Contact />
       </main>
       <Footer />
       <Toaster />

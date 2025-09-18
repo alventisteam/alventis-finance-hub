@@ -1,5 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode, Suspense } from 'react';
-import { Skeleton } from '@/components/ui/skeleton';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 export type Language = 'nl' | 'en' | 'es';
 
@@ -11,90 +10,707 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Lazy load translations to reduce initial bundle size
-const loadTranslations = async (language: Language) => {
-  switch (language) {
-    case 'nl':
-      const { nlTranslations } = await import('./translations/nl');
-      return nlTranslations;
-    case 'en':
-      const { enTranslations } = await import('./translations/en');
-      return enTranslations;
-    case 'es':
-      const { esTranslations } = await import('./translations/es');
-      return esTranslations;
-    default:
-      const { nlTranslations: defaultTranslations } = await import('./translations/nl');
-      return defaultTranslations;
+export const translations = {
+  nl: {
+    // Navigation
+    'nav.home': 'Home',
+    'nav.services': 'Diensten',
+    'nav.about': 'Over ons',
+    'nav.testimonials': 'Referenties',
+    'nav.faq': 'FAQ',
+    'nav.contact': 'Contact',
+    'nav.cta': 'Plan een gratis kennismaking',
+    
+    // Hero Section
+    'hero.title': 'BTW-compliance & Finance Optimalisatie voor Multinationals in België',
+    'hero.subtitle': '10+ jaar ervaring als finance en business controller. Expertise in btw-advies, digitalisering finance processen en audit-ready rapportering voor internationale bedrijven zoals Buckman, Katoen Natie en Imperial Brands.',
+    'hero.cta1': 'Plan een gratis kennismaking',
+    'hero.cta2': 'Bekijk onze diensten',
+    'hero.scroll': 'Scroll naar diensten',
+    
+    // About Section
+    'about.title': 'Over Alventis',
+    'about.intro1': 'Als finance & business controller en projectmanager in internationale multinationals begrijp ik exact waar finance teams mee worstelen. Van eindeloze btw-verplichtingen tot manuele processen die vertragen en fouten veroorzaken.',
+    'about.quote': '"Na meer dan 10 jaar in de frontlinie van finance binnen multinationals, weet ik exact waar het spaak loopt. Mijn aanpak? Chaos eruit. Structuur erin. Je team werkt sneller, juister en met focus op waar het écht om draait: strategische impact."',
+    'about.subtitle': 'Strategisch adviseur in finance optimalisatie en internationale btw-structuren',
+    'about.expertise.title': 'Mijn expertise:',
+    'about.expertise.1': '10+ jaar ervaring als finance & business controller in multinationals',
+    'about.expertise.2': 'Btw-advies voor internationale structuren – specialist in Belgische regelgeving',
+    'about.expertise.3': 'Begeleiding van finance transformaties & changetrajecten',
+    'about.expertise.4': 'Procesoptimalisatie & digitalisering van finance-afdelingen',
+    'about.expertise.5': 'Ervaren sparringpartner voor CFO\'s, controllers en tax leads',
+    'about.proven.title': 'Bewezen expertise',
+    'about.proven.subtitle': '10+ jaar ervaring in finance',
+    'about.proven.text': 'Van hands-on controller tot strategisch adviseur – ik ken beide kanten van de finance wereld en weet exact wat werkt.',
+    'about.results.title': 'Resultaatgericht',
+    'about.results.subtitle': 'Meetbare verbeteringen binnen 3 maanden',
+    'about.results.text': 'Jij ziet direct resultaat: minder stress, snellere processen, en eindelijk tijd voor strategisch werk dat écht impact heeft.',
+    
+    // Contact Section
+    'contact.title': 'Contact',
+    'contact.subtitle': 'Stop met stressen over compliance en inefficiëntie. Plan een gratis kennismaking en ontdek hoe jouw finance team 50% sneller kan werken.',
+    'contact.response': 'We reageren binnen 24 uur – vertrouwelijk en zonder verplichtingen',
+    'contact.form.title': 'Plan een gratis kennismaking',
+    'contact.form.name': 'Naam',
+    'contact.form.email': 'Email',
+    'contact.form.company': 'Bedrijf',
+    'contact.form.message': 'Bericht',
+    'contact.form.name.placeholder': 'Jouw naam',
+    'contact.form.email.placeholder': 'jouw@bedrijf.com',
+    'contact.form.company.placeholder': 'Jouw bedrijf',
+    'contact.form.message.placeholder': 'Vertel ons over jouw uitdagingen of vragen...',
+    'contact.form.submit': 'Plan gratis kennismaking',
+    'contact.form.submitting': 'Verzenden...',
+    'contact.info.title': 'Contact informatie',
+    'contact.phone': 'Telefoon',
+    'contact.email': 'Email',
+    'contact.location': 'Locatie',
+    'contact.response_time': 'Responstijd',
+    'contact.phone.description': 'Ma-vr 9:00-18:00',
+    'contact.email.description': 'We reageren binnen 4 uur',
+    'contact.location.description': 'Ook voor videocalls',
+    'contact.response_time.description': 'Voor alle vragen',
+    'contact.benefits.title': 'Wat levert dit jou op?',
+    'contact.benefit.1': '50% tijdsbesparing in maandafsluiting en rapportage',
+    'contact.benefit.2': '100% compliance zonder stress of audit-zorgen',
+    'contact.benefit.3': 'Meer tijd voor strategische business partnering',
+    'contact.benefit.4': 'Gelukkiger finance team dat zich kan focussen',
+    'contact.testimonial': '"Binnen 3 maanden zul je merken dat jouw finance team eindelijk kan doen waar ze goed in zijn: strategische ondersteuning in plaats van administratief geregel."',
+    
+    // Services Section
+    'services.title': 'BTW-compliance & Finance Optimalisatie Diensten',
+    'services.subtitle': 'Specialist in btw-compliance en finance optimalisatie voor multinationals in België. 50% tijdsbesparing, 100% audit-ready processen en complete digitalisering voor finance teams met 10+ jaar bewezen expertise.',
+    'services.service1.title': 'Btw-compliance & rapportering',
+    'services.service1.problem': 'Jouw team verliest tijd aan complexe btw-verplichtingen en leeft in constante angst voor compliance risico\'s en boetes.',
+    'services.service1.solution': 'Wij bieden begeleiding in fiscale vertegenwoordiging en monitoren alle compliance aspecten proactief.',
+    'services.service1.result': 'Jij bent 100% compliant, audit-ready en kunt je volledig focussen op strategie in plaats van administratie.',
+    'services.service1.example': 'Finance team sluit nu binnen 5 dagen af in plaats van 3 weken.',
+    'services.service2.title': 'Finance procesoptimalisatie',
+    'services.service2.problem': 'Handmatige processen kosten teveel tijd, leiden tot fouten en maken jouw team ongelukkig en inefficiënt.',
+    'services.service2.solution': 'Wij automatiseren workflows, digitaliseren processen en optimaliseren jouw gehele finance operatie.',
+    'services.service2.result': 'Jij bespaart 50% tijd, elimineert fouten en krijgt real-time inzicht in je financiële prestaties.',
+    'services.service2.example': 'Tot 50% efficiëntere processen en sterkere rapportering.',
+    'services.service3.title': 'Projectbegeleiding & changemanagement',
+    'services.service3.problem': 'Veranderingen mislukken door weerstand van jouw team en gebrek aan ervaring met finance transformaties.',
+    'services.service3.solution': 'Wij begeleiden persoonlijk controllers en CFO\'s door elke stap van de transformatie.',
+    'services.service3.result': 'Jij krijgt volledige team buy-in, soepele implementatie en duurzame verandering.',
+    'services.service3.example': '100% acceptatie bij finance team binnen 3 maanden.',
+    'services.problem': 'Probleem',
+    'services.solution': 'Onze oplossing',
+    'services.benefit': 'Jouw voordeel',
+    'services.result': 'Resultaat',
+    'services.cta.title': 'Klaar om jouw finance team te transformeren?',
+    'services.cta.subtitle': 'Plan een gratis kennismaking en ontdek hoe jouw team 50% sneller kan werken en 100% compliant blijft.',
+    'services.cta.button': 'Plan gratis kennismaking',
+    'services.modal.title': 'Plan gratis kennismaking',
+    'services.form.name': 'Naam',
+    'services.form.email': 'E-mail',
+    'services.form.company': 'Bedrijf',
+    'services.form.message': 'Bericht',
+    'services.form.name.placeholder': 'Jouw volledige naam',
+    'services.form.email.placeholder': 'jouw@email.com',
+    'services.form.company.placeholder': 'Naam van jouw bedrijf',
+    'services.form.message.placeholder': 'Vertel ons over jouw uitdagingen en wat je hoopt te bereiken...',
+    'services.form.submit': 'Verstuur bericht',
+    'services.form.submitting': 'Verzenden...',
+    'services.form.cancel': 'Annuleren',
+
+    // Expertise Section
+    'expertise.title': 'Bewezen Resultaten & Expertise BTW-compliance',
+    'expertise.subtitle': 'Ontdek hoe Alventis finance teams helpt om hun doelen te bereiken – via gericht advies rond btw-compliance, digitalisering van finance processen en projectbegeleiding voor controllers en CFO\'s.',
+    'expertise.result1.title': '50% efficiëntere processen',
+    'expertise.result1.description': 'Multinationals die met ons werken, sluiten sneller af, maken minder fouten en winnen opnieuw tijd voor strategisch werk.',
+    'expertise.result2.title': 'Sterkere rapportering',
+    'expertise.result2.description': 'Van 3 weken naar 5 dagen - onze klanten ervaren dramatische verbeteringen in hun finance cyclus.',
+    'expertise.result3.title': 'Meer grip op cijfers',
+    'expertise.result3.description': 'Real-time inzicht en geautomatiseerde processen zorgen voor volledige controle over je financiële data.',
+
+    // Testimonials Section
+    'testimonials.title': 'Professionele Ervaring bij Toonaangevende Multinationals:',
+    'testimonials.buckman.description': 'Internationale chemie- en technologiepartner',
+    'testimonials.laurelton.description': 'High-end diamantverwerking, dochter van Tiffany & Co.',
+    'testimonials.imperial.description': 'Internationaal tabak- en consumentengoederenbedrijf',
+    'testimonials.katoen.description': 'Belgisch wereldspeler in logistiek en fiscaliteit',
+    'testimonials.steelduxx.description': 'Antwerps bedrijf gespecialiseerd in staalhandel',
+    'testimonials.bestseller.description': 'Internationaal modebedrijf (o.a. Vero Moda, Jack & Jones)',
+    'testimonials.acpartners.description': 'IT-consultancybedrijf gespecialiseerd in softwareontwikkeling, implementatie en integratie van IT-systemen',
+    'testimonials.roberthalf.description': 'Internationaal staffing & finance consultancybedrijf',
+
+    // FAQ Section
+    'faq.title': 'Veelgestelde Vragen BTW-compliance & Finance',
+    'faq.subtitle.part1': 'Alles wat je wilt weten over',
+    'faq.subtitle.part2': 'btw België',
+    'faq.subtitle.part3': 'digitalisering van finance processen',
+    'faq.subtitle.part4': 'projectbegeleiding voor controllers en CFO\'s',
+    'faq.question1': 'Wat zijn de grootste fouten bij btw-compliance in multinationals?',
+    'faq.answer1': 'De grootste fouten zijn vaak late aangifte, verkeerde registratie van transacties en onvoldoende kennis van lokale regelgeving. Dit leidt tot boetes en compliance risico\'s. Wij zorgen voor proactieve monitoring en correcte afhandeling van alle btw-verplichtingen.',
+    'faq.question2': 'Hoeveel tijd kan digitalisering van finance processen mij besparen?',
+    'faq.answer2': 'Onze klanten besparen gemiddeld 50% tijd op maandafsluitingen en rapportage. Dat betekent dat waar je finance team voorheen 10 dagen nodig had, dit nu binnen 5 dagen klaar is. Deze tijdsbesparing komt door slimme automatisering van handmatige processen en betere workflows.',
+    'faq.question3': 'Voor welke multinationals is Alventis geschikt?',
+    'faq.answer3': 'Wij werken met finance teams van internationale bedrijven die actief zijn in België. Of je nu 50 of 5000 medewerkers hebt, als je team worstelt met compliance, handmatige processen of inefficiëntie, dan kunnen wij helpen. Onze expertise ligt vooral bij complexe btw-structuren en finance optimalisatie.',
+    'faq.question4': 'Hoe snel zie ik resultaten van finance optimalisatie?',
+    'faq.answer4': 'Binnen de eerste maand zie je al verbeteringen in efficiency. Na 3 maanden zijn de nieuwe processen volledig geïmplementeerd en ervaar je de volledige tijdsbesparing van 50%. Voor btw ben je direct compliant vanaf dag 1.',
+    'faq.cta.text': 'Heb je nog een andere vraag? We helpen je graag verder.',
+    'faq.cta.button': 'Stel je vraag',
+
+    // Footer Section
+    'footer.company': 'Alventis',
+    'footer.description': 'Finance optimalisatie multinationals en btw-compliance België. Digitalisering finance processen en business control consultant.',
+    'footer.trust': 'Vertrouwd door finance teams wereldwijd',
+    'footer.cta': 'Plan een gratis kennismaking',
+    'footer.services.title': 'Onze diensten',
+    'footer.service1': 'Advies in fiscale vertegenwoordiging',
+    'footer.service2': 'Finance proces optimalisatie',
+    'footer.service3': 'Digitalisering & automatisering',
+    'footer.service4': 'Compliance monitoring',
+    'footer.service5': 'Projectbegeleiding',
+    'footer.contact.title': 'Contact',
+    'footer.location': 'Kluisbergen, België',
+    'footer.trusted.title': 'Vertrouwd door:',
+    'footer.trusted1': '• Internationale multinationals',
+    'footer.trusted2': '• Finance teams in heel Europa',
+    'footer.trusted3': '• Controllers & CFO\'s sinds 2008',
+    'footer.linkedin': 'LinkedIn →',
+    'footer.copyright': 'Alle rechten voorbehouden.',
+    'footer.privacy': 'Privacy Policy',
+    'footer.terms': 'Algemene Voorwaarden',
+
+    // Privacy Section
+    'privacy.title': 'Privacybeleid | Alventis',
+    'privacy.metaDescription': 'Privacybeleid van Alventis: gegevensverwerking, cookies, rechten en contact.',
+    'privacy.lastUpdated': 'Laatst bijgewerkt: 16/09/2025',
+    'privacy.backToHome': 'Terug naar Home',
+    'privacy.section1.title': '1. Verwerkingsverantwoordelijke',
+    'privacy.section1.content.name': 'Viktoria Oris',
+    'privacy.section1.content.address': 'Bergstraat 39',
+    'privacy.section1.content.city': '9690 Kluisbergen',
+    'privacy.section1.content.country': 'België',
+    'privacy.section1.content.email': 'viktoria@alventis.be',
+    'privacy.section1.content.phone': '+32 478 83 43 23',
+    'privacy.section1.content.vat': 'BE1019135844',
+    'privacy.section2.title': '2. Welke gegevens wij verwerken',
+    'privacy.section2.items': 'Gegevens die je vrijwillig verstrekt, zoals naam, e-mailadres en berichtinhoud wanneer je contact met ons opneemt.|Technische informatie zoals IP-adres, browsertype, apparaattype, besturingssysteem en tijdstip van toegang (automatisch verzameld door onze hostingprovider).|Gebruiksgegevens via analysetools (zoals paginaweergaven, klikgedrag, sessieduur en verwijzende bronnen).|Cookies en vergelijkbare technologieën (zie sectie 5).',
+    'privacy.section3.title': '3. Doeleinden en rechtsgrond',
+    'privacy.section3.intro': 'Wij verwerken persoonsgegevens voor de volgende doeleinden:',
+    'privacy.section3.items': 'Beantwoorden van contactaanvragen (artikel 6, lid 1, onder b, AVG).|Zorgen voor een veilige en stabiele werking van de website (artikel 6, lid 1, onder f, AVG).|Analyseren van websitegebruik en verbeteren van onze diensten (artikel 6, lid 1, onder a, AVG — toestemming).|Voldoen aan wettelijke verplichtingen (artikel 6, lid 1, onder c, AVG).',
+    'privacy.section4.title': '4. Hostingprovider',
+    'privacy.section4.intro': 'Onze website wordt gehost door:',
+    'privacy.section4.netlify.name': 'Netlify, Inc.',
+    'privacy.section4.netlify.address': '2325 3rd Street, Suite 296, San Francisco, CA 94107, Verenigde Staten',
+    'privacy.section4.netlify.privacy': 'https://www.netlify.com/privacy/',
+    'privacy.section4.github.name': 'GitHub, Inc.',
+    'privacy.section4.github.address': '88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Verenigde Staten',
+    'privacy.section4.github.privacy': 'https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement',
+    'privacy.section4.description': 'Wanneer je onze website bezoekt, verzendt je browser automatisch gegevens zoals je IP-adres, de opgevraagde pagina en het tijdstip van toegang. Deze logbestanden worden door onze hostingproviders verwerkt om de website te leveren en te beveiligen.',
+    'privacy.section4.agreement': 'Wij hebben verwerkersovereenkomsten gesloten met onze hostingproviders overeenkomstig artikel 28 AVG om je persoonsgegevens te beschermen.',
+    'privacy.section5.title': '5. Cookies en tracking',
+    'privacy.section5.intro': 'Wij gebruiken cookies en vergelijkbare technologieën op onze website.',
+    'privacy.section5.usage.title': 'Waarvoor cookies worden gebruikt:',
+    'privacy.section5.usage.items': 'Essentiële cookies om basisfunctionaliteit mogelijk te maken (hiervoor is geen toestemming vereist).|Analytische cookies om informatie te verzamelen over het gebruik van onze website.|Marketingcookies (indien in de toekomst gebruikt) om bezoekers over websites heen te volgen en relevante advertenties te tonen.',
+    'privacy.section5.legal.title': 'Rechtsgrond:',
+    'privacy.section5.legal.items': 'Essentiële cookies: artikel 6, lid 1, onder f, AVG (gerechtvaardigd belang).|Analytische en marketingcookies: artikel 6, lid 1, onder a, AVG (toestemming).',
+    'privacy.section5.consent.title': 'Toestemming:',
+    'privacy.section5.consent.description': 'Je kunt toestemming voor niet-essentiële cookies geven of intrekken via de cookiebanner die verschijnt bij je eerste bezoek. Je kunt cookies ook op elk moment uitschakelen via de instellingen van je browser.',
+    'privacy.section5.retention.title': 'Bewaartermijnen:',
+    'privacy.section5.retention.description': 'Cookies worden bewaard gedurende verschillende termijnen afhankelijk van het doel. Analytische cookies verlopen doorgaans na 2 jaar, tenzij je ze eerder verwijdert.',
+    'privacy.section6.title': '6. Jouw rechten',
+    'privacy.section6.intro': 'Op grond van de AVG heb je het recht om:',
+    'privacy.section6.items': 'Inzage te vragen in je persoonsgegevens.|Correctie of verwijdering te verzoeken.|Verwerking te beperken of daartegen bezwaar te maken.|Gegevensoverdraagbaarheid te verzoeken.|Je toestemming op elk moment in te trekken.|Een klacht in te dienen bij de Gegevensbeschermingsautoriteit (GBA) in België.',
+    'privacy.section6.contact': 'Om je rechten uit te oefenen, kun je contact opnemen via viktoria@alventis.be.',
+    'privacy.section7.title': '7. Diensten van derden',
+    'privacy.section7.intro': 'Wij kunnen diensten van derden gebruiken, zoals Google Analytics. Deze diensten verwerken gegevens namens ons op basis van strikte gegevensbeschermingsovereenkomsten.',
+    'privacy.section7.google': 'Google Analytics wordt aangeboden door Google Ireland Limited.',
+    'privacy.section7.privacy': 'https://policies.google.com/privacy',
+    'privacy.section7.processing': 'https://privacy.google.com/businesses/processorterms/',
+    'privacy.section8.title': '8. Gegevensbeveiliging',
+    'privacy.section8.description': 'Wij nemen passende technische en organisatorische maatregelen om persoonsgegevens te beschermen tegen verlies, misbruik en onbevoegde toegang.',
+    'privacy.section9.title': '9. Wijzigingen',
+    'privacy.section9.description': 'Wij kunnen dit privacybeleid van tijd tot tijd bijwerken. De meest recente versie is altijd beschikbaar op deze pagina.',
+
+    // Legal Notice Section
+    'legalNotice.title': 'Impressum',
+    'legalNotice.metaDescription': 'Wettelijke kennisgeving en bedrijfsinformatie. Bedrijfsinformatie en verantwoordelijkheid voor website-inhoud.',
+    'legalNotice.backToHome': 'Terug naar Home',
+    'legalNotice.companyInfo.title': 'Bedrijfsinformatie',
+    'legalNotice.companyInfo.subtitle': 'Eigenaar en Uitgever',
+    'legalNotice.content.name': 'Viktoria Oris',
+    'legalNotice.content.address': 'Bergstraat 39',
+    'legalNotice.content.city': '9690 Kluisbergen',
+    'legalNotice.content.country': 'België',
+    'legalNotice.contactInfo.title': 'Contactgegevens',
+    'legalNotice.content.email': 'viktoria@alventis.be',
+    'legalNotice.content.phone': '+32 478 83 43 23',
+    'legalNotice.content.vat': 'BE1019135844',
+    'legalNotice.legal.title': 'Wettelijke Informatie',
+    'legalNotice.legal.subtitle': 'Verantwoordelijkheid',
+    'legalNotice.content.responsibility': 'Verantwoordelijk voor de inhoud van deze website: Viktoria Oris',
+    'legalNotice.liability.title': 'Aansprakelijkheid',
+    'legalNotice.liability.content': 'De informatie op deze website wordt naar beste kunnen verstrekt. Alventis aanvaardt geen aansprakelijkheid voor de juistheid, volledigheid of actualiteit van de verstrekte informatie.',
+    'legalNotice.copyright.title': 'Auteursrecht',
+    'legalNotice.copyright.content': 'Alle inhoud op deze website is beschermd door auteursrecht. Reproductie zonder toestemming is niet toegestaan.',
+    'legalNotice.privacy.title': 'Privacy en Gegevensbescherming',
+    'legalNotice.privacy.content': 'Voor informatie over hoe wij uw persoonlijke gegevens behandelen, zie ons privacybeleid.',
+
+    // Toast messages
+    'toast.success.title': 'Bericht verzonden!',
+    'toast.success.description': 'We nemen binnen 24 uur contact met je op voor een gratis kennismaking.',
+    'toast.error.title': 'Er is iets misgegaan!',
+    'toast.error.description': 'Probeer het later opnieuw of stuur een mail naar viktoria@alventis.be.',
+  },
+  
+  en: {
+    // Navigation
+    'nav.home': 'Home',
+    'nav.services': 'Services',
+    'nav.about': 'About Us',
+    'nav.testimonials': 'References',
+    'nav.faq': 'FAQ',
+    'nav.contact': 'Contact',
+    'nav.cta': 'Schedule a free consultation',
+    
+    // Hero Section
+    'hero.title': 'VAT Compliance & Finance Optimization for Multinationals in Belgium',
+    'hero.subtitle': '10+ years of experience as finance and business controller. Expertise in VAT advice, finance process digitalization and audit-ready reporting for international companies like Buckman, Katoen Natie and Imperial Brands.',
+    'hero.cta1': 'Schedule a free consultation',
+    'hero.cta2': 'View our services',
+    'hero.scroll': 'Scroll to services',
+    
+    // About Section
+    'about.title': 'About Alventis',
+    'about.intro1': 'As a finance & business controller and project manager in international multinationals, I understand exactly what finance teams struggle with. From endless VAT obligations to manual processes that slow down and cause errors.',
+    'about.quote': '"After more than 10 years on the front lines of finance in multinationals, I know exactly where things go wrong. My approach? Chaos out. Structure in. Your team works faster, more accurately and focuses on what really matters: strategic impact."',
+    'about.subtitle': 'Strategic advisor in finance optimization and international VAT structures',
+    'about.expertise.title': 'My expertise:',
+    'about.expertise.1': '10+ years of experience as finance & business controller in multinationals',
+    'about.expertise.2': 'VAT advice for international structures – specialist in Belgian regulations',
+    'about.expertise.3': 'Guidance of finance transformations & change processes',
+    'about.expertise.4': 'Process optimization & digitalization of finance departments',
+    'about.expertise.5': 'Experienced sparring partner for CFOs, controllers and tax leads',
+    'about.proven.title': 'Proven expertise',
+    'about.proven.subtitle': '10+ years of experience in finance',
+    'about.proven.text': 'From hands-on controller to strategic advisor – I know both sides of the finance world and know exactly what works.',
+    'about.results.title': 'Results-oriented',
+    'about.results.subtitle': 'Measurable improvements within 3 months',
+    'about.results.text': 'You see immediate results: less stress, faster processes, and finally time for strategic work that truly makes an impact.',
+    
+    // Contact Section
+    'contact.title': 'Contact',
+    'contact.subtitle': 'Stop stressing about compliance and inefficiency. Schedule a free consultation and discover how your finance team can work 50% faster.',
+    'contact.response': 'We respond within 24 hours – confidential and without obligations',
+    'contact.form.title': 'Schedule a free consultation',
+    'contact.form.name': 'Name',
+    'contact.form.email': 'Email',
+    'contact.form.company': 'Company',
+    'contact.form.message': 'Message',
+    'contact.form.name.placeholder': 'Your name',
+    'contact.form.email.placeholder': 'your@company.com',
+    'contact.form.company.placeholder': 'Your company',
+    'contact.form.message.placeholder': 'Tell us about your challenges or questions...',
+    'contact.form.submit': 'Schedule free consultation',
+    'contact.form.submitting': 'Sending...',
+    'contact.info.title': 'Contact information',
+    'contact.phone': 'Phone',
+    'contact.email': 'Email',
+    'contact.location': 'Location',
+    'contact.response_time': 'Response time',
+    'contact.phone.description': 'Mon-Fri 9:00-18:00',
+    'contact.email.description': 'We respond within 4 hours',
+    'contact.location.description': 'Also for video calls',
+    'contact.response_time.description': 'For all questions',
+    'contact.benefits.title': 'What does this deliver for you?',
+    'contact.benefit.1': '50% time savings in month-end closing and reporting',
+    'contact.benefit.2': '100% compliance without stress or audit concerns',
+    'contact.benefit.3': 'More time for strategic business partnering',
+    'contact.benefit.4': 'Happier finance team that can focus',
+    'contact.testimonial': '"Within 3 months you will notice that your finance team can finally do what they are good at: strategic support instead of administrative hassle."',
+    
+    // Services Section
+    'services.title': 'VAT Compliance & Finance Optimization Services',
+    'services.subtitle': 'Specialist in VAT compliance and finance optimization for multinationals in Belgium. 50% time savings, 100% audit-ready processes and complete digitalization for finance teams with 10+ years of proven expertise.',
+    'services.service1.title': 'VAT compliance & reporting',
+    'services.service1.problem': 'Your team loses time on complex VAT obligations and lives in constant fear of compliance risks and fines.',
+    'services.service1.solution': 'We provide guidance in fiscal representation and proactively monitor all compliance aspects.',
+    'services.service1.result': 'You are 100% compliant, audit-ready and can fully focus on strategy instead of administration.',
+    'services.service1.example': 'Finance team now closes within 5 days instead of 3 weeks.',
+    'services.service2.title': 'Finance process optimization',
+    'services.service2.problem': 'Manual processes cost too much time, lead to errors and make your team unhappy and inefficient.',
+    'services.service2.solution': 'We automate workflows, digitize processes and optimize your entire finance operation.',
+    'services.service2.result': 'You save 50% time, eliminate errors and get real-time insight into your financial performance.',
+    'services.service2.example': 'Up to 50% more efficient processes and stronger reporting.',
+    'services.service3.title': 'Project guidance & change management',
+    'services.service3.problem': 'Changes fail due to resistance from your team and lack of experience with finance transformations.',
+    'services.service3.solution': 'We personally guide controllers and CFOs through every step of the transformation.',
+    'services.service3.result': 'You get full team buy-in, smooth implementation and sustainable change.',
+    'services.service3.example': '100% acceptance by finance team within 3 months.',
+    'services.problem': 'Problem',
+    'services.solution': 'Our solution',
+    'services.benefit': 'Your advantage',
+    'services.result': 'Result',
+    'services.cta.title': 'Ready to transform your finance team?',
+    'services.cta.subtitle': 'Schedule a free consultation and discover how your team can work 50% faster and stay 100% compliant.',
+    'services.cta.button': 'Schedule free consultation',
+    'services.modal.title': 'Schedule free consultation',
+    'services.form.name': 'Name',
+    'services.form.email': 'Email',
+    'services.form.company': 'Company',
+    'services.form.message': 'Message',
+    'services.form.name.placeholder': 'Your full name',
+    'services.form.email.placeholder': 'your@email.com',
+    'services.form.company.placeholder': 'Your company name',
+    'services.form.message.placeholder': 'Tell us about your challenges and what you hope to achieve...',
+    'services.form.submit': 'Send message',
+    'services.form.submitting': 'Sending...',
+    'services.form.cancel': 'Cancel',
+
+    // Expertise Section
+    'expertise.title': 'Proven Results & VAT Compliance Expertise',
+    'expertise.subtitle': 'Discover how Alventis helps finance teams achieve their goals – through targeted advice on VAT compliance, digitalization of finance processes and project guidance for controllers and CFOs.',
+    'expertise.result1.title': '50% more efficient processes',
+    'expertise.result1.description': 'Multinationals working with us close faster, make fewer errors and regain time for strategic work.',
+    'expertise.result2.title': 'Stronger reporting',
+    'expertise.result2.description': 'From 3 weeks to 5 days - our clients experience dramatic improvements in their finance cycle.',
+    'expertise.result3.title': 'Better control of numbers',
+    'expertise.result3.description': 'Real-time insights and automated processes ensure complete control over your financial data.',
+
+    // Testimonials Section
+    'testimonials.title': 'Professional Experience at Leading Multinationals:',
+    'testimonials.buckman.description': 'International chemistry and technology partner',
+    'testimonials.laurelton.description': 'High-end diamond processing, subsidiary of Tiffany & Co.',
+    'testimonials.imperial.description': 'International tobacco and consumer goods company',
+    'testimonials.katoen.description': 'Belgian global player in logistics and tax affairs',
+    'testimonials.steelduxx.description': 'Antwerp company specialized in steel trading',
+    'testimonials.bestseller.description': 'International fashion company (including Vero Moda, Jack & Jones)',
+    'testimonials.acpartners.description': 'IT consultancy company specialized in software development, implementation and integration of IT systems',
+    'testimonials.roberthalf.description': 'International staffing & finance consultancy company',
+
+    // FAQ Section
+    'faq.title': 'Frequently Asked Questions VAT Compliance & Finance',
+    'faq.subtitle.part1': 'Everything you want to know about',
+    'faq.subtitle.part2': 'VAT Belgium',
+    'faq.subtitle.part3': 'digitalization of finance processes',
+    'faq.subtitle.part4': 'project guidance for controllers and CFOs',
+    'faq.question1': 'What are the biggest mistakes in VAT compliance at multinationals?',
+    'faq.answer1': 'The biggest mistakes are often late filing, incorrect registration of transactions and insufficient knowledge of local regulations. This leads to fines and compliance risks. We ensure proactive monitoring and correct handling of all VAT obligations.',
+    'faq.question2': 'How much time can digitalization of finance processes save me?',
+    'faq.answer2': 'Our clients save an average of 50% time on month-end closings and reporting. This means that where your finance team previously needed 10 days, this is now done within 5 days. This time saving comes from smart automation of manual processes and better workflows.',
+    'faq.question3': 'For which multinationals is Alventis suitable?',
+    'faq.answer3': 'We work with finance teams of international companies active in Belgium. Whether you have 50 or 5000 employees, if your team struggles with compliance, manual processes or inefficiency, we can help. Our expertise lies especially with complex VAT structures and finance optimization.',
+    'faq.question4': 'How quickly do I see results from finance optimization?',
+    'faq.answer4': 'Within the first month you already see improvements in efficiency. After 3 months the new processes are fully implemented and you experience the full time saving of 50%. For VAT you are directly compliant from day 1.',
+    'faq.cta.text': 'Do you have another question? We are happy to help you further.',
+    'faq.cta.button': 'Ask your question',
+
+    // Footer Section
+    'footer.company': 'Alventis',
+    'footer.description': 'Finance optimization multinationals and VAT compliance Belgium. Digitalization finance processes and business control consultant.',
+    'footer.trust': 'Trusted by finance teams worldwide',
+    'footer.cta': 'Schedule a free consultation',
+    'footer.services.title': 'Our services',
+    'footer.service1': 'Advice in fiscal representation',
+    'footer.service2': 'Finance process optimization',
+    'footer.service3': 'Digitalization & automation',
+    'footer.service4': 'Compliance monitoring',
+    'footer.service5': 'Project guidance',
+    'footer.contact.title': 'Contact',
+    'footer.location': 'Kluisbergen, Belgium',
+    'footer.trusted.title': 'Trusted by:',
+    'footer.trusted1': '• International multinationals',
+    'footer.trusted2': '• Finance teams throughout Europe',
+    'footer.trusted3': '• Controllers & CFOs since 2008',
+    'footer.linkedin': 'LinkedIn →',
+    'footer.copyright': 'All rights reserved.',
+    'footer.privacy': 'Privacy Policy',
+    'footer.terms': 'Terms & Conditions',
+
+    // Privacy Section
+    'privacy.title': 'Privacy',
+    'privacy.lastUpdated': 'Last updated: 16/09/2025',
+    'privacy.backToHome': 'Back to Home',
+    'privacy.section1.title': '1. Data Controller',
+    'privacy.section1.content.name': 'Viktoria Oris',
+    'privacy.section1.content.address': 'Bergstraat 39',
+    'privacy.section1.content.city': '9690 Kluisbergen',
+    'privacy.section1.content.country': 'Belgium',
+    'privacy.section1.content.email': 'viktoria@alventis.be',
+    'privacy.section1.content.phone': '+32 478 83 43 23',
+    'privacy.section1.content.vat': 'BE1019135844',
+    'privacy.section2.title': '2. What data we process',
+    'privacy.section2.items': 'Data you voluntarily provide, such as name, email address and message content when you contact us.|Technical information such as IP address, browser type, device type, operating system and time of access (automatically collected by our hosting provider).|Usage data via analytical tools (such as page views, click behavior, session duration and referring sources).|Cookies and similar technologies (see section 5).',
+    'privacy.section3.title': '3. Purposes and legal basis',
+    'privacy.section3.intro': 'We process personal data for the following purposes:',
+    'privacy.section3.items': 'Responding to contact requests (article 6, paragraph 1, under b, GDPR).|Ensuring safe and stable operation of the website (article 6, paragraph 1, under f, GDPR).|Analyzing website usage and improving our services (article 6, paragraph 1, under a, GDPR — consent).|Complying with legal obligations (article 6, paragraph 1, under c, GDPR).',
+    'privacy.section4.title': '4. Hosting provider',
+    'privacy.section4.intro': 'Our website is hosted by:',
+    'privacy.section4.netlify.name': 'Netlify, Inc.',
+    'privacy.section4.netlify.address': '2325 3rd Street, Suite 296, San Francisco, CA 94107, United States',
+    'privacy.section4.netlify.privacy': 'https://www.netlify.com/privacy/',
+    'privacy.section4.github.name': 'GitHub, Inc.',
+    'privacy.section4.github.address': '88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States',
+    'privacy.section4.github.privacy': 'https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement',
+    'privacy.section4.description': 'When you visit our website, your browser automatically sends data such as your IP address, the requested page and the time of access. These log files are processed by our hosting providers to deliver and secure the website.',
+    'privacy.section4.agreement': 'We have concluded processor agreements with our hosting providers in accordance with article 28 GDPR to protect your personal data.',
+    'privacy.section5.title': '5. Cookies and tracking',
+    'privacy.section5.intro': 'We use cookies and similar technologies on our website.',
+    'privacy.section5.usage.title': 'What cookies are used for:',
+    'privacy.section5.usage.items': 'Essential cookies to enable basic functionality (no consent required for these).|Analytical cookies to gather information about the use of our website.|Marketing cookies (if used in the future) to track visitors across websites and show relevant advertisements.',
+    'privacy.section5.legal.title': 'Legal basis:',
+    'privacy.section5.legal.items': 'Essential cookies: article 6, paragraph 1, under f, GDPR (legitimate interest).|Analytical and marketing cookies: article 6, paragraph 1, under a, GDPR (consent).',
+    'privacy.section5.consent.title': 'Consent:',
+    'privacy.section5.consent.description': 'You can give or withdraw consent for non-essential cookies via the cookie banner that appears on your first visit. You can also disable cookies at any time via your browser settings.',
+    'privacy.section5.retention.title': 'Retention periods:',
+    'privacy.section5.retention.description': 'Cookies are stored for different periods depending on the purpose. Analytical cookies typically expire after 2 years, unless you delete them earlier.',
+    'privacy.section6.title': '6. Your rights',
+    'privacy.section6.intro': 'Under the GDPR you have the right to:',
+    'privacy.section6.items': 'Request access to your personal data.|Request correction or deletion.|Restrict processing or object to it.|Request data portability.|Withdraw your consent at any time.|File a complaint with the Data Protection Authority (DPA) in Belgium.',
+    'privacy.section6.contact': 'To exercise your rights, you can contact us via viktoria@alventis.be.',
+    'privacy.section7.title': '7. Third party services',
+    'privacy.section7.intro': 'We may use third party services, such as Google Analytics. These services process data on our behalf based on strict data protection agreements.',
+    'privacy.section7.google': 'Google Analytics is provided by Google Ireland Limited.',
+    'privacy.section7.privacy': 'https://policies.google.com/privacy',
+    'privacy.section7.processing': 'https://privacy.google.com/businesses/processorterms/',
+    'privacy.section8.title': '8. Data security',
+    'privacy.section8.description': 'We take appropriate technical and organizational measures to protect personal data against loss, misuse and unauthorized access.',
+    'privacy.section9.title': '9. Changes',
+    'privacy.section9.description': 'We may update this privacy policy from time to time. The most recent version is always available on this page.',
+
+    // Legal Notice Section
+    'legalNotice.title': 'Legal Notice',
+    'legalNotice.metaDescription': 'Legal notice and company information. Company information and responsibility for website content.',
+    'legalNotice.backToHome': 'Back to Home',
+    'legalNotice.companyInfo.title': 'Company Information',
+    'legalNotice.companyInfo.subtitle': 'Owner and Publisher',
+    'legalNotice.content.name': 'Viktoria Oris',
+    'legalNotice.content.address': 'Bergstraat 39',
+    'legalNotice.content.city': '9690 Kluisbergen',
+    'legalNotice.content.country': 'Belgium',
+    'legalNotice.contactInfo.title': 'Contact Information',
+    'legalNotice.content.email': 'viktoria@alventis.be',
+    'legalNotice.content.phone': '+32 478 83 43 23',
+    'legalNotice.content.vat': 'BE1019135844',
+    'legalNotice.legal.title': 'Legal Information',
+    'legalNotice.legal.subtitle': 'Responsibility',
+    'legalNotice.content.responsibility': 'Responsible for the content of this website: Viktoria Oris',
+    'legalNotice.liability.title': 'Liability',
+    'legalNotice.liability.content': 'The information on this website is provided to the best of our ability. Alventis accepts no liability for the accuracy, completeness or timeliness of the information provided.',
+    'legalNotice.copyright.title': 'Copyright',
+    'legalNotice.copyright.content': 'All content on this website is protected by copyright. Reproduction without permission is not permitted.',
+    'legalNotice.privacy.title': 'Privacy and Data Protection',
+    'legalNotice.privacy.content': 'For information on how we handle your personal data, please see our privacy policy.',
+
+    // Toast messages
+    'toast.success.title': 'Message sent!',
+    'toast.success.description': 'We will contact you within 24 hours for a free consultation.',
+    'toast.error.title': 'Something went wrong!',
+    'toast.error.description': 'Please try again later or send an email to viktoria@alventis.be.',
+  },
+  
+  es: {
+    // Navigation
+    'nav.home': 'Inicio',
+    'nav.services': 'Servicios',
+    'nav.about': 'Acerca de',
+    'nav.testimonials': 'Referencias',
+    'nav.faq': 'FAQ',
+    'nav.contact': 'Contacto',
+    'nav.cta': 'Programar consulta gratuita',
+    
+    // Hero Section
+    'hero.title': 'Cumplimiento de IVA y Optimización Financiera para Multinacionales en Bélgica',
+    'hero.subtitle': 'Más de 10 años de experiencia como controlador financiero y de negocios. Experiencia en asesoramiento de IVA, digitalización de procesos financieros e informes listos para auditoría para empresas internacionales como Buckman, Katoen Natie e Imperial Brands.',
+    'hero.cta1': 'Programar consulta gratuita',
+    'hero.cta2': 'Ver nuestros servicios',
+    'hero.scroll': 'Desplazarse a servicios',
+    
+    // About Section
+    'about.title': 'Acerca de Alventis',
+    'about.intro1': 'Como controlador financiero y de negocios y gerente de proyectos en multinacionales internacionales, entiendo exactamente con qué luchan los equipos financieros. Desde obligaciones interminables de IVA hasta procesos manuales que ralentizan y causan errores.',
+    'about.quote': '"Después de más de 10 años en primera línea de las finanzas en multinacionales, sé exactamente dónde van mal las cosas. ¿Mi enfoque? Fuera el caos. Adentro la estructura. Tu equipo trabaja más rápido, con mayor precisión y se enfoca en lo que realmente importa: el impacto estratégico."',
+    'about.subtitle': 'Asesor estratégico en optimización financiera y estructuras internacionales de IVA',
+    'about.expertise.title': 'Mi experiencia:',
+    'about.expertise.1': 'Más de 10 años de experiencia como controlador financiero y de negocios en multinacionales',
+    'about.expertise.2': 'Asesoramiento de IVA para estructuras internacionales – especialista en regulaciones belgas',
+    'about.expertise.3': 'Orientación de transformaciones financieras y procesos de cambio',
+    'about.expertise.4': 'Optimización de procesos y digitalización de departamentos financieros',
+    'about.expertise.5': 'Socio experimentado para CFOs, controladores y líderes fiscales',
+    'about.proven.title': 'Experiencia comprobada',
+    'about.proven.subtitle': 'Más de 10 años de experiencia en finanzas',
+    'about.proven.text': 'De controlador práctico a asesor estratégico: conozco ambos lados del mundo financiero y sé exactamente qué funciona.',
+    'about.results.title': 'Orientado a resultados',
+    'about.results.subtitle': 'Mejoras medibles en 3 meses',
+    'about.results.text': 'Ves resultados inmediatos: menos estrés, procesos más rápidos y finalmente tiempo para trabajo estratégico que realmente genera impacto.',
+    
+    // Contact Section
+    'contact.title': 'Contacto',
+    'contact.subtitle': 'Deja de estresarte por el cumplimiento y la ineficiencia. Programa una consulta gratuita y descubre cómo tu equipo financiero puede trabajar 50% más rápido.',
+    'contact.response': 'Respondemos dentro de 24 horas – confidencial y sin obligaciones',
+    'contact.form.title': 'Programar una consulta gratuita',
+    'contact.form.name': 'Nombre',
+    'contact.form.email': 'Correo electrónico',
+    'contact.form.company': 'Empresa',
+    'contact.form.message': 'Mensaje',
+    'contact.form.name.placeholder': 'Tu nombre',
+    'contact.form.email.placeholder': 'tu@empresa.com',
+    'contact.form.company.placeholder': 'Tu empresa',
+    'contact.form.message.placeholder': 'Cuéntanos sobre tus desafíos o preguntas...',
+    'contact.form.submit': 'Programar consulta gratuita',
+    'contact.form.submitting': 'Enviando...',
+    'contact.info.title': 'Información de contacto',
+    'contact.phone': 'Teléfono',
+    'contact.email': 'Correo electrónico',
+    'contact.location': 'Ubicación',
+    'contact.response_time': 'Tiempo de respuesta',
+    'contact.phone.description': 'Lun-Vie 9:00-18:00',
+    'contact.email.description': 'Respondemos dentro de 4 horas',
+    'contact.location.description': 'También para videollamadas',
+    'contact.response_time.description': 'Para todas las preguntas',
+    'contact.benefits.title': '¿Qué te aporta esto?',
+    'contact.benefit.1': '50% de ahorro de tiempo en cierre mensual e informes',
+    'contact.benefit.2': '100% cumplimiento sin estrés o preocupaciones de auditoría',
+    'contact.benefit.3': 'Más tiempo para asociación estratégica de negocios',
+    'contact.benefit.4': 'Equipo financiero más feliz que puede enfocarse',
+    'contact.testimonial': '"En 3 meses notarás que tu equipo financiero finalmente puede hacer lo que sabe hacer: apoyo estratégico en lugar de trámites administrativos."',
+    
+    // Services Section
+    'services.title': 'Servicios de Cumplimiento de IVA y Optimización Financiera',
+    'services.subtitle': 'Especialista en cumplimiento de IVA y optimización financiera para multinacionales en Bélgica. 50% de ahorro de tiempo, procesos 100% listos para auditoría y digitalización completa para equipos financieros con más de 10 años de experiencia comprobada.',
+    'services.service1.title': 'Cumplimiento y reportes de IVA',
+    'services.service1.problem': 'Tu equipo pierde tiempo en obligaciones complejas de IVA y vive en constante temor a riesgos de cumplimiento y multas.',
+    'services.service1.solution': 'Brindamos orientación en representación fiscal y monitoreamos proactivamente todos los aspectos de cumplimiento.',
+    'services.service1.result': 'Estás 100% en cumplimiento, listo para auditoría y puedes enfocarte completamente en la estrategia en lugar de la administración.',
+    'services.service1.example': 'El equipo financiero ahora cierra en 5 días en lugar de 3 semanas.',
+    'services.service2.title': 'Optimización de procesos financieros',
+    'services.service2.problem': 'Los procesos manuales cuestan demasiado tiempo, generan errores y hacen que tu equipo sea infeliz e ineficiente.',
+    'services.service2.solution': 'Automatizamos flujos de trabajo, digitalizamos procesos y optimizamos toda tu operación financiera.',
+    'services.service2.result': 'Ahorras 50% del tiempo, eliminas errores y obtienes información en tiempo real sobre tu rendimiento financiero.',
+    'services.service2.example': 'Hasta 50% de procesos más eficientes y reportes más sólidos.',
+    'services.service3.title': 'Orientación de proyectos y gestión del cambio',
+    'services.service3.problem': 'Los cambios fallan debido a la resistencia de tu equipo y la falta de experiencia con transformaciones financieras.',
+    'services.service3.solution': 'Orientamos personalmente a controladores y CFOs a través de cada paso de la transformación.',
+    'services.service3.result': 'Obtienes la aceptación completa del equipo, implementación fluida y cambio sostenible.',
+    'services.service3.example': '100% de aceptación del equipo financiero en 3 meses.',
+    'services.problem': 'Problema',
+    'services.solution': 'Nuestra solución',
+    'services.benefit': 'Tu ventaja',
+    'services.result': 'Resultado',
+    'services.cta.title': '¿Listo para transformar tu equipo financiero?',
+    'services.cta.subtitle': 'Programa una consulta gratuita y descubre cómo tu equipo puede trabajar 50% más rápido y mantenerse 100% en cumplimiento.',
+    'services.cta.button': 'Programar consulta gratuita',
+    'services.modal.title': 'Programar consulta gratuita',
+    'services.form.name': 'Nombre',
+    'services.form.email': 'Correo electrónico',
+    'services.form.company': 'Empresa',
+    'services.form.message': 'Mensaje',
+    'services.form.name.placeholder': 'Tu nombre completo',
+    'services.form.email.placeholder': 'tu@email.com',
+    'services.form.company.placeholder': 'Nombre de tu empresa',
+    'services.form.message.placeholder': 'Cuéntanos sobre tus desafíos y lo que esperas lograr...',
+    'services.form.submit': 'Enviar mensaje',
+    'services.form.submitting': 'Enviando...',
+    'services.form.cancel': 'Cancelar',
+
+    // Expertise Section
+    'expertise.title': 'Resultados Comprobados y Experiencia en Cumplimiento de IVA',
+    'expertise.subtitle': 'Descubre cómo Alventis ayuda a los equipos financieros a lograr sus objetivos: a través de asesoramiento específico sobre cumplimiento de IVA, digitalización de procesos financieros y orientación de proyectos para controladores y CFOs.',
+    'expertise.result1.title': '50% de procesos más eficientes',
+    'expertise.result1.description': 'Las multinacionales que trabajan con nosotros cierran más rápido, cometen menos errores y recuperan tiempo para el trabajo estratégico.',
+    'expertise.result2.title': 'Reportes más sólidos',
+    'expertise.result2.description': 'De 3 semanas a 5 días: nuestros clientes experimentan mejoras dramáticas en su ciclo financiero.',
+    'expertise.result3.title': 'Mejor control de números',
+    'expertise.result3.description': 'Información en tiempo real y procesos automatizados aseguran control completo sobre tus datos financieros.',
+
+    // Testimonials Section
+    'testimonials.title': 'Experiencia Profesional en Multinacionales Líderes:',
+    'testimonials.buckman.description': 'Socio internacional de química y tecnología',
+    'testimonials.laurelton.description': 'Procesamiento de diamantes de alta gama, subsidiaria de Tiffany & Co.',
+    'testimonials.imperial.description': 'Empresa internacional de tabaco y bienes de consumo',
+    'testimonials.katoen.description': 'Jugador global belga en logística y asuntos fiscales',
+    'testimonials.steelduxx.description': 'Empresa de Amberes especializada en comercio de acero',
+    'testimonials.bestseller.description': 'Empresa internacional de moda (incluyendo Vero Moda, Jack & Jones)',
+    'testimonials.acpartners.description': 'Empresa de consultoría IT especializada en desarrollo de software, implementación e integración de sistemas IT',
+    'testimonials.roberthalf.description': 'Empresa internacional de personal y consultoría financiera',
+
+    // FAQ Section
+    'faq.title': 'Preguntas Frecuentes sobre Cumplimiento de IVA y Finanzas',
+    'faq.subtitle.part1': 'Todo lo que quieres saber sobre',
+    'faq.subtitle.part2': 'IVA Bélgica',
+    'faq.subtitle.part3': 'digitalización de procesos financieros',
+    'faq.subtitle.part4': 'orientación de proyectos para controladores y CFOs',
+    'faq.question1': '¿Cuáles son los mayores errores en el cumplimiento de IVA en multinacionales?',
+    'faq.answer1': 'Los mayores errores son a menudo la presentación tardía, el registro incorrecto de transacciones y el conocimiento insuficiente de las regulaciones locales. Esto lleva a multas y riesgos de cumplimiento. Aseguramos el monitoreo proactivo y el manejo correcto de todas las obligaciones de IVA.',
+    'faq.question2': '¿Cuánto tiempo puede ahorrarme la digitalización de procesos financieros?',
+    'faq.answer2': 'Nuestros clientes ahorran en promedio 50% del tiempo en cierres de fin de mes y reportes. Esto significa que donde tu equipo financiero anteriormente necesitaba 10 días, ahora se hace en 5 días. Este ahorro de tiempo proviene de la automatización inteligente de procesos manuales y mejores flujos de trabajo.',
+    'faq.question3': '¿Para qué multinacionales es adecuado Alventis?',
+    'faq.answer3': 'Trabajamos con equipos financieros de empresas internacionales activas en Bélgica. Ya sea que tengas 50 o 5000 empleados, si tu equipo lucha con el cumplimiento, procesos manuales o ineficiencia, podemos ayudar. Nuestra experiencia se centra especialmente en estructuras complejas de IVA y optimización financiera.',
+    'faq.question4': '¿Qué tan rápido veo resultados de la optimización financiera?',
+    'faq.answer4': 'Dentro del primer mes ya ves mejoras en eficiencia. Después de 3 meses los nuevos procesos están completamente implementados y experimentas el ahorro completo de tiempo del 50%. Para IVA estás directamente en cumplimiento desde el día 1.',
+    'faq.cta.text': '¿Tienes otra pregunta? Estamos felices de ayudarte más.',
+    'faq.cta.button': 'Haz tu pregunta',
+
+    // Footer Section
+    'footer.company': 'Alventis',
+    'footer.description': 'Optimización financiera para multinacionales y cumplimiento de IVA en Bélgica. Digitalización de procesos financieros y consultor de control empresarial.',
+    'footer.trust': 'Confiado por equipos financieros en todo el mundo',
+    'footer.cta': 'Programar una consulta gratuita',
+    'footer.services.title': 'Nuestros servicios',
+    'footer.service1': 'Asesoramiento en representación fiscal',
+    'footer.service2': 'Optimización de procesos financieros',
+    'footer.service3': 'Digitalización y automatización',
+    'footer.service4': 'Monitoreo de cumplimiento',
+    'footer.service5': 'Orientación de proyectos',
+    'footer.contact.title': 'Contacto',
+    'footer.location': 'Kluisbergen, Bélgica',
+    'footer.trusted.title': 'Confiado por:',
+    'footer.trusted1': '• Multinacionales internacionales',
+    'footer.trusted2': '• Equipos financieros en toda Europa',
+    'footer.trusted3': '• Controladores y CFOs desde 2008',
+    'footer.linkedin': 'LinkedIn →',
+    'footer.copyright': 'Todos los derechos reservados.',
+    'footer.privacy': 'Política de Privacidad',
+    'footer.terms': 'Términos y Condiciones',
+
+    // Legal Notice Section
+    'legalNotice.title': 'Aviso Legal',
+    'legalNotice.metaDescription': 'Aviso legal e información empresarial. Información de la empresa y responsabilidad del contenido del sitio web.',
+    'legalNotice.backToHome': 'Volver a Inicio',
+    'legalNotice.companyInfo.title': 'Información de la Empresa',
+    'legalNotice.companyInfo.subtitle': 'Propietario y Editor',
+    'legalNotice.content.name': 'Viktoria Oris',
+    'legalNotice.content.address': 'Bergstraat 39',
+    'legalNotice.content.city': '9690 Kluisbergen',
+    'legalNotice.content.country': 'Bélgica',
+    'legalNotice.contactInfo.title': 'Información de Contacto',
+    'legalNotice.content.email': 'viktoria@alventis.be',
+    'legalNotice.content.phone': '+32 478 83 43 23',
+    'legalNotice.content.vat': 'BE1019135844',
+    'legalNotice.legal.title': 'Información Legal',
+    'legalNotice.legal.subtitle': 'Responsabilidad',
+    'legalNotice.content.responsibility': 'Responsable del contenido de este sitio web: Viktoria Oris',
+    'legalNotice.liability.title': 'Responsabilidad Civil',
+    'legalNotice.liability.content': 'La información en este sitio web se proporciona con la mejor de nuestras capacidades. Alventis no acepta responsabilidad por la precisión, integridad o actualidad de la información proporcionada.',
+    'legalNotice.copyright.title': 'Derechos de Autor',
+    'legalNotice.copyright.content': 'Todo el contenido de este sitio web está protegido por derechos de autor. La reproducción sin permiso no está permitida.',
+    'legalNotice.privacy.title': 'Privacidad y Protección de Datos',
+    'legalNotice.privacy.content': 'Para información sobre cómo manejamos sus datos personales, consulte nuestra política de privacidad.',
+
+    // Toast messages
+    'toast.success.title': '¡Mensaje enviado!',
+    'toast.success.description': 'Te contactaremos dentro de 24 horas para una consulta gratuita.',
+    'toast.error.title': '¡Algo salió mal!',
+    'toast.error.description': 'Por favor inténtalo más tarde o envía un correo a viktoria@alventis.be.',
   }
-};
-
-interface TranslationProviderProps {
-  children: ReactNode;
-  language: Language;
-  translations: Record<string, string>;
-}
-
-const TranslationProvider = ({ children, language, translations }: TranslationProviderProps) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(language);
-  const [currentTranslations, setCurrentTranslations] = useState(translations);
-
-  const setLanguage = async (newLanguage: Language) => {
-    if (newLanguage !== currentLanguage) {
-      const newTranslations = await loadTranslations(newLanguage);
-      setCurrentTranslations(newTranslations);
-      setCurrentLanguage(newLanguage);
-    }
-  };
-
-  const t = (key: string): string => {
-    return currentTranslations[key] || key;
-  };
-
-  return (
-    <LanguageContext.Provider value={{ language: currentLanguage, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
-  );
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [initialTranslations, setInitialTranslations] = useState<Record<string, string>>({});
+  const [language, setLanguage] = useState<Language>('nl');
 
-  // Load default translations on mount
-  useEffect(() => {
-    loadTranslations('nl').then((translations) => {
-      setInitialTranslations(translations);
-      setIsLoading(false);
-    });
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col space-y-4 p-4">
-        <Skeleton className="h-16 w-full" />
-        <Skeleton className="h-64 w-full" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Skeleton className="h-32 w-full" />
-          <Skeleton className="h-32 w-full" />
-          <Skeleton className="h-32 w-full" />
-        </div>
-      </div>
-    );
-  }
+  const t = (key: string): string => {
+    return translations[language][key as keyof typeof translations[typeof language]] || key;
+  };
 
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex flex-col space-y-4 p-4">
-        <Skeleton className="h-16 w-full" />
-        <Skeleton className="h-64 w-full" />
-      </div>
-    }>
-      <TranslationProvider language="nl" translations={initialTranslations}>
-        {children}
-      </TranslationProvider>
-    </Suspense>
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
   );
 };
 
