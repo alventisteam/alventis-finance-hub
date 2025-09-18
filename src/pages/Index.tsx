@@ -36,8 +36,8 @@ const Index = () => {
     
     // Use centralized SEO utility
     setSEOTags({
-      title: "BTW-compliance & Finance Optimalisatie | Alventis",
-      description: "BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring. Specialist in btw-advies en digitalisering.",
+      title: "BTW-compliance & Finance Optimalisatie | Alventis - Specialist voor Multinationals in België",
+      description: "BTW-compliance en finance optimalisatie voor multinationals in België. 10+ jaar ervaring als finance controller. Specialist in btw-advies, digitalisering processen en audit-ready rapportering.",
       canonicalUrl: "https://alventis.be/",
       image: "/assets/alventis-og-image.webp",
       hasFAQ: true

@@ -22,6 +22,27 @@ export default defineConfig(({ mode, command }) => ({
   // Performance optimizations for faster LCP
   build: {
     cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        // Simplified chunking to avoid SSR issues
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            // Keep React together to avoid context issues
+            if (id.includes("react") || id.includes("react-dom")) return "react-vendor";
+            if (id.includes("@radix-ui")) return "ui-vendor";
+            if (id.includes("lucide-react")) return "icons-vendor";
+            return "vendor";
+          }
+        },
+        // Optimize chunk names for caching
+        chunkFileNames: (chunkInfo) => {
+          if (chunkInfo.name === "react-vendor") return "assets/react-[hash].js";
+          if (chunkInfo.name === "ui-vendor") return "assets/ui-[hash].js";
+          if (chunkInfo.name === "icons-vendor") return "assets/icons-[hash].js";
+          return "assets/[name]-[hash].js";
+        },
+      },
+    },
     // Optimize build for production
     minify: mode === 'production' ? 'esbuild' : false,
     target: 'es2020',
@@ -42,7 +63,6 @@ export default defineConfig(({ mode, command }) => ({
   },
   // SSR configuration
   ssr: {
-    noExternal: ['react', 'react-dom', '@radix-ui/react-*'], // Ensure React and Radix UI components are available during SSR
-    external: ['fs', 'path', 'url'],
+    noExternal: ['react', 'react-dom'], // Ensure React is available during SSR
   },
 }));

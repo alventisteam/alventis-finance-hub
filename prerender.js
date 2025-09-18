@@ -5,45 +5,35 @@ import url from 'node:url'
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 const toAbsolute = (p) => path.resolve(__dirname, p)
 
-// Check if files exist before attempting to read them
-const templatePath = toAbsolute('dist/index.html')
-const serverPath = toAbsolute('dist/server/entry-server.js')
-
-if (!fs.existsSync(templatePath)) {
-  console.error('Template file not found:', templatePath)
-  process.exit(1)
-}
-
-if (!fs.existsSync(serverPath)) {
-  console.error('Server entry file not found:', serverPath)
-  process.exit(1)
-}
-
-const template = fs.readFileSync(templatePath, 'utf-8')
+const template = fs.readFileSync(toAbsolute('dist/index.html'), 'utf-8')
 const { render } = await import('./dist/server/entry-server.js')
 
-const routesToPrerender = fs
-  .readdirSync(toAbsolute('src/pages'))
-  .map((file) => {
-    const name = file.replace(/\.tsx$/, '').toLowerCase()
-    return name === 'index' ? '/' : `/${name}`
-  })
+// Define routes to prerender based on App.tsx routes
+// Add new routes here when adding new pages/blogs
+const routesToPrerender = [
+  '/',
+  '/privacy',
+  '/impressum'
+  // Add new routes here when creating new pages/blogs
+  // Example: '/blog', '/blog/post-1', '/about', etc.
+]
 
 ;(async () => {
-  try {
-    for (const url of routesToPrerender) {
-      console.log('Pre-rendering:', url)
-      const appHtml = render(url);
-      const html = template.replace(`<!--app-html-->`, appHtml)
+  for (const url of routesToPrerender) {
+    const appHtml = render(url);
+    const html = template.replace(`<!--app-html-->`, appHtml)
 
-      const filePath = `dist${url === '/' ? '/index' : url}.html`
-      fs.writeFileSync(toAbsolute(filePath), html)
-      console.log('✓ Pre-rendered:', filePath)
+    // Create clean URLs: / -> /index.html, /privacy -> /privacy/index.html
+    const filePath = url === '/' ? 'dist/index.html' : `dist${url}/index.html`
+    const absoluteFilePath = toAbsolute(filePath)
+    
+    // Ensure directory exists before writing file
+    const dir = path.dirname(absoluteFilePath)
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true })
     }
-    console.log('✓ All pages pre-rendered successfully')
-  } catch (error) {
-    console.error('❌ Pre-rendering failed:', error.message)
-    console.error('Stack trace:', error.stack)
-    process.exit(1)
+    
+    fs.writeFileSync(absoluteFilePath, html)
+    console.log('pre-rendered:', filePath)
   }
 })()
