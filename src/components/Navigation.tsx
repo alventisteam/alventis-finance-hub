@@ -141,20 +141,6 @@ const Navigation = () => {
                 </>
               )}
               
-              {/* Page Navigation Links */}
-              <Link
-                to="/privacy"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/privacy' ? 'text-accent' : ''}`}
-              >
-                Privacy
-              </Link>
-              <Link
-                to="/impressum"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/impressum' ? 'text-accent' : ''}`}
-              >
-                Impressum
-              </Link>
-              
               {/* Language Switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -283,22 +269,6 @@ const Navigation = () => {
                   </Link>
                 </>
               )}
-              
-              {/* Page Navigation Links */}
-              <Link
-                to="/privacy"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/privacy' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Privacy
-              </Link>
-              <Link
-                to="/impressum"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/impressum' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Impressum
-              </Link>
               
               {/* Mobile Language Switcher */}
               <div className="px-3 py-2">
