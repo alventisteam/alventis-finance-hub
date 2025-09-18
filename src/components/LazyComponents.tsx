@@ -2,12 +2,16 @@
 import { lazy } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
-// Lazy load heavy components
-export const LazyServices = lazy(() => import('./Services'));
-export const LazyAbout = lazy(() => import('./About'));
-export const LazyTestimonials = lazy(() => import('./Testimonials'));
-export const LazyFAQ = lazy(() => import('./FAQ'));
-export const LazyContact = lazy(() => import('./Contact'));
+// SSR detection utility
+const isSSR = typeof window === 'undefined';
+
+// For SSR/SSG, load components immediately to avoid hydration mismatches
+// For client-side, use lazy loading for performance
+export const LazyServices = isSSR ? require('./Services').default : lazy(() => import('./Services'));
+export const LazyAbout = isSSR ? require('./About').default : lazy(() => import('./About'));
+export const LazyTestimonials = isSSR ? require('./Testimonials').default : lazy(() => import('./Testimonials'));
+export const LazyFAQ = isSSR ? require('./FAQ').default : lazy(() => import('./FAQ'));
+export const LazyContact = isSSR ? require('./Contact').default : lazy(() => import('./Contact'));
 
 // Loading skeletons for each component
 export const ServicesLoading = () => (

@@ -1,4 +1,7 @@
 import { useEffect, Suspense } from "react";
+
+// SSR detection
+const isSSR = typeof window === 'undefined';
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Expertise from "@/components/Expertise";
@@ -22,6 +25,9 @@ import {
 
 const Index = () => {
   useEffect(() => {
+    // Only run browser-specific code on the client side
+    if (typeof window === 'undefined') return;
+    
     // Set additional meta tags not handled by centralized SEO utility
     const additionalMetaTags = [
       { name: 'keywords', content: 'btw-compliance, finance optimalisatie, multinationals België, btw-advies, digitalisering finance processen, audit-ready rapportering, finance controller, business controller' },
@@ -71,22 +77,45 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        <Suspense fallback={<ServicesLoading />}>
-          <LazyServices />
-        </Suspense>
-        <Suspense fallback={<AboutLoading />}>
-          <LazyAbout />
-        </Suspense>
+        {isSSR ? (
+          // During SSR/SSG, render components directly to avoid hydration mismatches
+          <>
+            <LazyServices />
+            <LazyAbout />
+          </>
+        ) : (
+          // Client-side lazy loading for performance
+          <>
+            <Suspense fallback={<ServicesLoading />}>
+              <LazyServices />
+            </Suspense>
+            <Suspense fallback={<AboutLoading />}>
+              <LazyAbout />
+            </Suspense>
+          </>
+        )}
         <Expertise />
-        <Suspense fallback={<TestimonialsLoading />}>
-          <LazyTestimonials />
-        </Suspense>
-        <Suspense fallback={<FAQLoading />}>
-          <LazyFAQ />
-        </Suspense>
-        <Suspense fallback={<ContactLoading />}>
-          <LazyContact />
-        </Suspense>
+        {isSSR ? (
+          // During SSR/SSG, render components directly to avoid hydration mismatches
+          <>
+            <LazyTestimonials />
+            <LazyFAQ />
+            <LazyContact />
+          </>
+        ) : (
+          // Client-side lazy loading for performance
+          <>
+            <Suspense fallback={<TestimonialsLoading />}>
+              <LazyTestimonials />
+            </Suspense>
+            <Suspense fallback={<FAQLoading />}>
+              <LazyFAQ />
+            </Suspense>
+            <Suspense fallback={<ContactLoading />}>
+              <LazyContact />
+            </Suspense>
+          </>
+        )}
       </main>
       <Footer />
       <Toaster />
