@@ -22,6 +22,9 @@ import {
 
 const Index = () => {
   useEffect(() => {
+    // Only run browser-specific code after hydration is complete
+    if (typeof window === 'undefined') return;
+    
     // Set additional meta tags not handled by centralized SEO utility
     const additionalMetaTags = [
       { name: 'keywords', content: 'btw-compliance, finance optimalisatie, multinationals België, btw-advies, digitalisering finance processen, audit-ready rapportering, finance controller, business controller' },
@@ -51,20 +54,27 @@ const Index = () => {
       hasFAQ: true
     });
     
-    // Preload critical images for LCP optimization
-    preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
-    preloadImage('/assets/hero-mobile.webp', 'high');
-    
-    // Register service worker for caching
-    registerServiceWorker();
-    
-    // Track performance metrics
-    trackPerformanceMetrics();
-    
-    // Mark critical images after component mount
-    setTimeout(() => {
-      markCriticalResource('img[fetchpriority="high"]');
+    // Delay performance optimizations to avoid hydration conflicts
+    const timer = setTimeout(() => {
+      try {
+        // Preload critical images for LCP optimization
+        preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
+        preloadImage('/assets/hero-mobile.webp', 'high');
+        
+        // Register service worker for caching
+        registerServiceWorker();
+        
+        // Track performance metrics
+        trackPerformanceMetrics();
+        
+        // Mark critical images after component mount
+        markCriticalResource('img[fetchpriority="high"]');
+      } catch (error) {
+        console.warn('Performance optimization failed:', error);
+      }
     }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
   return (
     <div className="min-h-screen bg-background">

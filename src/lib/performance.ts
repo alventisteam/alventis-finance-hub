@@ -4,14 +4,20 @@
  * Preload critical images to improve LCP
  */
 export const preloadImage = (src: string, priority: 'high' | 'low' = 'high') => {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  link.href = src;
-  if (priority === 'high') {
-    link.setAttribute('fetchpriority', 'high');
+  if (typeof window === 'undefined') return;
+  
+  try {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = src;
+    if (priority === 'high') {
+      link.setAttribute('fetchpriority', 'high');
+    }
+    document.head.appendChild(link);
+  } catch (error) {
+    console.warn('Failed to preload image:', src, error);
   }
-  document.head.appendChild(link);
 };
 
 /**
