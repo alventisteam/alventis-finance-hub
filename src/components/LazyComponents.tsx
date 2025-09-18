@@ -2,16 +2,22 @@
 import { lazy } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
+// Direct imports for SSR compatibility
+import Services from './Services';
+import About from './About';
+import Testimonials from './Testimonials';
+import FAQ from './FAQ';
+import Contact from './Contact';
+
 // SSR detection utility
 const isSSR = typeof window === 'undefined';
 
-// For SSR/SSG, load components immediately to avoid hydration mismatches
-// For client-side, use lazy loading for performance
-export const LazyServices = isSSR ? require('./Services').default : lazy(() => import('./Services'));
-export const LazyAbout = isSSR ? require('./About').default : lazy(() => import('./About'));
-export const LazyTestimonials = isSSR ? require('./Testimonials').default : lazy(() => import('./Testimonials'));
-export const LazyFAQ = isSSR ? require('./FAQ').default : lazy(() => import('./FAQ'));
-export const LazyContact = isSSR ? require('./Contact').default : lazy(() => import('./Contact'));
+// For SSR/SSG, use direct imports. For client-side, use lazy loading for performance
+export const LazyServices = isSSR ? Services : lazy(() => import('./Services'));
+export const LazyAbout = isSSR ? About : lazy(() => import('./About'));
+export const LazyTestimonials = isSSR ? Testimonials : lazy(() => import('./Testimonials'));
+export const LazyFAQ = isSSR ? FAQ : lazy(() => import('./FAQ'));
+export const LazyContact = isSSR ? Contact : lazy(() => import('./Contact'));
 
 // Loading skeletons for each component
 export const ServicesLoading = () => (
