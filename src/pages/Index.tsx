@@ -1,16 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import About from "@/components/About";
 import Expertise from "@/components/Expertise";
-import Testimonials from "@/components/Testimonials";
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { preloadImage, markCriticalResource } from "@/lib/performance";
 import { setSEOTags } from "@/lib/seo";
+import { preloadImage, markCriticalResource } from "@/lib/performance";
+import { 
+  LazyServices, 
+  LazyAbout, 
+  LazyTestimonials, 
+  LazyFAQ, 
+  LazyContact,
+  ServicesLoading,
+  AboutLoading,
+  TestimonialsLoading,
+  FAQLoading,
+  ContactLoading
+} from "@/components/LazyComponents";
 
 const Index = () => {
   useEffect(() => {
@@ -53,16 +60,26 @@ const Index = () => {
     }, 100);
   }, []);
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      <main role="main">
+      <main>
         <Hero />
-        <Services />
-        <About />
+        <Suspense fallback={<ServicesLoading />}>
+          <LazyServices />
+        </Suspense>
+        <Suspense fallback={<AboutLoading />}>
+          <LazyAbout />
+        </Suspense>
         <Expertise />
-        <Testimonials />
-        <FAQ />
-        <Contact />
+        <Suspense fallback={<TestimonialsLoading />}>
+          <LazyTestimonials />
+        </Suspense>
+        <Suspense fallback={<FAQLoading />}>
+          <LazyFAQ />
+        </Suspense>
+        <Suspense fallback={<ContactLoading />}>
+          <LazyContact />
+        </Suspense>
       </main>
       <Footer />
       <Toaster />
