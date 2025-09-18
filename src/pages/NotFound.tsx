@@ -2,9 +2,12 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const NotFound = () => {
-  const location = useLocation();
+  // SSR safety check - only use useLocation on client side
+  const location = typeof window !== 'undefined' ? useLocation() : { pathname: '/' };
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
     // Set page title and meta tags
     document.title = "404 - Pagina niet gevonden | Alventis";
     

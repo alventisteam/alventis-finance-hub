@@ -8,8 +8,14 @@ interface BreadcrumbItem {
 }
 
 const Breadcrumbs = () => {
-  const location = useLocation();
   const { t } = useLanguage();
+  
+  // SSR safety check - return null during SSR
+  if (typeof window === 'undefined') {
+    return null;
+  }
+  
+  const location = useLocation();
 
   const getBreadcrumbs = (): BreadcrumbItem[] => {
     const path = location.pathname;
