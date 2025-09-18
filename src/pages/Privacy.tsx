@@ -19,7 +19,7 @@ const Privacy = () => {
     // Use centralized SEO utility
     setSEOTags({
       title: t('privacy.title'),
-      description: 'Privacybeleid voor deze website. Informatie over gegevensverwerking, cookies, rechten en beveiliging.',
+      description: t('privacy.metaDescription'),
       canonicalUrl: 'https://alventis.be/privacy',
       breadcrumbs: [
         { name: 'Home', url: 'https://alventis.be/' },

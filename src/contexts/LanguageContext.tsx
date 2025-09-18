@@ -177,7 +177,7 @@ export const translations = {
 
     // Privacy Section
     'privacy.title': 'Privacybeleid | Alventis',
-    'privacy.metaDescription': 'Privacybeleid van Alventis: gegevensverwerking, cookies, rechten en contact.',
+    'privacy.metaDescription': 'Privacybeleid Alventis: gegevensverwerking, cookies, jouw rechten en beveiliging. Transparante informatie over privacy en AVG compliance.',
     'privacy.lastUpdated': 'Laatst bijgewerkt: 16/09/2025',
     'privacy.backToHome': 'Terug naar Home',
     'privacy.section1.title': '1. Verwerkingsverantwoordelijke',
@@ -228,8 +228,8 @@ export const translations = {
     'privacy.section9.description': 'Wij kunnen dit privacybeleid van tijd tot tijd bijwerken. De meest recente versie is altijd beschikbaar op deze pagina.',
 
     // Legal Notice Section
-    'legalNotice.title': 'Impressum',
-    'legalNotice.metaDescription': 'Wettelijke kennisgeving en bedrijfsinformatie. Bedrijfsinformatie en verantwoordelijkheid voor website-inhoud.',
+    'legalNotice.title': 'Impressum - Juridische Vermelding | Alventis',
+    'legalNotice.metaDescription': 'Juridische vermelding Alventis: bedrijfsinformatie, contactgegevens en verantwoordelijkheden. Wettelijke kennisgeving en impressum.',
     'legalNotice.backToHome': 'Terug naar Home',
     'legalNotice.companyInfo.title': 'Bedrijfsinformatie',
     'legalNotice.companyInfo.subtitle': 'Eigenaar en Uitgever',
@@ -423,7 +423,8 @@ export const translations = {
     'footer.terms': 'Terms & Conditions',
 
     // Privacy Section
-    'privacy.title': 'Privacy',
+    'privacy.title': 'Privacy Policy | Alventis',
+    'privacy.metaDescription': 'Alventis privacy policy: data processing, cookies, your rights and security. Transparent information about privacy and GDPR compliance.',
     'privacy.lastUpdated': 'Last updated: 16/09/2025',
     'privacy.backToHome': 'Back to Home',
     'privacy.section1.title': '1. Data Controller',
@@ -474,8 +475,8 @@ export const translations = {
     'privacy.section9.description': 'We may update this privacy policy from time to time. The most recent version is always available on this page.',
 
     // Legal Notice Section
-    'legalNotice.title': 'Legal Notice',
-    'legalNotice.metaDescription': 'Legal notice and company information. Company information and responsibility for website content.',
+    'legalNotice.title': 'Legal Notice - Juridical Mention | Alventis',
+    'legalNotice.metaDescription': 'Alventis legal notice: company information, contact details and responsibilities. Legal disclosure and business information.',
     'legalNotice.backToHome': 'Back to Home',
     'legalNotice.companyInfo.title': 'Company Information',
     'legalNotice.companyInfo.subtitle': 'Owner and Publisher',
@@ -668,9 +669,13 @@ export const translations = {
     'footer.privacy': 'Política de Privacidad',
     'footer.terms': 'Términos y Condiciones',
 
+    // Privacy Section
+    'privacy.title': 'Política de Privacidad | Alventis',
+    'privacy.metaDescription': 'Política privacidad Alventis: procesamiento datos, cookies, sus derechos y seguridad. Información transparente sobre privacidad y RGPD.',
+
     // Legal Notice Section
-    'legalNotice.title': 'Aviso Legal',
-    'legalNotice.metaDescription': 'Aviso legal e información empresarial. Información de la empresa y responsabilidad del contenido del sitio web.',
+    'legalNotice.title': 'Aviso Legal - Mención Jurídica | Alventis',
+    'legalNotice.metaDescription': 'Aviso legal Alventis: información empresarial, datos de contacto y responsabilidades. Divulgación legal e información empresarial.',
     'legalNotice.backToHome': 'Volver a Inicio',
     'legalNotice.companyInfo.title': 'Información de la Empresa',
     'legalNotice.companyInfo.subtitle': 'Propietario y Editor',
