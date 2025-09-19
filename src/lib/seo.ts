@@ -216,6 +216,11 @@ export function generateJSONLD(pageData: PageSEO): string {
 }
 
 export function setSEOTags(pageData: PageSEO): void {
+  // Only run in browser environment
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+  
   try {
     // Set page title
     document.title = pageData.title;
