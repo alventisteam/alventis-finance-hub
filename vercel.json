@@ -1,0 +1,97 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.alventis.be"
+        }
+      ],
+      "destination": "https://alventis.be/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-forwarded-proto",
+          "value": "http"
+        }
+      ],
+      "destination": "https://alventis.be/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.+)/",
+      "destination": "/$1",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/(.+)\\.html",
+      "destination": "/$1",
+      "permanent": true
+    },
+    {
+      "source": "/old-privacy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/legal",
+      "destination": "/impressum",
+      "permanent": true
+    },
+    {
+      "source": "/legal-notice",
+      "destination": "/impressum",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/((?!api|assets|_next|favicon|robots|sitemap|sw\\.js|_vercel).*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ]
+}
