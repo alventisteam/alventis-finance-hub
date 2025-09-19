@@ -19,17 +19,13 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Performance optimizations for faster LCP and code splitting
+  // Performance optimizations for faster LCP
   build: {
-    cssCodeSplit: false, // Inline critical CSS
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
-        // Aggressive code splitting for better caching
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-ui': ['@radix-ui/react-slot', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
-          'vendor-utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
-        },
+        // Let Vite handle chunking automatically for better React/ReactDOM deduplication
+        manualChunks: undefined,
       },
     },
     // Optimize build for production
@@ -40,7 +36,7 @@ export default defineConfig(({ mode }) => ({
       drop: mode === 'production' ? ['console', 'debugger'] : [],
       treeShaking: true,
     },
-    // Optimize CSS extraction and minification
+    // Optimize CSS extraction
     cssMinify: mode === 'production',
   },
   // Optimize assets

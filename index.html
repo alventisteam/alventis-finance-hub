@@ -11,97 +11,33 @@
     
     <!-- Critical CSS inlined for fastest LCP -->
     <style>
-      /* Reset and Base Styles */
+      /* Critical above-the-fold styles */
       *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
-      *{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1}
       ::before,::after{--tw-content:''}
-      html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-feature-settings:normal;font-variation-settings:normal}
-      body{margin:0;line-height:inherit;font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-display:swap;font-synthesis:none;text-rendering:optimizeSpeed;overflow-x:hidden;max-width:100%;background-color:hsl(0 0% 98%);color:hsl(216 33% 20%)}
-      #root{max-width:100%;overflow-x:hidden}
-      img{max-width:100%;height:auto}
-      
-      /* Typography */
-      h1,h2,h3,h4,h5,h6{margin:0;font-weight:inherit;color:inherit}
+      html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal}
+      body{margin:0;line-height:inherit;font-family:'Lato',sans-serif}
+      h1,h2{margin:0;font-weight:inherit;color:inherit}
       p{margin:0}
-      button{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0;background-color:transparent;border:0}
-      
-      /* Font Classes */
-      .font-playfair{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-display:swap}
-      .font-lato{font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-display:swap}
-      
-      /* Layout */
+      button{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}
+      .font-playfair{font-family:'Playfair Display',serif}
+      .font-lato{font-family:'Lato',sans-serif}
+      .text-white{color:rgb(255 255 255)}
+      .bg-primary{background-color:hsl(216 33% 20%)}
       .min-h-screen{min-height:100vh}
       .relative{position:relative}
       .absolute{position:absolute}
-      .fixed{position:fixed}
       .inset-0{inset:0}
-      .top-0{top:0}
-      .left-0{left:0}
-      .right-0{right:0}
       .z-0{z-index:0}
       .z-10{z-index:10}
-      .z-50{z-index:50}
       .flex{display:flex}
-      .hidden{display:none}
       .h-full{height:100%}
-      .h-16{height:4rem}
-      .h-10{height:2.5rem}
       .w-full{width:100%}
-      .w-auto{width:auto}
-      .max-w-7xl{max-width:80rem}
-      .max-w-4xl{max-width:56rem}
-      .max-w-3xl{max-width:48rem}
-      .mx-auto{margin-left:auto;margin-right:auto}
       .object-cover{object-fit:cover}
-      .justify-between{justify-content:space-between}
       .justify-center{justify-content:center}
       .items-center{align-items:center}
       .text-center{text-align:center}
-      .cursor-pointer{cursor:pointer}
-      
-      /* Colors */
-      .text-white{color:rgb(255 255 255)}
-      .text-foreground{color:hsl(216 33% 20%)}
-      .text-warm{color:hsl(25 70% 50%)}
-      .bg-background{background-color:hsl(0 0% 98%)}
-      .bg-primary{background-color:hsl(216 33% 20%)}
-      .border-b{border-bottom-width:1px}
-      .backdrop-blur-sm{backdrop-filter:blur(4px)}
-      
-      /* Spacing */
       .px-4{padding-left:1rem;padding-right:1rem}
-      .px-6{padding-left:1.5rem;padding-right:1.5rem}
-      .px-8{padding-left:2rem;padding-right:2rem}
-      .px-12{padding-left:3rem;padding-right:3rem}
-      .py-6{padding-top:1.5rem;padding-bottom:1.5rem}
       .py-20{padding-top:5rem;padding-bottom:5rem}
-      .mb-6{margin-bottom:1.5rem}
-      .mb-8{margin-bottom:2rem}
-      .leading-tight{line-height:1.25}
-      .leading-relaxed{line-height:1.625}
-      .rounded-xl{border-radius:0.75rem}
-      
-      /* Typography Sizes */
-      .text-xl{font-size:1.25rem;line-height:1.75rem}
-      .text-2xl{font-size:1.5rem;line-height:2rem}
-      .text-3xl{font-size:1.875rem;line-height:2.25rem}
-      .text-4xl{font-size:2.25rem;line-height:2.5rem}
-      .text-5xl{font-size:3rem;line-height:1}
-      .font-bold{font-weight:700}
-      .font-semibold{font-weight:600}
-      .font-light{font-weight:300}
-      
-      /* Responsive */
-      @media (min-width: 640px) {
-        .sm\\:px-6{padding-left:1.5rem;padding-right:1.5rem}
-        .sm\\:text-2xl{font-size:1.5rem;line-height:2rem}
-        .sm\\:text-4xl{font-size:2.25rem;line-height:2.5rem}
-      }
-      @media (min-width: 768px) {
-        .md\\:block{display:block}
-        .lg\\:px-8{padding-left:2rem;padding-right:2rem}
-        .lg\\:text-5xl{font-size:3rem;line-height:1}
-      }
     </style>
     
     <!-- DNS prefetch for external resources -->
@@ -475,7 +411,7 @@
 
   <body>
     <div id="root"><!--app-html--></div>
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx"></script>
     
     <!-- Register service worker only in production -->
     <script>

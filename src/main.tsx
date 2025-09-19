@@ -3,10 +3,6 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
 import './lib/env' // Initialize environment configuration
-import { initCriticalPathOptimizations } from './lib/critical-path'
-
-// Initialize critical path optimizations for better LCP
-initCriticalPathOptimizations();
 
 const root = document.getElementById("root")!;
 const app = (
