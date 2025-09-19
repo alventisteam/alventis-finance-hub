@@ -64,6 +64,23 @@ This project is built with:
 
 Simply open [Lovable](https://lovable.dev/projects/aa915e63-6e3c-4a39-b045-8e1bb46fde46) and click on Share -> Publish.
 
+## Environment Variables
+
+This project uses environment variables for configuration. When deploying to Vercel:
+
+1. Go to your Vercel project dashboard
+2. Navigate to Settings > Environment Variables
+3. Add the following variables:
+
+**Required:**
+- `VITE_GA_MEASUREMENT_ID` - Your Google Analytics measurement ID (e.g., G-XXXXXXXXXX)
+
+**Optional:**
+- `VITE_SITE_URL` - Your canonical site URL (defaults to https://alventis.be)
+- `VITE_CONTACT_EMAIL` - Business contact email (defaults to viktoria@alventis.be)
+
+For local development, copy `.env.example` to `.env.local` and set your values.
+
 ## Can I connect a custom domain to my Lovable project?
 
 Yes, you can!
