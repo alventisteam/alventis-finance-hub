@@ -220,11 +220,14 @@ export function setSEOTags(pageData: PageSEO): void {
     // Set page title
     document.title = pageData.title;
     
-    // Set meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', pageData.description);
+    // Set meta description (create if doesn't exist)
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
     }
+    metaDescription.setAttribute('content', pageData.description);
     
     // Set canonical URL
     let canonical = document.querySelector('link[rel="canonical"]');
@@ -284,11 +287,12 @@ export function setSEOTags(pageData: PageSEO): void {
       image: resolvedImageUrl || pageData.image
     });
     
-    // Only remove existing elements after new ones are ready
+    // Only remove existing dynamic elements after new ones are ready
     const existingMetas = document.querySelectorAll('meta[property^="og:"], meta[name^="twitter:"]');
     existingMetas.forEach(meta => meta.remove());
     
-    const existingJsonLd = document.querySelectorAll('script[type="application/ld+json"]');
+    // Remove only dynamically created JSON-LD (preserve any with data-static attribute)
+    const existingJsonLd = document.querySelectorAll('script[type="application/ld+json"]:not([data-static])');
     existingJsonLd.forEach(script => script.remove());
     
     // Add all new elements
