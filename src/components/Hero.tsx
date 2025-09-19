@@ -24,8 +24,8 @@ const Hero = () => {
           width="1920"
           height="1080"
           loading="eager"
-          fetchPriority="high"
           decoding="async"
+          style={{ contentVisibility: 'auto' }}
         />
         <div className="absolute inset-0 bg-primary/80"></div>
       </div>

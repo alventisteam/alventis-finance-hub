@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -13,9 +13,18 @@ import { preloadImage, markCriticalResource } from "@/lib/performance";
 import { setSEOTags } from "@/lib/seo";
 
 const Index = () => {
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Handle hydration safely
+  useLayoutEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsHydrated(true);
+    }
+  }, []);
+
   useEffect(() => {
-    // Only run DOM operations in browser environment
-    if (typeof window === 'undefined' || typeof document === 'undefined') {
+    // Only run after hydration is complete and in browser environment
+    if (!isHydrated || typeof window === 'undefined' || typeof document === 'undefined') {
       return;
     }
     
@@ -49,18 +58,23 @@ const Index = () => {
         hasFAQ: true
       });
       
-      // Preload critical images for LCP optimization
-      preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
-      preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
-      
-      // Mark critical images after component mount
+      // Delay performance optimizations until after hydration
       setTimeout(() => {
-        markCriticalResource('img[loading="eager"]');
-      }, 100);
+        try {
+          // Preload critical images for LCP optimization
+          preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
+          preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
+          
+          // Mark critical images using proper selector
+          markCriticalResource('img[loading="eager"]');
+        } catch (perfError) {
+          console.warn('Performance optimization error:', perfError);
+        }
+      }, 200);
     } catch (error) {
       console.warn('Error during Index page initialization:', error);
     }
-  }, []);
+  }, [isHydrated]);
   return (
     <div className="min-h-screen">
       <Navigation />
