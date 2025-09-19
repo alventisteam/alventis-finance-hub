@@ -18,8 +18,8 @@ const LegalNotice = () => {
   useEffect(() => {
     // Use centralized SEO utility
     setSEOTags({
-      title: 'Juridische Vermelding | Alventis Impressum',
-      description: 'Juridische vermelding Alventis: bedrijfsinformatie, contactgegevens, auteursrechten en aansprakelijkheid voor onze finance consultancy diensten.',
+      title: 'Impressum & Bedrijfsgegevens | Alventis BTW & Finance Consulting België',
+      description: 'Juridische vermelding Alventis: officiële bedrijfsgegevens, BTW-nummer BE0781.576.986, contact Viktoria Oris, aansprakelijkheid finance consultancy België.',
       canonicalUrl: 'https://alventis.be/impressum',
       breadcrumbs: [
         { name: 'Home', url: 'https://alventis.be/' },

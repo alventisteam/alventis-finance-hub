@@ -18,8 +18,8 @@ const Privacy = () => {
   useEffect(() => {
     // Use centralized SEO utility
     setSEOTags({
-      title: 'Privacybeleid | Alventis',
-      description: 'Privacybeleid Alventis: informatie over gegevensverwerking, cookies, je rechten en beveiliging. Transparant beleid voor onze dienstverlening.',
+      title: 'Privacybeleid & GDPR Compliance | Alventis Finance Consulting',
+      description: 'Privacybeleid Alventis: GDPR-compliant gegevensverwerking, cookiebeleid, uw rechten als klant. Transparante privacy practices voor onze BTW & finance diensten.',
       canonicalUrl: 'https://alventis.be/privacy',
       breadcrumbs: [
         { name: 'Home', url: 'https://alventis.be/' },
