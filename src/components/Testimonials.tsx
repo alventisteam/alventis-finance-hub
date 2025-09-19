@@ -1,19 +1,70 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import TestimonialCard from "./TestimonialCard";
+import buckmanLogo from "@/assets/testimonial-buckman.webp";
+import laureltonLogo from "@/assets/testimonial-laurelton.webp";
+import imperialLogo from "@/assets/testimonial-imperial-brands.webp";
+import katoenLogo from "@/assets/testimonial-katoen-natie.webp";
+import steelduxLogo from "@/assets/testimonial-steelduxx.webp";
+import bestsellerLogo from "@/assets/testimonial-bestseller.webp";
+import acpartnersLogo from "@/assets/testimonial-acpartners.webp";
+import roberthalfLogo from "@/assets/testimonial-roberthalf.webp";
 
 const Testimonials = () => {
   const { t } = useLanguage();
   
-  const clientLogos = [
-    "TechCorp International",
-    "European Manufacturing",
-    "Global Services BV",
-    "Finance Solutions Ltd",
-    "International Holdings"
+  const testimonials = [
+    {
+      logo: buckmanLogo,
+      title: "Buckman",
+      alt: "Buckman multinational chemical company logo - satisfied client of Alventis BTW compliance services",
+      description: t('testimonials.buckman.description')
+    },
+    {
+      logo: laureltonLogo,
+      title: "Laurelton Diamonds",
+      alt: "Laurelton Diamonds logo - client benefiting from Alventis finance process optimization services",
+      description: t('testimonials.laurelton.description')
+    },
+    {
+      logo: imperialLogo,
+      title: "Imperial Brands",
+      alt: "Imperial Brands tobacco company logo - international client receiving Alventis BTW advisory services",
+      description: t('testimonials.imperial.description')
+    },
+    {
+      logo: katoenLogo,
+      title: "Katoen Natie",
+      alt: "Katoen Natie - logistiek en fiscaliteit digitalisering finance klant",
+      description: t('testimonials.katoen.description')
+    },
+    {
+      logo: steelduxLogo,
+      title: "Steelduxx",
+      alt: "Steelduxx - staalhandel finance procesoptimalisatie Antwerpen klant",
+      description: t('testimonials.steelduxx.description')
+    },
+    {
+      logo: bestsellerLogo,
+      title: "Bestseller",
+      alt: "Bestseller modebedrijf - internationaal BTW-compliance digitalisering klant",
+      description: t('testimonials.bestseller.description')
+    },
+    {
+      logo: acpartnersLogo,
+      title: "AC Partners",
+      alt: "AC Partners IT-consultancy - software implementatie finance optimalisatie klant",
+      description: t('testimonials.acpartners.description')
+    },
+    {
+      logo: roberthalfLogo,
+      title: "Robert Half",
+      alt: "Robert Half staffing - finance consultancy procesoptimalisatie klant",
+      description: t('testimonials.roberthalf.description')
+    }
   ];
 
   return (
-    <section id="testimonials" className="py-32 bg-secondary/20" role="region" aria-labelledby="testimonials-heading">
+    <section id="testimonials" className="py-32 bg-secondary/20" aria-labelledby="testimonials-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Professional Experience */}
@@ -23,157 +74,15 @@ const Testimonials = () => {
           </h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <img 
-                    src="/lovable-uploads/098cdc8d-f6c6-45ef-bc12-aaa87fc4bd16.png" 
-                    alt="Buckman multinational chemical company logo - satisfied client of Alventis BTW compliance services" 
-                    className="max-w-full max-h-full object-contain p-2"
-                    width="80"
-                    height="80"
-                    loading="lazy"
-                  />
-                </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Buckman</h4>
-                <p className="font-lato text-muted-foreground text-sm">
-                  {t('testimonials.buckman.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <img 
-                    src="/lovable-uploads/4852a606-69ea-448a-a552-755511e08e27.png" 
-                    alt="Laurelton Diamonds logo - client benefiting from Alventis finance process optimization services" 
-                    className="max-w-full max-h-full object-contain p-2"
-                    width="80"
-                    height="80"
-                    loading="lazy"
-                  />
-                </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Laurelton Diamonds</h4>
-                <p className="font-lato text-muted-foreground text-sm">
-                  {t('testimonials.laurelton.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <img 
-                    src="/lovable-uploads/5c81a807-f80e-43dc-a419-49faf43cfb4a.png" 
-                    alt="Imperial Brands tobacco company logo - international client receiving Alventis BTW advisory services" 
-                    className="max-w-full max-h-full object-contain p-2"
-                    width="80"
-                    height="80"
-                    loading="lazy"
-                  />
-                </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Imperial Brands</h4>
-                <p className="font-lato text-muted-foreground text-sm">
-                  {t('testimonials.imperial.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                  <img 
-                    src="/lovable-uploads/bed311b4-e389-45f5-97cb-dbf86bb9a6a2.png" 
-                    alt="Katoen Natie - logistiek en fiscaliteit digitalisering finance klant" 
-                    className="max-w-full max-h-full object-contain p-2"
-                    width="80"
-                    height="80"
-                    loading="lazy"
-                  />
-                </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h4>
-                <p className="font-lato text-muted-foreground text-sm">
-                  {t('testimonials.katoen.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                   <img 
-                     src="/lovable-uploads/7f7f314b-0db8-4714-a3e4-9bc2ed4f72bd.png" 
-                     alt="Steelduxx - staalhandel finance procesoptimalisatie Antwerpen klant" 
-                     className="max-w-full max-h-full object-contain p-2"
-                     width="80"
-                     height="80"
-                     loading="lazy"
-                   />
-                </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Steelduxx</h4>
-                <p className="font-lato text-muted-foreground text-sm">
-                  {t('testimonials.steelduxx.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                   <img 
-                     src="/lovable-uploads/764b7f97-8101-4216-af83-4fae4747c165.png" 
-                     alt="Bestseller modebedrijf - internationaal BTW-compliance digitalisering klant" 
-                     className="max-w-full max-h-full object-contain p-2"
-                     width="80"
-                     height="80"
-                     loading="lazy"
-                   />
-                </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Bestseller</h4>
-                <p className="font-lato text-muted-foreground text-sm">
-                  {t('testimonials.bestseller.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                   <img 
-                     src="/lovable-uploads/8f4192f6-a279-421a-9749-a1985b7e3b12.png" 
-                     alt="AC Partners IT-consultancy - software implementatie finance optimalisatie klant" 
-                     className="max-w-full max-h-full object-contain p-2"
-                     width="80"
-                     height="80"
-                     loading="lazy"
-                   />
-                </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">AC Partners</h4>
-                <p className="font-lato text-muted-foreground text-sm">
-                  {t('testimonials.acpartners.description')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/80 border border-border/20 shadow-soft hover:shadow-medium transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-soft">
-                   <img 
-                     src="/lovable-uploads/3d1a9afd-cc96-492b-be8b-73835e5c3a31.png" 
-                     alt="Robert Half staffing - finance consultancy procesoptimalisatie klant" 
-                     className="max-w-full max-h-full object-contain p-2"
-                     width="80"
-                     height="80"
-                     loading="lazy"
-                   />
-                </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Robert Half</h4>
-                <p className="font-lato text-muted-foreground text-sm">
-                  {t('testimonials.roberthalf.description')}
-                </p>
-              </CardContent>
-            </Card>
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                logo={testimonial.logo}
+                alt={testimonial.alt}
+                title={testimonial.title}
+                description={testimonial.description}
+              />
+            ))}
           </div>
         </div>
       </div>

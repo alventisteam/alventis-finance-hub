@@ -6,24 +6,13 @@ export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
 
   React.useEffect(() => {
-    // Only run in browser environment
-    if (typeof window === 'undefined') {
-      return;
-    }
-    
-    try {
-      const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-      const onChange = () => {
-        setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-      }
-      mql.addEventListener("change", onChange)
+    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
+    const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-      return () => mql.removeEventListener("change", onChange)
-    } catch (error) {
-      console.warn('Error in useIsMobile hook:', error);
-      // Fallback to false for mobile when error occurs
-      setIsMobile(false);
     }
+    mql.addEventListener("change", onChange)
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    return () => mql.removeEventListener("change", onChange)
   }, [])
 
   return !!isMobile

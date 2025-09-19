@@ -26,18 +26,23 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // Split React and React DOM into separate chunk
-            if (id.includes("react") || id.includes("react-dom")) return "react-vendor";
+            // Keep React and React DOM in main bundle for proper loading order
             if (id.includes("@radix-ui")) return "ui-vendor";
             if (id.includes("lucide-react")) return "icons-vendor";
+            if (id.includes("@tanstack/react-query")) return "query-vendor";
             return "vendor";
+          }
+          // Split translation files
+          if (id.includes("translations/")) {
+            return "translations";
           }
         },
         // Optimize chunk names for caching
         chunkFileNames: (chunkInfo) => {
-          if (chunkInfo.name === "react-vendor") return "assets/react-[hash].js";
           if (chunkInfo.name === "ui-vendor") return "assets/ui-[hash].js";
           if (chunkInfo.name === "icons-vendor") return "assets/icons-[hash].js";
+          if (chunkInfo.name === "query-vendor") return "assets/query-[hash].js";
+          if (chunkInfo.name === "translations") return "assets/translations-[hash].js";
           return "assets/[name]-[hash].js";
         },
       },
@@ -57,7 +62,6 @@ export default defineConfig(({ mode }) => ({
   assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.webp', '**/*.avif'],
   // Optimize dependencies
   optimizeDeps: {
-    include: ['react', 'react-dom'],
-    exclude: ['@radix-ui/react-*'], // Bundle separately for better caching
+    include: ['react', 'react-dom', 'react-router-dom'],
   },
 }));

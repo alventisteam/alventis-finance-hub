@@ -1,32 +1,29 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import About from "@/components/About";
 import Expertise from "@/components/Expertise";
-import Testimonials from "@/components/Testimonials";
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { preloadImage, markCriticalResource } from "@/lib/performance";
 import { setSEOTags } from "@/lib/seo";
+import { preloadImage, markCriticalResource } from "@/lib/performance";
+import { trackPerformanceMetrics, registerServiceWorker } from "@/lib/mobile-performance";
+import { 
+  LazyServices, 
+  LazyAbout, 
+  LazyTestimonials, 
+  LazyFAQ, 
+  LazyContact,
+  ServicesLoading,
+  AboutLoading,
+  TestimonialsLoading,
+  FAQLoading,
+  ContactLoading
+} from "@/components/LazyComponents";
 
 const Index = () => {
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  // Handle hydration safely
-  useLayoutEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsHydrated(true);
-    }
-  }, []);
-
   useEffect(() => {
-    // Only run after hydration is complete and in browser environment
-    if (!isHydrated || typeof window === 'undefined' || typeof document === 'undefined') {
-      return;
-    }
+    // Only run browser-specific code on the client side
+    if (typeof window === 'undefined') return;
     
     // Set additional meta tags not handled by centralized SEO utility
     const additionalMetaTags = [
@@ -36,56 +33,63 @@ const Index = () => {
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     ];
     
-    try {
-      additionalMetaTags.forEach(tag => {
-        const existingTag = document.querySelector(`meta[name="${tag.name}"]`);
-        if (existingTag) {
-          existingTag.setAttribute('content', tag.content);
-        } else {
-          const newTag = document.createElement('meta');
-          newTag.setAttribute('name', tag.name);
-          newTag.setAttribute('content', tag.content);
-          document.head.appendChild(newTag);
-        }
-      });
-      
-      // Use centralized SEO utility
-      setSEOTags({
-        title: "BTW-compliance & Finance Optimalisatie | Alventis België",
-        description: "Specialist BTW-compliance en finance optimalisatie voor multinationals in België. 10 jaar ervaring, digitalisering processen, audit-ready rapportering.",
-        canonicalUrl: "https://alventis.be/",
-        image: "/assets/alventis-og-image.webp",
-        hasFAQ: true
-      });
-      
-      // Delay performance optimizations until after hydration
-      setTimeout(() => {
-        try {
-          // Preload critical images for LCP optimization
-          preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
-          preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
-          
-          // Mark critical images using proper selector
-          markCriticalResource('img[loading="eager"]');
-        } catch (perfError) {
-          console.warn('Performance optimization error:', perfError);
-        }
-      }, 200);
-    } catch (error) {
-      console.warn('Error during Index page initialization:', error);
-    }
-  }, [isHydrated]);
+    additionalMetaTags.forEach(tag => {
+      const existingTag = document.querySelector(`meta[name="${tag.name}"]`);
+      if (existingTag) {
+        existingTag.setAttribute('content', tag.content);
+      } else {
+        const newTag = document.createElement('meta');
+        newTag.setAttribute('name', tag.name);
+        newTag.setAttribute('content', tag.content);
+        document.head.appendChild(newTag);
+      }
+    });
+    
+    // Use centralized SEO utility
+    setSEOTags({
+      title: "BTW-compliance & Finance Optimalisatie | Alventis België",
+      description: "Specialist BTW-compliance en finance optimalisatie voor multinationals in België. 10 jaar ervaring, digitalisering processen, audit-ready rapportering.",
+      canonicalUrl: "https://alventis.be/",
+      image: "/assets/alventis-og-image.webp",
+      hasFAQ: true
+    });
+    
+    // Preload critical images for LCP optimization
+    preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
+    preloadImage('/assets/hero-mobile.webp', 'high');
+    
+    // Register service worker for caching
+    registerServiceWorker();
+    
+    // Track performance metrics
+    trackPerformanceMetrics();
+    
+    // Mark critical images after component mount
+    setTimeout(() => {
+      markCriticalResource('img[fetchpriority="high"]');
+    }, 100);
+  }, []);
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      <main role="main">
+      <main>
         <Hero />
-        <Services />
-        <About />
+        <Suspense fallback={<ServicesLoading />}>
+          <LazyServices />
+        </Suspense>
+        <Suspense fallback={<AboutLoading />}>
+          <LazyAbout />
+        </Suspense>
         <Expertise />
-        <Testimonials />
-        <FAQ />
-        <Contact />
+        <Suspense fallback={<TestimonialsLoading />}>
+          <LazyTestimonials />
+        </Suspense>
+        <Suspense fallback={<FAQLoading />}>
+          <LazyFAQ />
+        </Suspense>
+        <Suspense fallback={<ContactLoading />}>
+          <LazyContact />
+        </Suspense>
       </main>
       <Footer />
       <Toaster />

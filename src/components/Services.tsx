@@ -136,44 +136,12 @@ const Services = () => {
                   
                   <div className="border-l-4 border-primary pl-6 py-2">
                     <h4 className="font-lato font-bold text-primary mb-3 text-sm uppercase tracking-wide">{t('services.solution')}</h4>
-                    <p className="font-lato text-foreground leading-relaxed">
-                      {index === 0 && (
-                        <>
-                          Wij bieden begeleiding in <a href="#btw-compliance" className="text-primary hover:text-warm underline font-semibold">fiscale vertegenwoordiging België</a> en monitoren alle compliance aspecten proactief.
-                        </>
-                      )}
-                      {index === 1 && (
-                        <>
-                          Wij automatiseren workflows, digitaliseren processen en optimaliseren jouw gehele <a href="#procesoptimalisatie" className="text-primary hover:text-warm underline font-semibold">finance operatie en procesoptimalisatie</a>.
-                        </>
-                      )}
-                      {index === 2 && (
-                        <>
-                          Wij begeleiden persoonlijk <a href="#btw-compliance" className="text-primary hover:text-warm underline font-semibold">controllers en CFO&apos;s door elke stap van de transformatie</a>.
-                        </>
-                      )}
-                    </p>
+                    <p className="font-lato text-foreground leading-relaxed">{service.solution}</p>
                   </div>
                   
                   <div className="border-l-4 border-warm pl-6 py-2">
                     <h4 className="font-lato font-bold text-warm mb-3 text-sm uppercase tracking-wide">{t('services.benefit')}</h4>
-                    <p className="font-lato text-foreground font-semibold leading-relaxed">
-                      {index === 0 && (
-                        <>
-                          Jij bent 100% compliant, audit-ready en kunt je volledig focussen op <a href="#procesoptimalisatie" className="text-warm hover:text-primary underline">strategie in plaats van administratie</a>.
-                        </>
-                      )}
-                      {index === 1 && (
-                        <>
-                          Jij bespaart 50% tijd, elimineert fouten en krijgt <a href="#expertise" className="text-warm hover:text-primary underline">real-time inzicht in je financiële prestaties</a>.
-                        </>
-                      )}
-                      {index === 2 && (
-                        <>
-                          Jij krijgt volledige team buy-in, soepele implementatie en <a href="#about" className="text-warm hover:text-primary underline">duurzame verandering</a>.
-                        </>
-                      )}
-                    </p>
+                    <p className="font-lato text-foreground font-semibold leading-relaxed">{service.result}</p>
                   </div>
                   
                   <div className="bg-accent/10 p-4 rounded-lg border border-accent/20">

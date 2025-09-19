@@ -1,7 +1,8 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
+  fallback?: ReactNode;
 }
 
 interface State {
@@ -9,36 +10,43 @@ interface State {
   error?: Error;
 }
 
-class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false
-  };
+export class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
-  public static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render will show the fallback UI.
+  static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Error caught by boundary:', error, errorInfo);
+    
+    // Log CSP violations specifically
+    if (error.message?.includes('Content Security Policy') || 
+        error.message?.includes('unsafe-eval') || 
+        error.message?.includes('unsafe-inline')) {
+      console.error('CSP Violation detected:', error.message);
+    }
   }
 
-  public render() {
+  render() {
     if (this.state.hasError) {
-      return (
+      return this.props.fallback || (
         <div className="min-h-screen flex items-center justify-center bg-background">
           <div className="text-center p-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Er is iets misgegaan
+            <h2 className="text-2xl font-bold text-destructive mb-4">
+              Something went wrong
             </h2>
-            <p className="text-muted-foreground mb-6">
-              De pagina kon niet worden geladen. Probeer de pagina te vernieuwen.
+            <p className="text-muted-foreground mb-4">
+              We encountered an error while loading the page.
             </p>
-            <button
+            <button 
               onClick={() => window.location.reload()}
-              className="bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors"
+              className="bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/90"
             >
-              Pagina vernieuwen
+              Reload Page
             </button>
           </div>
         </div>
@@ -48,5 +56,3 @@ class ErrorBoundary extends Component<Props, State> {
     return this.props.children;
   }
 }
-
-export default ErrorBoundary;

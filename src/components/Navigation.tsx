@@ -9,6 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import logoSmall from "@/assets/alventis-logo-small.webp";
+import logoMedium from "@/assets/alventis-logo-medium.webp";
+import logoLarge from "@/assets/alventis-logo-large.webp";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,27 +58,41 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             {location.pathname === '/' ? (
-              <img 
-                src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
-                alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
-                className="h-10 w-auto cursor-pointer" 
+              <div 
+                className="h-10 flex items-center cursor-pointer"
                 onClick={handleLogoClick}
-                width="120"
-                height="40"
-                loading="eager"
-                style={{ contentVisibility: 'auto' }}
-              />
+              >
+                <picture>
+                  <source media="(max-width: 640px)" srcSet={logoSmall} />
+                  <source media="(max-width: 1024px)" srcSet={logoMedium} />
+                  <img
+                    src={logoLarge}
+                    alt="Alventis - BTW Expert & Finance Consultant België"
+                    className="h-8 sm:h-10 w-auto object-contain"
+                    width="320"
+                    height="80"
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+                </picture>
+              </div>
             ) : (
               <Link to="/">
-                <img 
-                  src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
-                  alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
-                  className="h-10 w-auto cursor-pointer" 
-                  width="120"
-                  height="40"
-                  loading="eager"
-                  style={{ contentVisibility: 'auto' }}
-                />
+                <div className="h-10 flex items-center cursor-pointer">
+                  <picture>
+                    <source media="(max-width: 640px)" srcSet={logoSmall} />
+                    <source media="(max-width: 1024px)" srcSet={logoMedium} />
+                    <img
+                      src={logoLarge}
+                      alt="Alventis - BTW Expert & Finance Consultant België"
+                      className="h-8 sm:h-10 w-auto object-contain"
+                      width="320"
+                      height="80"
+                      loading="eager"
+                      fetchPriority="high"
+                    />
+                  </picture>
+                </div>
               </Link>
             )}
           </div>
@@ -151,20 +168,6 @@ const Navigation = () => {
                 </>
               )}
               
-              {/* Page Navigation Links */}
-              <Link
-                to="/privacy"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/privacy' ? 'text-accent' : ''}`}
-              >
-                Privacy
-              </Link>
-              <Link
-                to="/impressum"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/impressum' ? 'text-accent' : ''}`}
-              >
-                Impressum
-              </Link>
-              
               {/* Language Switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -218,6 +221,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -292,22 +296,6 @@ const Navigation = () => {
                   </Link>
                 </>
               )}
-              
-              {/* Page Navigation Links */}
-              <Link
-                to="/privacy"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/privacy' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Privacy
-              </Link>
-              <Link
-                to="/impressum"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/impressum' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Impressum
-              </Link>
               
               {/* Mobile Language Switcher */}
               <div className="px-3 py-2">

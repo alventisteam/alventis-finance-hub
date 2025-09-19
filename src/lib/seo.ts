@@ -216,11 +216,6 @@ export function generateJSONLD(pageData: PageSEO): string {
 }
 
 export function setSEOTags(pageData: PageSEO): void {
-  // Only run in browser environment
-  if (typeof window === 'undefined' || typeof document === 'undefined') {
-    return;
-  }
-  
   try {
     // Set page title
     document.title = pageData.title;
@@ -281,13 +276,21 @@ export function setSEOTags(pageData: PageSEO): void {
       newMetaElements.push(meta);
     });
     
-    // Create new JSON-LD script
+    // Create new JSON-LD script with CSP-safe approach
     const jsonLdScript = document.createElement('script');
     jsonLdScript.type = 'application/ld+json';
-    jsonLdScript.textContent = generateJSONLD({
+    const jsonLdData = generateJSONLD({
       ...pageData,
       image: resolvedImageUrl || pageData.image
     });
+    
+    // Use textContent instead of innerHTML for CSP compliance
+    try {
+      jsonLdScript.textContent = jsonLdData;
+    } catch (error) {
+      // Fallback for older browsers
+      jsonLdScript.innerHTML = jsonLdData;
+    }
     
     // Only remove existing elements after new ones are ready
     const existingMetas = document.querySelectorAll('meta[property^="og:"], meta[name^="twitter:"]');
