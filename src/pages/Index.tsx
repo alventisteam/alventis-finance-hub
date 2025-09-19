@@ -55,7 +55,7 @@ const Index = () => {
       
       // Mark critical images after component mount
       setTimeout(() => {
-        markCriticalResource('img[fetchpriority="high"]');
+        markCriticalResource('img[loading="eager"]');
       }, 100);
     } catch (error) {
       console.warn('Error during Index page initialization:', error);
