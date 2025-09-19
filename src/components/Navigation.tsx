@@ -56,11 +56,11 @@ const Navigation = () => {
           <div className="flex-shrink-0">
             {location.pathname === '/' ? (
               <img 
-                src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
+                src="/assets/alventis-logo-160x40-2.webp" 
                 alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
                 className="h-10 w-auto cursor-pointer" 
                 onClick={handleLogoClick}
-                width="120"
+                width="160"
                 height="40"
                 loading="eager"
                 fetchPriority="high"
@@ -68,10 +68,10 @@ const Navigation = () => {
             ) : (
               <Link to="/">
                 <img 
-                  src="/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png" 
+                  src="/assets/alventis-logo-160x40-2.webp" 
                   alt="Alventis finance consultancy logo - BTW compliance and process optimization specialists" 
                   className="h-10 w-auto cursor-pointer" 
-                  width="120"
+                  width="160"
                   height="40"
                   loading="eager"
                   fetchPriority="high"
@@ -150,20 +150,6 @@ const Navigation = () => {
                   </Link>
                 </>
               )}
-              
-              {/* Page Navigation Links */}
-              <Link
-                to="/privacy"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/privacy' ? 'text-accent' : ''}`}
-              >
-                Privacy
-              </Link>
-              <Link
-                to="/impressum"
-                className={`text-foreground hover:text-accent transition-colors font-lato font-medium ${location.pathname === '/impressum' ? 'text-accent' : ''}`}
-              >
-                Impressum
-              </Link>
               
               {/* Language Switcher */}
               <DropdownMenu>
@@ -292,22 +278,6 @@ const Navigation = () => {
                   </Link>
                 </>
               )}
-              
-              {/* Page Navigation Links */}
-              <Link
-                to="/privacy"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/privacy' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Privacy
-              </Link>
-              <Link
-                to="/impressum"
-                className={`block px-3 py-2 font-lato font-medium w-full text-left transition-colors ${location.pathname === '/impressum' ? 'text-accent' : 'text-foreground hover:text-accent'}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Impressum
-              </Link>
               
               {/* Mobile Language Switcher */}
               <div className="px-3 py-2">
