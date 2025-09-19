@@ -9,30 +9,39 @@ const template = fs.readFileSync(toAbsolute('dist/index.html'), 'utf-8')
 const { render } = await import('./dist/server/entry-server.js')
 
 // Define routes to prerender based on App.tsx routes
-// Add new routes here when adding new pages/blogs
+// This should match the routes defined in src/App.tsx
+// When adding new pages/blogs, add them here AND in App.tsx
 const routesToPrerender = [
   '/',
   '/privacy',
   '/impressum'
   // Add new routes here when creating new pages/blogs
-  // Example: '/blog', '/blog/post-1', '/about', etc.
+  // Example: '/blog', '/blog/post-1', '/about', '/viktoria-oris', etc.
 ]
 
 ;(async () => {
   for (const url of routesToPrerender) {
-    const appHtml = render(url);
-    const html = template.replace(`<!--app-html-->`, appHtml)
+    try {
+      const appHtml = render(url);
+      const html = template.replace(`<!--app-html-->`, appHtml)
 
-    const filePath = `dist${url === '/' ? '/index' : url + '/index'}.html`
-    const absoluteFilePath = toAbsolute(filePath)
-    
-    // Ensure directory exists before writing file
-    const dir = path.dirname(absoluteFilePath)
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true })
+      // Handle root and nested paths correctly
+      const filePath = `dist${url === '/' ? '/index' : url + '/index'}.html`
+      const absoluteFilePath = toAbsolute(filePath)
+      
+      // Ensure all nested directories exist before writing file
+      const dir = path.dirname(absoluteFilePath)
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true })
+        console.log('created directory:', dir)
+      }
+      
+      fs.writeFileSync(absoluteFilePath, html)
+      console.log('pre-rendered:', filePath)
+    } catch (error) {
+      console.error(`Failed to pre-render ${url}:`, error)
+      process.exit(1)
     }
-    
-    fs.writeFileSync(absoluteFilePath, html)
-    console.log('pre-rendered:', filePath)
   }
+  console.log(`Successfully pre-rendered ${routesToPrerender.length} routes`)
 })()
