@@ -24,12 +24,14 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: false, // Inline critical CSS
     rollupOptions: {
       output: {
-        // Aggressive code splitting for better caching
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-ui': ['@radix-ui/react-slot', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
-          'vendor-utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
-        },
+        // Only apply manual chunks for client builds (not SSR)
+        ...(mode === 'production' && !process.argv.includes('--ssr') ? {
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom'],
+            'vendor-ui': ['@radix-ui/react-slot', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
+            'vendor-utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
+          }
+        } : {})
       },
     },
     // Optimize build for production
