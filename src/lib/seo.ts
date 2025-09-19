@@ -276,21 +276,13 @@ export function setSEOTags(pageData: PageSEO): void {
       newMetaElements.push(meta);
     });
     
-    // Create new JSON-LD script with CSP-safe approach
+    // Create new JSON-LD script
     const jsonLdScript = document.createElement('script');
     jsonLdScript.type = 'application/ld+json';
-    const jsonLdData = generateJSONLD({
+    jsonLdScript.textContent = generateJSONLD({
       ...pageData,
       image: resolvedImageUrl || pageData.image
     });
-    
-    // Use textContent instead of innerHTML for CSP compliance
-    try {
-      jsonLdScript.textContent = jsonLdData;
-    } catch (error) {
-      // Fallback for older browsers
-      jsonLdScript.innerHTML = jsonLdData;
-    }
     
     // Only remove existing elements after new ones are ready
     const existingMetas = document.querySelectorAll('meta[property^="og:"], meta[name^="twitter:"]');

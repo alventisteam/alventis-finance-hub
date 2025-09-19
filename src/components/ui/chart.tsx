@@ -74,10 +74,12 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
     return null
   }
 
-  // Generate CSS styles as a string for CSP compliance
-  const chartStyles = Object.entries(THEMES)
-    .map(
-      ([theme, prefix]) => `
+  return (
+    <style
+      dangerouslySetInnerHTML={{
+        __html: Object.entries(THEMES)
+          .map(
+            ([theme, prefix]) => `
 ${prefix} [data-chart=${id}] {
 ${colorConfig
   .map(([key, itemConfig]) => {
@@ -89,31 +91,11 @@ ${colorConfig
   .join("\n")}
 }
 `
-    )
-    .join("\n");
-
-  // Create style element safely without dangerouslySetInnerHTML
-  React.useEffect(() => {
-    const styleId = `chart-style-${id}`;
-    let styleElement = document.getElementById(styleId) as HTMLStyleElement;
-    
-    if (!styleElement) {
-      styleElement = document.createElement('style');
-      styleElement.id = styleId;
-      document.head.appendChild(styleElement);
-    }
-    
-    styleElement.textContent = chartStyles;
-    
-    return () => {
-      const element = document.getElementById(styleId);
-      if (element) {
-        element.remove();
-      }
-    };
-  }, [id, chartStyles]);
-
-  return null;
+          )
+          .join("\n"),
+      }}
+    />
+  )
 }
 
 const ChartTooltip = RechartsPrimitive.Tooltip
