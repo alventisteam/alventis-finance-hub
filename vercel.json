@@ -57,6 +57,66 @@
       "source": "/legal-notice",
       "destination": "/impressum",
       "permanent": true
+    },
+    {
+      "source": "/Privacy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/Impressum",
+      "destination": "/impressum",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/privacybeleid",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/impressum",
+      "permanent": true
+    },
+    {
+      "source": "/legal-info",
+      "destination": "/impressum",
+      "permanent": true
+    },
+    {
+      "source": "/privay",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/impresSum",
+      "destination": "/impressum",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/#about",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-notice",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/disclaimer",
+      "destination": "/impressum",
+      "permanent": true
     }
   ],
   "headers": [
