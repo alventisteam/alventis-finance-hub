@@ -2,7 +2,7 @@
 const CACHE_NAME = 'alventis-v1';
 const urlsToCache = [
   '/',
-  '/assets/hero-optimized.webp',
+  '/assets/finance-consulting-office-belgium-2.webp',
   'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;500;600&display=swap'
 ];
 
