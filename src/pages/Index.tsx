@@ -1,19 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useState, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import About from "@/components/About";
 import Expertise from "@/components/Expertise";
-import Testimonials from "@/components/Testimonials";
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { preloadImage, markCriticalResource } from "@/lib/performance";
 import { setSEOTags } from "@/lib/seo";
+import { preloadImage, markCriticalResource } from "@/lib/performance";
+import { trackPerformanceMetrics, registerServiceWorker } from "@/lib/mobile-performance";
+import { 
+  LazyServices, 
+  LazyAbout, 
+  LazyTestimonials, 
+  LazyFAQ, 
+  LazyContact,
+  ServicesLoading,
+  AboutLoading,
+  TestimonialsLoading,
+  FAQLoading,
+  ContactLoading
+} from "@/components/LazyComponents";
 
 const Index = () => {
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Track hydration status to prevent SSR/client mismatches
+  useLayoutEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
   useEffect(() => {
+    // Only run browser-specific code on the client side and after hydration
+    if (typeof window === 'undefined' || !isHydrated) return;
     // Set additional meta tags not handled by centralized SEO utility
     const additionalMetaTags = [
       { name: 'keywords', content: 'btw-compliance, finance optimalisatie, multinationals België, btw-advies, digitalisering finance processen, audit-ready rapportering, finance controller, business controller' },
@@ -43,26 +60,47 @@ const Index = () => {
       hasFAQ: true
     });
     
-    // Preload critical images for LCP optimization
-    preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
-    preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
-    
-    // Mark critical images after component mount
+    // Delay performance utilities to prevent hydration issues
     setTimeout(() => {
-      markCriticalResource('img[fetchpriority="high"]');
+      try {
+        // Preload critical images for LCP optimization
+        preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
+        preloadImage('/assets/hero-mobile.webp', 'high');
+        
+        // Register service worker for caching
+        registerServiceWorker();
+        
+        // Track performance metrics
+        trackPerformanceMetrics();
+        
+        // Mark critical images with proper selector
+        markCriticalResource('img[loading="eager"]');
+      } catch (error) {
+        console.warn('Performance optimization failed:', error);
+      }
     }, 100);
-  }, []);
+  }, [isHydrated]);
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      <main role="main">
+      <main>
         <Hero />
-        <Services />
-        <About />
+        <Suspense fallback={<ServicesLoading />}>
+          <LazyServices />
+        </Suspense>
+        <Suspense fallback={<AboutLoading />}>
+          <LazyAbout />
+        </Suspense>
         <Expertise />
-        <Testimonials />
-        <FAQ />
-        <Contact />
+        <Suspense fallback={<TestimonialsLoading />}>
+          <LazyTestimonials />
+        </Suspense>
+        <Suspense fallback={<FAQLoading />}>
+          <LazyFAQ />
+        </Suspense>
+        <Suspense fallback={<ContactLoading />}>
+          <LazyContact />
+        </Suspense>
       </main>
       <Footer />
       <Toaster />
