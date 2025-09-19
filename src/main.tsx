@@ -5,8 +5,10 @@ import './index.css'
 import './lib/env' // Initialize environment configuration
 import { initCriticalPathOptimizations } from './lib/critical-path'
 
-// Initialize critical path optimizations for better LCP
-initCriticalPathOptimizations();
+// Initialize critical path optimizations for better LCP (browser only)
+if (typeof window !== 'undefined') {
+  initCriticalPathOptimizations();
+}
 
 const root = document.getElementById("root")!;
 const app = (

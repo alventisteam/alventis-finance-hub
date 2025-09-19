@@ -88,6 +88,9 @@ export const optimizeFontLoading = () => {
  * Apply all critical path optimizations
  */
 export const initCriticalPathOptimizations = () => {
+  // Ensure we're in a browser environment
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+  
   // Run optimizations as soon as possible
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
