@@ -26,6 +26,7 @@ const Hero = () => {
           loading="eager"
           fetchPriority="high"
           decoding="async"
+          data-hero-image="true"
         />
         <div className="absolute inset-0 bg-primary/80"></div>
       </div>

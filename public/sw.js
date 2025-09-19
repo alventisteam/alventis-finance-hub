@@ -14,7 +14,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Fetch event with non-http(s) request filtering
+// Fetch event with comprehensive request filtering
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   
@@ -23,16 +23,35 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   
-  // Skip preview overlay requests
-  if (request.url.includes('cdn.gpteng.co') || request.url.includes('lovableproject.com')) {
+  // Skip preview overlay and development requests
+  if (request.url.includes('cdn.gpteng.co') || 
+      request.url.includes('lovableproject.com') ||
+      request.url.includes('localhost:') ||
+      request.url.includes('127.0.0.1:')) {
+    return;
+  }
+  
+  // Skip non-GET requests and requests with no-cache
+  if (request.method !== 'GET' || request.headers.get('cache-control')?.includes('no-cache')) {
     return fetch(request);
   }
   
   event.respondWith(
     caches.match(request)
       .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(request);
+        if (response) {
+          return response;
+        }
+        
+        // Fetch from network with error handling
+        return fetch(request).catch((error) => {
+          console.warn('Service Worker: Fetch failed for', request.url, error);
+          // Return a basic response for critical requests that fail
+          if (request.url.includes('.css') || request.url.includes('.js')) {
+            return new Response('', { status: 404, statusText: 'Not Found' });
+          }
+          throw error;
+        });
       })
   );
 });

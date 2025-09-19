@@ -58,10 +58,17 @@
     
     <!-- Preview overlay compatibility -->
     <script>
-      // Allow preview overlay in development
-      if (window.location.hostname.includes('lovableproject.com') || window.location.hostname === 'localhost') {
-        window.__PREVIEW_MODE__ = true;
-      }
+      // Environment detection without import.meta
+      (function() {
+        var hostname = window.location.hostname;
+        window.__PREVIEW_MODE__ = hostname.includes('lovableproject.com') || 
+                                  hostname === 'localhost' || 
+                                  hostname.includes('cdn.gpteng.co');
+        window.__APP_ENV__ = {
+          isPreview: window.__PREVIEW_MODE__,
+          isProd: window.location.protocol === 'https:' && !window.__PREVIEW_MODE__
+        };
+      })();
     </script>
     
     <!-- Optimized font loading with font-display: swap -->
@@ -375,20 +382,27 @@
     }
 
     function loadAnalytics() {
-      // Google Analytics loads only after consent
-      const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-ZV5408R1NP';
+      // Google Analytics loads only after consent - using environment variable fallback
+      var gaId = 'G-ZV5408R1NP'; // Default fallback
       
-      var gtagScript = document.createElement('script');
-      gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
-      gtagScript.async = true;
-      document.head.appendChild(gtagScript);
+      try {
+        var gtagScript = document.createElement('script');
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+        gtagScript.async = true;
+        gtagScript.onerror = function() {
+          console.warn('Failed to load Google Analytics');
+        };
+        document.head.appendChild(gtagScript);
 
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
 
-      gtag('js', new Date());
-      gtag('config', gaId);
+        gtag('js', new Date());
+        gtag('config', gaId);
+      } catch (error) {
+        console.warn('Error loading analytics:', error);
+      }
     }
     </script>
   </head>
@@ -399,14 +413,15 @@
     
     <!-- Register service worker only in production -->
     <script>
-      if ('serviceWorker' in navigator && import.meta.env.PROD) {
-        window.addEventListener('load', () => {
+      // Register service worker with proper environment detection
+      if ('serviceWorker' in navigator && window.__APP_ENV__ && window.__APP_ENV__.isProd) {
+        window.addEventListener('load', function() {
           navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
+            .then(function(registration) {
               console.log('SW registered: ', registration);
             })
-            .catch((registrationError) => {
-              console.log('SW registration failed: ', registrationError);
+            .catch(function(registrationError) {
+              console.warn('SW registration failed: ', registrationError);
             });
         });
       }

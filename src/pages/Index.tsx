@@ -9,7 +9,7 @@ import Contact from "@/components/Contact";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { preloadImage, markCriticalResource } from "@/lib/performance";
+import { preloadImage, markCriticalResource, optimizeLCP } from "@/lib/performance";
 import { setSEOTags } from "@/lib/seo";
 
 const Index = () => {
@@ -45,10 +45,11 @@ const Index = () => {
     
     // Preload critical images for LCP optimization
     preloadImage('/assets/finance-consulting-office-belgium-2.webp', 'high');
-    preloadImage('/lovable-uploads/2389474d-0e93-43fc-9ce8-26e8816fa21e.png', 'high');
+    preloadImage('/assets/alventis-logo-160x40-2.webp', 'high');
     
-    // Mark critical images after component mount
+    // Optimize LCP detection
     setTimeout(() => {
+      optimizeLCP();
       markCriticalResource('img[fetchpriority="high"]');
     }, 100);
   }, []);
