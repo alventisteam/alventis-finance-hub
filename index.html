@@ -248,9 +248,88 @@
     }
     </script>
     
-    <!-- Defer non-critical cookie consent CSS/JS -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"></noscript>
+    <!-- Custom cookie banner styles -->
+    <style>
+      .cc-window {
+        z-index: 9999 !important;
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        left: 20px !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+        background: hsl(0 0% 3.9%) !important;
+        border: 1px solid hsl(0 0% 14.9%) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+        padding: 20px !important;
+        font-family: 'Lato', system-ui, sans-serif !important;
+      }
+      .cc-message {
+        color: hsl(0 0% 98%) !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 16px !important;
+      }
+      .cc-compliance {
+        display: flex !important;
+        gap: 8px !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
+      }
+      .cc-btn {
+        border: none !important;
+        border-radius: 6px !important;
+        padding: 8px 16px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        text-decoration: none !important;
+      }
+      .cc-allow {
+        background: hsl(47.9 95.8% 53.1%) !important;
+        color: hsl(26.5 83.3% 14.1%) !important;
+      }
+      .cc-allow:hover {
+        background: hsl(47.9 95.8% 50%) !important;
+      }
+      .cc-dismiss {
+        background: transparent !important;
+        color: hsl(0 0% 63.9%) !important;
+        border: 1px solid hsl(0 0% 27.1%) !important;
+      }
+      .cc-dismiss:hover {
+        background: hsl(0 0% 14.9%) !important;
+        color: hsl(0 0% 98%) !important;
+      }
+      .cc-link {
+        color: hsl(47.9 95.8% 53.1%) !important;
+        text-decoration: underline !important;
+        margin-left: 4px !important;
+      }
+      .cc-link:hover {
+        color: hsl(47.9 95.8% 60%) !important;
+      }
+      @media (max-width: 768px) {
+        .cc-window {
+          bottom: 10px !important;
+          right: 10px !important;
+          left: 10px !important;
+          max-width: none !important;
+        }
+        .cc-compliance {
+          flex-direction: column !important;
+          gap: 8px !important;
+        }
+        .cc-btn {
+          width: 100% !important;
+          text-align: center !important;
+        }
+      }
+    </style>
+    
+    <!-- Defer non-critical cookie consent JS -->
     <script defer src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
     <script defer>
     // Use requestIdleCallback to defer non-critical cookie consent initialization
@@ -259,14 +338,14 @@
       if (window.cookieconsent && typeof window.cookieconsent.initialise === 'function') {
         window.cookieconsent.initialise({
           palette: {
-            popup: { background: "#000000" },
-            button: { background: "#f1d600" }
+            popup: { background: "transparent" },
+            button: { background: "transparent" }
           },
           theme: "classic",
-          position: "bottom",
+          position: "bottom-right",
           type: "opt-in",
           content: {
-            message: "We use cookies to analyse traffic and improve your experience.",
+            message: "We use cookies to analyze traffic and improve your experience.",
             dismiss: "Reject",
             allow: "Accept",
             link: "Learn more",
