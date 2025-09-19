@@ -24,22 +24,8 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            // Split React and React DOM into separate chunk
-            if (id.includes("react") || id.includes("react-dom")) return "react-vendor";
-            if (id.includes("@radix-ui")) return "ui-vendor";
-            if (id.includes("lucide-react")) return "icons-vendor";
-            return "vendor";
-          }
-        },
-        // Optimize chunk names for caching
-        chunkFileNames: (chunkInfo) => {
-          if (chunkInfo.name === "react-vendor") return "assets/react-[hash].js";
-          if (chunkInfo.name === "ui-vendor") return "assets/ui-[hash].js";
-          if (chunkInfo.name === "icons-vendor") return "assets/icons-[hash].js";
-          return "assets/[name]-[hash].js";
-        },
+        // Let Vite handle chunking automatically for better React/ReactDOM deduplication
+        manualChunks: undefined,
       },
     },
     // Optimize build for production
@@ -55,9 +41,9 @@ export default defineConfig(({ mode }) => ({
   },
   // Optimize assets
   assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.webp', '**/*.avif'],
-  // Optimize dependencies
+  // Optimize dependencies - ensure React/ReactDOM are properly bundled
   optimizeDeps: {
-    include: ['react', 'react-dom'],
-    exclude: ['@radix-ui/react-*'], // Bundle separately for better caching
+    include: ['react', 'react-dom', 'react/jsx-runtime'],
+    force: true, // Force re-optimization to fix bundling issues
   },
 }));
