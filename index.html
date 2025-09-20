@@ -95,10 +95,36 @@
       
       /* Hero section background overlay */
       .bg-primary\/80{background-color:hsl(216 33% 20% / 0.8)}
+      
+      /* Contact section critical styles */
+      .min-h-\[60vh\]{min-height:60vh}
+      .overflow-hidden{overflow:hidden}
+      
+      /* Enhanced container utilities */
+      .container{width:100%;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
+      @media (min-width: 640px) {
+        .container{max-width:640px;padding-left:1.5rem;padding-right:1.5rem}
+      }
+      @media (min-width: 1024px) {
+        .container{max-width:1024px;padding-left:2rem;padding-right:2rem}
+      }
+      @media (min-width: 1280px) {
+        .container{max-width:1280px}
+      }
     </style>
     
-    <!-- Defer non-critical CSS -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Async load non-critical CSS with better performance -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="print">
+    <script>
+      // Optimize CSS loading - load stylesheet asynchronously without blocking render
+      (function() {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/src/index.css';
+        link.media = 'all';
+        document.head.appendChild(link);
+      })();
+    </script>
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
     <!-- DNS prefetch for external resources -->
@@ -112,7 +138,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical optimized hero image with proper attribute -->
-    <link rel="preload" href="/assets/finance-consulting-office-belgium-2.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="/assets/finance-consulting-office-belgium-2-optimized.webp" as="image" type="image/webp" fetchpriority="high">
     
     <!-- CSP for preview environment only -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.gpteng.co https://cdn.jsdelivr.net https://www.googletagmanager.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; connect-src 'self' https: wss: ws:;">
