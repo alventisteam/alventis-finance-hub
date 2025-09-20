@@ -13,7 +13,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-32 bg-secondary/20" role="region" aria-labelledby="testimonials-heading">
+    <section id="testimonials" className="py-32 bg-secondary/20" aria-labelledby="testimonials-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Professional Experience */}
@@ -35,7 +35,7 @@ const Testimonials = () => {
                     loading="lazy"
                   />
                 </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Buckman</h4>
+                <h3 className="font-playfair font-bold text-primary mb-2">Buckman</h3>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.buckman.description')}
                 </p>
@@ -54,7 +54,7 @@ const Testimonials = () => {
                     loading="lazy"
                   />
                 </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Laurelton Diamonds</h4>
+                <h3 className="font-playfair font-bold text-primary mb-2">Laurelton Diamonds</h3>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.laurelton.description')}
                 </p>
@@ -73,7 +73,7 @@ const Testimonials = () => {
                     loading="lazy"
                   />
                 </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Imperial Brands</h4>
+                <h3 className="font-playfair font-bold text-primary mb-2">Imperial Brands</h3>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.imperial.description')}
                 </p>
@@ -92,7 +92,7 @@ const Testimonials = () => {
                     loading="lazy"
                   />
                 </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h4>
+                <h3 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h3>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.katoen.description')}
                 </p>
@@ -111,7 +111,7 @@ const Testimonials = () => {
                      loading="lazy"
                    />
                 </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Steelduxx</h4>
+                <h3 className="font-playfair font-bold text-primary mb-2">Steelduxx</h3>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.steelduxx.description')}
                 </p>
@@ -130,7 +130,7 @@ const Testimonials = () => {
                      loading="lazy"
                    />
                 </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Bestseller</h4>
+                <h3 className="font-playfair font-bold text-primary mb-2">Bestseller</h3>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.bestseller.description')}
                 </p>
@@ -149,7 +149,7 @@ const Testimonials = () => {
                      loading="lazy"
                    />
                 </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">AC Partners</h4>
+                <h3 className="font-playfair font-bold text-primary mb-2">AC Partners</h3>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.acpartners.description')}
                 </p>
@@ -168,7 +168,7 @@ const Testimonials = () => {
                      loading="lazy"
                    />
                 </div>
-                <h4 className="font-playfair font-bold text-primary mb-2">Robert Half</h4>
+                <h3 className="font-playfair font-bold text-primary mb-2">Robert Half</h3>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.roberthalf.description')}
                 </p>

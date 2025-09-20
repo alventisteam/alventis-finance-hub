@@ -271,9 +271,9 @@ const Contact = () => {
             </div>
 
             <div className="bg-sand/20 p-8 rounded-2xl">
-              <h4 className="font-playfair font-semibold text-primary text-xl mb-4">
+              <h3 className="font-playfair font-semibold text-primary text-xl mb-4">
                 {t('contact.benefits.title')}
-              </h4>
+              </h3>
               <ul className="space-y-3 font-lato text-foreground">
                 <li className="flex items-start">
                   <span className="text-warm mr-2 font-bold">✓</span>

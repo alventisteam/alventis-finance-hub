@@ -83,15 +83,6 @@
     
     <!-- Additional SEO Meta Tags -->
     <meta name="robots" content="index, follow" />
-    <script>
-      // Override x-robots-tag headers in preview environments
-      if (window.__PREVIEW_MODE__) {
-        const metaRobots = document.querySelector('meta[name="robots"]');
-        if (metaRobots) {
-          metaRobots.setAttribute('content', 'index, follow');
-        }
-      }
-    </script>
     <meta name="language" content="nl" />
     <meta name="geo.region" content="BE" />
     <meta name="geo.placename" content="België" />
