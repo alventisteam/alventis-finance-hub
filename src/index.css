@@ -27,14 +27,14 @@ All colors MUST be HSL.
     --secondary-foreground: 216 33% 20%;
 
     --muted: 215 25% 96%;
-    --muted-foreground: 216 25% 35%;
+    --muted-foreground: 216 15% 50%;
 
     /* Warm terracotta accent */
-    --accent: 18 65% 45%;
+    --accent: 18 65% 55%;
     --accent-foreground: 0 0% 98%;
 
     /* Warm koper variatie */
-    --warm: 25 70% 40%;
+    --warm: 25 70% 50%;
     --warm-foreground: 0 0% 98%;
 
     /* Zachte zandkleur */
@@ -92,7 +92,7 @@ All colors MUST be HSL.
     --secondary-foreground: 0 0% 95%;
 
     --muted: 216 20% 25%;
-    --muted-foreground: 215 15% 80%;
+    --muted-foreground: 215 15% 70%;
 
     --accent: 18 65% 55%;
     --accent-foreground: 0 0% 95%;

@@ -154,7 +154,7 @@ const Navigation = () => {
               {/* Language Switcher */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="p-2" aria-label="Select language">
+                  <Button variant="ghost" size="sm" className="p-2">
                     <Globe className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -204,7 +204,6 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
