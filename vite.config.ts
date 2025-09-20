@@ -30,11 +30,42 @@ export default defineConfig(({ mode }) => ({
   },
   // Performance optimizations for faster LCP
   build: {
-    cssCodeSplit: true,
+    cssCodeSplit: false, // Inline CSS to reduce render blocking
     rollupOptions: {
       output: {
-        // Let Vite handle chunking automatically for better React/ReactDOM deduplication
-        manualChunks: undefined,
+        // Optimize chunk splitting for better caching and smaller initial bundles
+        manualChunks: (id) => {
+          // Vendor chunk for all node_modules except React ecosystem
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('@radix-ui') || id.includes('lucide-react')) {
+              return 'ui-vendor';
+            }
+            return 'vendor';
+          }
+          // Separate chunk for non-critical components
+          if (id.includes('/components/') && 
+              (id.includes('Testimonials') || id.includes('About') || id.includes('FAQ'))) {
+            return 'non-critical';
+          }
+        },
+        // Optimize asset names for better caching
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name || 'unknown';
+          const info = name.split('.');
+          const ext = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          if (/css/i.test(ext)) {
+            return `assets/styles/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
     // Optimize build for production
@@ -44,9 +75,13 @@ export default defineConfig(({ mode }) => ({
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
       treeShaking: true,
+      // Optimize JSX for smaller bundles
+      jsxDev: false,
     },
-    // Optimize CSS extraction
+    // Optimize CSS extraction and minification
     cssMinify: mode === 'production',
+    // Reduce chunk size warnings threshold
+    chunkSizeWarningLimit: 600,
   },
   // Optimize assets
   assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.webp', '**/*.avif'],
