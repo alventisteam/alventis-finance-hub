@@ -1,76 +1,94 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import url from 'node:url';
+import fs from 'node:fs'
+import path from 'node:path'
+import url from 'node:url'
 
-console.log('>> Starting the final, robust pre-rendering script...');
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
+const toAbsolute = (p) => path.resolve(__dirname, p)
 
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
-const toAbsolute = (p) => path.resolve(__dirname, p);
+const template = fs.readFileSync(toAbsolute('dist/index.html'), 'utf-8')
+const { render } = await import('./dist/server/entry-server.js')
 
-const distPath = toAbsolute('dist');
-const serverDistPath = toAbsolute('dist/server');
+// Define routes to prerender based on App.tsx routes
+// Add new routes here when adding new pages/blogs
+const routesToPrerender = [
+  '/',
+  '/privacy',
+  '/impressum'
+  // Add new routes here when creating new pages/blogs
+  // Example: '/blog', '/blog/post-1', '/about', etc.
+]
 
-// --- 1. Load the HTML template ---
-const templatePath = path.join(distPath, 'index.html');
-console.log(`>> Loading template from ${templatePath}`);
-if (!fs.existsSync(templatePath)) {
-  console.error('❌ CRITICAL ERROR: Template file not found.');
-  process.exit(1);
-}
-const template = fs.readFileSync(templatePath, 'utf-8');
-console.log('✅ Template loaded.');
-
-// --- 2. Dynamically find and load the server-side renderer ---
-let render;
-try {
-  // CORRECTED PATH: Look inside the 'assets/js' subfolder
-  const serverAssetPath = path.join(serverDistPath, 'assets', 'js');
-  const serverFiles = fs.readdirSync(serverAssetPath);
-  const serverEntryFile = serverFiles.find(file => file.startsWith('entry-server') && file.endsWith('.js'));
+function replaceSEOTags(htmlTemplate, seoData) {
+  let html = htmlTemplate;
   
-  if (!serverEntryFile) {
-    throw new Error('Could not find the server entry file in dist/server/assets/js/.');
-  }
-
-  // Use the dynamically found file path
-  const serverEntryPath = `./dist/server/assets/js/${serverEntryFile}`;
-  console.log(`>> Dynamically found and importing render function from: ${serverEntryPath}`);
-  
-  const serverEntry = await import(serverEntryPath);
-  render = serverEntry.render;
-  console.log('✅ Render function imported successfully.');
-
-} catch (e) {
-  console.error('❌ CRITICAL ERROR: Could not import the server entry file.', e);
-  process.exit(1);
-}
-
-// --- 3. Define routes and render them ---
-const routesToPrerender = ['/', '/privacy', '/impressum'];
-console.log('>> Rendering routes...');
-for (const routeUrl of routesToPrerender) {
-  try {
-    const { html: appHtml, seoData } = render(routeUrl);
+  if (seoData) {
+    // Replace title tag
+    html = html.replace(
+      /<title>[^<]*<\/title>/i,
+      `<title>${seoData.title}</title>`
+    );
     
-    let finalHtml = template.replace(`<!--app-html-->`, appHtml);
-
-    if (seoData) {
-      finalHtml = finalHtml.replace(/<title>.*<\/title>/, `<title>${seoData.title}</title>`);
-      finalHtml = finalHtml.replace(/<meta name="description" content=".*">/, `<meta name="description" content="${seoData.description}">`);
-    }
-
-    const dir = toAbsolute(`dist${routeUrl}`);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    // Replace meta description
+    html = html.replace(
+      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
+      `<meta name="description" content="${seoData.description}">`
+    );
+    
+    // Add canonical URL (replace existing or add new)
+    const canonicalRegex = /<link\s+rel="canonical"[^>]*>/i;
+    const canonicalTag = `<link rel="canonical" href="${seoData.canonicalUrl}">`;
+    
+    if (canonicalRegex.test(html)) {
+      html = html.replace(canonicalRegex, canonicalTag);
+    } else {
+      // Insert before closing head tag
+      html = html.replace('</head>', `    ${canonicalTag}\n  </head>`);
     }
     
-    const filePath = path.join(dir, 'index.html');
-    fs.writeFileSync(filePath, finalHtml);
-    console.log(`   ✅ Rendered: ${routeUrl}`);
-  } catch (e) {
-    console.error(`   ❌ ERROR rendering route ${routeUrl}:`, e);
+    // Replace JSON-LD script (replace existing or add new)
+    const jsonLDRegex = /<script type="application\/ld\+json">[^<]*<\/script>/i;
+    const jsonLDScript = `<script type="application/ld+json">${seoData.jsonLD}</script>`;
+    
+    if (jsonLDRegex.test(html)) {
+      html = html.replace(jsonLDRegex, jsonLDScript);
+    } else {
+      // Insert before closing head tag
+      html = html.replace('</head>', `    ${jsonLDScript}\n  </head>`);
+    }
   }
+  
+  // Remove placeholder comments
+  html = html.replace(/<!--\s*Dynamic SEO tags will be inserted here.*?-->/gi, '');
+  html = html.replace(/<!--\s*Dynamic JSON-LD will be inserted here.*?-->/gi, '');
+  
+  return html;
 }
 
-console.log('>> Pre-rendering script finished successfully!');
+;(async () => {
+  for (const url of routesToPrerender) {
+    try {
+      const result = render(url);
+      const { html: appHtml, seoData } = result;
+      
+      // Replace app HTML
+      let html = template.replace(`<!--app-html-->`, appHtml);
+      
+      // Replace SEO tags with server-rendered versions
+      html = replaceSEOTags(html, seoData);
 
+      const filePath = `dist${url === '/' ? '/index' : url + '/index'}.html`
+      const absoluteFilePath = toAbsolute(filePath)
+      
+      // Ensure directory exists before writing file
+      const dir = path.dirname(absoluteFilePath)
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true })
+      }
+      
+      fs.writeFileSync(absoluteFilePath, html)
+      console.log('pre-rendered with SEO:', filePath)
+    } catch (error) {
+      console.error(`Error pre-rendering ${url}:`, error)
+    }
+  }
+})()

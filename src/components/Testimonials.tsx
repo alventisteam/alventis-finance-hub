@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { memo } from "react";
 
 const Testimonials = () => {
   const { t } = useLanguage();
@@ -182,4 +181,4 @@ const Testimonials = () => {
   );
 };
 
-export default memo(Testimonials);
+export default Testimonials;

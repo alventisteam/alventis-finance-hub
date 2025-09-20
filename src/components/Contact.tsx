@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import CopyButton from "@/components/CopyButton";
+import modernBuilding from "@/assets/modern-finance-building.webp";
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -109,28 +110,11 @@ const Contact = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <picture>
-            <source
-              media="(max-width: 640px)"
-              srcSet="/assets/modern-finance-building-400w.webp 400w"
-              sizes="100vw"
-            />
-            <source
-              media="(max-width: 1024px)"
-              srcSet="/assets/modern-finance-building-600w.webp 600w"
-              sizes="100vw"
-            />
-            <img
-              src="/assets/modern-finance-building-800w.webp"
-              srcSet="/assets/modern-finance-building-600w.webp 600w, /assets/modern-finance-building-800w.webp 800w, /assets/modern-finance-building-1200w.webp 1200w"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-              alt="Modern glass office building in Belgium representing Alventis finance consultancy for multinationals"
-              className="w-full h-full object-cover"
-              loading="lazy"
-              width="800"
-              height="600"
-            />
-          </picture>
+          <img
+            src={modernBuilding}
+            alt="Modern glass office building in Belgium representing Alventis finance consultancy for multinationals"
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-primary/80"></div>
         </div>
 
