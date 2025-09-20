@@ -195,9 +195,9 @@ export const translations = {
     'privacy.section3.items': 'Beantwoorden van contactaanvragen (artikel 6, lid 1, onder b, AVG).|Zorgen voor een veilige en stabiele werking van de website (artikel 6, lid 1, onder f, AVG).|Analyseren van websitegebruik en verbeteren van onze diensten (artikel 6, lid 1, onder a, AVG — toestemming).|Voldoen aan wettelijke verplichtingen (artikel 6, lid 1, onder c, AVG).',
     'privacy.section4.title': '4. Hostingprovider',
     'privacy.section4.intro': 'Onze website wordt gehost door:',
-    'privacy.section4.netlify.name': 'Vercel Inc.',
-    'privacy.section4.netlify.address': '340 S Lemon Ave #4133, Walnut, CA 91789, Verenigde Staten',
-    'privacy.section4.netlify.privacy': 'https://vercel.com/legal/privacy-policy',
+    'privacy.section4.netlify.name': 'Netlify, Inc.',
+    'privacy.section4.netlify.address': '2325 3rd Street, Suite 296, San Francisco, CA 94107, Verenigde Staten',
+    'privacy.section4.netlify.privacy': 'https://www.netlify.com/privacy/',
     'privacy.section4.github.name': 'GitHub, Inc.',
     'privacy.section4.github.address': '88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, Verenigde Staten',
     'privacy.section4.github.privacy': 'https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement',
@@ -441,9 +441,9 @@ export const translations = {
     'privacy.section3.items': 'Responding to contact requests (article 6, paragraph 1, under b, GDPR).|Ensuring safe and stable operation of the website (article 6, paragraph 1, under f, GDPR).|Analyzing website usage and improving our services (article 6, paragraph 1, under a, GDPR — consent).|Complying with legal obligations (article 6, paragraph 1, under c, GDPR).',
     'privacy.section4.title': '4. Hosting provider',
     'privacy.section4.intro': 'Our website is hosted by:',
-    'privacy.section4.netlify.name': 'Vercel Inc.',
-    'privacy.section4.netlify.address': '340 S Lemon Ave #4133, Walnut, CA 91789, United States',
-    'privacy.section4.netlify.privacy': 'https://vercel.com/legal/privacy-policy',
+    'privacy.section4.netlify.name': 'Netlify, Inc.',
+    'privacy.section4.netlify.address': '2325 3rd Street, Suite 296, San Francisco, CA 94107, United States',
+    'privacy.section4.netlify.privacy': 'https://www.netlify.com/privacy/',
     'privacy.section4.github.name': 'GitHub, Inc.',
     'privacy.section4.github.address': '88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States',
     'privacy.section4.github.privacy': 'https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement',
@@ -701,29 +701,14 @@ export const translations = {
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  // Initialize language from localStorage or default to 'nl'
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('alventis-language') as Language;
-      return stored || 'nl';
-    }
-    return 'nl';
-  });
-
-  // Save to localStorage when language changes
-  const handleSetLanguage = (newLanguage: Language) => {
-    setLanguage(newLanguage);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('alventis-language', newLanguage);
-    }
-  };
+  const [language, setLanguage] = useState<Language>('nl');
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations[typeof language]] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
