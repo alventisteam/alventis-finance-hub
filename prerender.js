@@ -1,94 +1,85 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import url from 'node:url'
+import fs from 'node:fs';
+import path from 'node:path';
+import url from 'node:url';
 
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
-const toAbsolute = (p) => path.resolve(__dirname, p)
+// --- SCRIPT START ---
+console.log('>> Starting the pre-rendering script...');
 
-const template = fs.readFileSync(toAbsolute('dist/index.html'), 'utf-8')
-const { render } = await import('./dist/server/entry-server.js')
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const toAbsolute = (p) => path.resolve(__dirname, p);
 
-// Define routes to prerender based on App.tsx routes
-// Add new routes here when adding new pages/blogs
-const routesToPrerender = [
-  '/',
-  '/privacy',
-  '/impressum'
-  // Add new routes here when creating new pages/blogs
-  // Example: '/blog', '/blog/post-1', '/about', etc.
-]
-
-function replaceSEOTags(htmlTemplate, seoData) {
-  let html = htmlTemplate;
-  
-  if (seoData) {
-    // Replace title tag
-    html = html.replace(
-      /<title>[^<]*<\/title>/i,
-      `<title>${seoData.title}</title>`
-    );
-    
-    // Replace meta description
-    html = html.replace(
-      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
-      `<meta name="description" content="${seoData.description}">`
-    );
-    
-    // Add canonical URL (replace existing or add new)
-    const canonicalRegex = /<link\s+rel="canonical"[^>]*>/i;
-    const canonicalTag = `<link rel="canonical" href="${seoData.canonicalUrl}">`;
-    
-    if (canonicalRegex.test(html)) {
-      html = html.replace(canonicalRegex, canonicalTag);
-    } else {
-      // Insert before closing head tag
-      html = html.replace('</head>', `    ${canonicalTag}\n  </head>`);
-    }
-    
-    // Replace JSON-LD script (replace existing or add new)
-    const jsonLDRegex = /<script type="application\/ld\+json">[^<]*<\/script>/i;
-    const jsonLDScript = `<script type="application/ld+json">${seoData.jsonLD}</script>`;
-    
-    if (jsonLDRegex.test(html)) {
-      html = html.replace(jsonLDRegex, jsonLDScript);
-    } else {
-      // Insert before closing head tag
-      html = html.replace('</head>', `    ${jsonLDScript}\n  </head>`);
-    }
+// --- STEP 1: LOAD THE HTML TEMPLATE ---
+let template;
+const templatePath = toAbsolute('dist/index.html');
+try {
+  console.log(`>> Attempting to read template from: ${templatePath}`);
+  if (!fs.existsSync(templatePath)) {
+    throw new Error(`Template file not found at path: ${templatePath}`);
   }
-  
-  // Remove placeholder comments
-  html = html.replace(/<!--\s*Dynamic SEO tags will be inserted here.*?-->/gi, '');
-  html = html.replace(/<!--\s*Dynamic JSON-LD will be inserted here.*?-->/gi, '');
-  
-  return html;
+  template = fs.readFileSync(templatePath, 'utf-8');
+  console.log('✅ SUCCESS: HTML template loaded successfully.');
+} catch (e) {
+  console.error('❌ CRITICAL ERROR: Could not read the template file.');
+  console.error('   This likely means the "build:client" step did not complete before this script ran.');
+  console.error('   Error details:', e.message);
+  process.exit(1); // Exit with an error code to fail the build
 }
 
-;(async () => {
-  for (const url of routesToPrerender) {
-    try {
-      const result = render(url);
-      const { html: appHtml, seoData } = result;
-      
-      // Replace app HTML
-      let html = template.replace(`<!--app-html-->`, appHtml);
-      
-      // Replace SEO tags with server-rendered versions
-      html = replaceSEOTags(html, seoData);
-
-      const filePath = `dist${url === '/' ? '/index' : url + '/index'}.html`
-      const absoluteFilePath = toAbsolute(filePath)
-      
-      // Ensure directory exists before writing file
-      const dir = path.dirname(absoluteFilePath)
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true })
-      }
-      
-      fs.writeFileSync(absoluteFilePath, html)
-      console.log('pre-rendered with SEO:', filePath)
-    } catch (error) {
-      console.error(`Error pre-rendering ${url}:`, error)
-    }
+// --- STEP 2: LOAD THE SERVER-SIDE RENDERER ---
+let render;
+const serverEntryPath = './dist/server/entry-server.js';
+try {
+  console.log(`>> Attempting to import render function from: ${serverEntryPath}`);
+  // Use a dynamic import which works better with ES modules
+  const serverEntry = await import(serverEntryPath);
+  render = serverEntry.render;
+  if (typeof render !== 'function') {
+    throw new Error('The imported module does not have an export named "render".');
   }
-})()
+  console.log('✅ SUCCESS: Server render function imported successfully.');
+} catch (e) {
+  console.error(`❌ CRITICAL ERROR: Could not import the server entry file.`);
+  console.error('   This likely means the "build:server" step failed or produced an invalid module.');
+  console.error('   Error details:', e.message);
+  process.exit(1); // Exit with an error code
+}
+
+// Define the pages you want to pre-render
+const routesToPrerender = ['/', '/privacy', '/impressum'];
+
+// A helper function to replace SEO tags (assumed to be correct)
+function replaceSEOTags(html, seoData) {
+  if (!seoData) return html;
+  let newHtml = html;
+  newHtml = newHtml.replace(/<title>.*<\/title>/, `<title>${seoData.title}</title>`);
+  newHtml = newHtml.replace(/<meta name="description" content=".*">/, `<meta name="description" content="${seoData.description}">`);
+  // Add other SEO tag replacements here if needed
+  return newHtml;
+}
+
+// --- STEP 3: RENDER EACH ROUTE ---
+console.log('>> Starting to render individual routes...');
+for (const url of routesToPrerender) {
+  console.log(`   - Rendering route: "${url}"`);
+  try {
+    const { html: appHtml, seoData } = render(url);
+    
+    let finalHtml = template.replace(`<!--app-html-->`, appHtml);
+    finalHtml = replaceSEOTags(finalHtml, seoData);
+
+    const dir = toAbsolute(`dist${url}`);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    
+    const filePath = path.join(dir, 'index.html');
+    fs.writeFileSync(filePath, finalHtml);
+    console.log(`   ✅ SUCCESS: Saved file for "${url}" to ${filePath}`);
+  } catch (error) {
+    console.error(`   ❌ ERROR: Failed to pre-render URL "${url}". This is likely an error within your React components.`);
+    console.error('   Error details:', error);
+    // Don't exit here, so we can see if other pages fail too
+  }
+}
+
+console.log('>> Pre-rendering script finished.');
