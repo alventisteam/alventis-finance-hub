@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link, useLocation } from "react-router-dom";
+import { useScrollDirection } from '@/hooks/useScrollDirection';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +15,7 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
+  const { scrollDirection, isScrolled } = useScrollDirection();
 
   const scrollToSection = (sectionId: string) => {
     // Ensure we're on the client side and DOM is ready
