@@ -47,13 +47,6 @@ try {
 // Define the pages you want to pre-render
 const routesToPrerender = ['/', '/privacy', '/impressum'];
 
-// Ensure clean public directory exists
-const publicDir = toAbsolute('public');
-if (!fs.existsSync(publicDir)) {
-  fs.mkdirSync(publicDir, { recursive: true });
-  console.log('✅ Created clean public directory for SSG output.');
-}
-
 // A helper function to replace SEO tags (assumed to be correct)
 function replaceSEOTags(html, seoData) {
   if (!seoData) return html;
@@ -74,7 +67,7 @@ for (const url of routesToPrerender) {
     let finalHtml = template.replace(`<!--app-html-->`, appHtml);
     finalHtml = replaceSEOTags(finalHtml, seoData);
 
-    const dir = toAbsolute(`public${url}`);
+    const dir = toAbsolute(`dist${url}`);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
