@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import CopyButton from "@/components/CopyButton";
 import modernBuilding from "@/assets/modern-finance-building.webp";
 
 const Contact = () => {
@@ -248,26 +249,34 @@ const Contact = () => {
                 {t('contact.info.title')}
               </h3>
               
-              <div className="grid grid-cols-1 gap-6">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <info.icon className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h4 className="font-lato font-semibold text-foreground mb-1">
-                        {info.title}
-                      </h4>
-                      <p className="font-lato text-primary font-medium">
-                        {info.value}
-                      </p>
-                      <p className="font-lato text-muted-foreground text-sm">
-                        {info.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+               <div className="grid grid-cols-1 gap-6">
+                 {contactInfo.map((info, index) => (
+                   <div key={index} className="flex items-start space-x-4">
+                     <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                       <info.icon className="h-6 w-6 text-accent" />
+                     </div>
+                     <div className="flex-1">
+                       <h4 className="font-lato font-semibold text-foreground mb-1">
+                         {info.title}
+                       </h4>
+                       <div className="flex items-center gap-2">
+                         <p className="font-lato text-primary font-medium">
+                           {info.value}
+                         </p>
+                         {(info.title === t('contact.phone') || info.title === t('contact.email')) && (
+                           <CopyButton 
+                             text={info.value} 
+                             label={`Copy ${info.title.toLowerCase()}`}
+                           />
+                         )}
+                       </div>
+                       <p className="font-lato text-muted-foreground text-sm">
+                         {info.description}
+                       </p>
+                     </div>
+                   </div>
+                 ))}
+               </div>
             </div>
 
             <div className="bg-sand/20 p-8 rounded-2xl">

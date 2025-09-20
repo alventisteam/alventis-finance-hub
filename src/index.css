@@ -56,6 +56,11 @@ All colors MUST be HSL.
     --shadow-soft: 0 4px 20px -2px hsl(216 33% 20% / 0.1);
     --shadow-medium: 0 8px 30px -4px hsl(216 33% 20% / 0.15);
     
+    /* Transition durations */
+    --transition-fast: 150ms;
+    --transition-normal: 200ms;
+    --transition-slow: 300ms;
+    
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
@@ -161,12 +166,46 @@ All colors MUST be HSL.
     font-display: swap;
   }
   
-  /* Prevent mobile menu from causing layout shifts */
-  .navigation-mobile {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 50;
-  }
+/* Enhanced hover transitions for all interactive elements */
+.hover-scale {
+  transition: transform var(--transition-normal) ease-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Button hover enhancements */
+.btn, button, [role="button"] {
+  transition: all var(--transition-normal) ease-out;
+}
+
+.btn:hover, button:hover, [role="button"]:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Link hover enhancements */
+a {
+  transition: color var(--transition-fast) ease-out;
+}
+
+/* Card hover enhancements */
+.card {
+  transition: all var(--transition-normal) ease-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Navigation mobile styles */
+.navigation-mobile {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
 }

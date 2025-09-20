@@ -701,14 +701,29 @@ export const translations = {
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('nl');
+  // Initialize language from localStorage or default to 'nl'
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('alventis-language') as Language;
+      return stored || 'nl';
+    }
+    return 'nl';
+  });
+
+  // Save to localStorage when language changes
+  const handleSetLanguage = (newLanguage: Language) => {
+    setLanguage(newLanguage);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('alventis-language', newLanguage);
+    }
+  };
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations[typeof language]] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
