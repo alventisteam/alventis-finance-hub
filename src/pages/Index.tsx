@@ -1,18 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import About from "@/components/About";
 import Expertise from "@/components/Expertise";
-import Testimonials from "@/components/Testimonials";
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import { LazySection } from "@/components/LazySection";
 import { Toaster } from "@/components/ui/toaster";
+import { LazySection } from "@/components/LazySection";
+import { Skeleton } from "@/components/ui/skeleton";
 import { preloadImage, markCriticalResource, optimizeLCP } from "@/lib/performance";
 import { setSEOTags } from "@/lib/seo";
+
+// Lazy load heavy components to reduce initial bundle size
+const About = lazy(() => import("@/components/About"));
+const Testimonials = lazy(() => import("@/components/Testimonials"));
+const FAQ = lazy(() => import("@/components/FAQ"));
+const Contact = lazy(() => import("@/components/Contact"));
 
 const Index = () => {
   useEffect(() => {
@@ -61,19 +64,31 @@ const Index = () => {
       <main role="main">
         <Hero />
         <Services />
-        <LazySection fallback={<div className="py-32 bg-secondary/20" />}>
-          <About />
+        <LazySection fallback={<Skeleton className="h-96 w-full" />}>
+          <Suspense fallback={<Skeleton className="h-96 w-full" />}>
+            <About />
+          </Suspense>
         </LazySection>
-        <LazySection fallback={<div className="py-24 bg-background" />}>
-          <Expertise />
+        <LazySection fallback={<Skeleton className="h-64 w-full" />}>
+          <Suspense fallback={<Skeleton className="h-64 w-full" />}>
+            <Expertise />
+          </Suspense>
         </LazySection>
-        <LazySection fallback={<div className="py-32 bg-secondary/20" />}>
-          <Testimonials />
+        <LazySection fallback={<Skeleton className="h-64 w-full" />}>
+          <Suspense fallback={<Skeleton className="h-64 w-full" />}>
+            <Testimonials />
+          </Suspense>
         </LazySection>
-        <LazySection fallback={<div className="py-24 bg-background" />}>
-          <FAQ />
+        <LazySection fallback={<Skeleton className="h-80 w-full" />}>
+          <Suspense fallback={<Skeleton className="h-80 w-full" />}>
+            <FAQ />
+          </Suspense>
         </LazySection>
-        <Contact />
+        <LazySection fallback={<Skeleton className="h-96 w-full" />}>
+          <Suspense fallback={<Skeleton className="h-96 w-full" />}>
+            <Contact />
+          </Suspense>
+        </LazySection>
       </main>
       <Footer />
       <ScrollToTop />

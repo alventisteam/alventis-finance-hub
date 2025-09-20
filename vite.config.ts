@@ -43,12 +43,27 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('@radix-ui') || id.includes('lucide-react')) {
               return 'ui-vendor';
             }
+            if (id.includes('@tanstack/react-query')) {
+              return 'query-vendor';
+            }
             return 'vendor';
           }
-          // Separate chunk for non-critical components
-          if (id.includes('/components/') && 
-              (id.includes('Testimonials') || id.includes('About') || id.includes('FAQ'))) {
-            return 'non-critical';
+          // Separate chunks for lazy-loaded components
+          if (id.includes('/components/About')) {
+            return 'about-chunk';
+          }
+          if (id.includes('/components/Contact')) {
+            return 'contact-chunk';
+          }
+          if (id.includes('/components/FAQ')) {
+            return 'faq-chunk';
+          }
+          if (id.includes('/components/Testimonials')) {
+            return 'testimonials-chunk';
+          }
+          // Separate chunk for secondary pages
+          if (id.includes('/pages/Privacy') || id.includes('/pages/LegalNotice')) {
+            return 'secondary-pages';
           }
         },
         // Optimize asset names for better caching
