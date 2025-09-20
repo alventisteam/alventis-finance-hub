@@ -16,8 +16,8 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/finance-consulting-office-belgium-2.webp"
-          srcSet="/assets/finance-consulting-office-belgium-2.webp 1920w, /assets/finance-consulting-office-belgium-2.webp 1200w, /assets/finance-consulting-office-belgium-2.webp 800w"
+          src="/assets/finance-consulting-office-belgium-2-optimized.webp"
+          srcSet="/assets/finance-consulting-office-belgium-2-800w.webp 800w, /assets/finance-consulting-office-belgium-2-1200w.webp 1200w, /assets/finance-consulting-office-belgium-2-optimized.webp 1920w"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
           alt="BTW-compliance kantoor België - finance procesoptimalisatie en digitalisering voor multinationals"
           className="w-full h-full object-cover"
