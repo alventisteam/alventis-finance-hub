@@ -105,7 +105,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-gradient-to-br from-background via-secondary/20 to-background" role="region" aria-labelledby="services-heading">
+    <section id="services" className="py-24 bg-gradient-to-br from-background via-secondary/20 to-background" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 id="services-heading" className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
