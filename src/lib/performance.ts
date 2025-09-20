@@ -1,4 +1,7 @@
-// Performance utilities for optimizing LCP and Core Web Vitals
+/**
+ * Performance utilities for optimizing LCP and Core Web Vitals
+ * Batch DOM operations to prevent forced reflows
+ */
 
 /**
  * Preload critical images to improve LCP with better error handling
@@ -11,6 +14,8 @@ export const preloadImage = (src: string, priority: 'high' | 'low' = 'high') => 
     const existing = document.querySelector(`link[href="${src}"]`);
     if (existing) return;
     
+    // Batch DOM operations to prevent reflows
+    const fragment = document.createDocumentFragment();
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
@@ -22,30 +27,36 @@ export const preloadImage = (src: string, priority: 'high' | 'low' = 'high') => 
     // Add error handling
     link.onerror = () => console.warn(`Failed to preload image: ${src}`);
     
-    document.head.appendChild(link);
+    fragment.appendChild(link);
+    document.head.appendChild(fragment);
   } catch (error) {
     console.warn('Error preloading image:', error);
   }
 };
 
 /**
- * Mark critical resources for faster loading with better selector handling
+ * Mark critical resources for faster loading with batched DOM operations
  */
 export const markCriticalResource = (selector: string) => {
   if (typeof document === 'undefined') return;
   
   try {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach(element => {
-      if (element instanceof HTMLImageElement) {
-        element.loading = 'eager';
-        element.setAttribute('fetchpriority', 'high');
-        
-        // Ensure images have proper error handling
-        if (!element.onerror) {
-          element.onerror = () => console.warn(`Failed to load image: ${element.src}`);
+    // Use requestAnimationFrame to batch DOM updates
+    requestAnimationFrame(() => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(element => {
+        if (element instanceof HTMLImageElement) {
+          // Batch property changes to avoid reflows
+          element.style.cssText += 'contain: layout style paint;';
+          element.loading = 'eager';
+          element.setAttribute('fetchpriority', 'high');
+          
+          // Ensure images have proper error handling
+          if (!element.onerror) {
+            element.onerror = () => console.warn(`Failed to load image: ${element.src}`);
+          }
         }
-      }
+      });
     });
   } catch (error) {
     console.warn('Error marking critical resources:', error);
@@ -66,12 +77,16 @@ export const optimizeLCP = () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const img = entry.target as HTMLImageElement;
-        img.loading = 'eager';
-        img.setAttribute('fetchpriority', 'high');
+        // Batch DOM changes
+        requestAnimationFrame(() => {
+          img.loading = 'eager';
+          img.setAttribute('fetchpriority', 'high');
+          img.style.cssText += 'contain: layout style paint;';
+        });
         observer.unobserve(img);
       }
     });
-  });
+  }, { rootMargin: '50px' });
   
   observer.observe(heroImage);
 };

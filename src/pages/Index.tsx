@@ -9,6 +9,7 @@ import Contact from "@/components/Contact";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import { LazySection } from "@/components/LazySection";
 import { Toaster } from "@/components/ui/toaster";
 import { preloadImage, markCriticalResource, optimizeLCP } from "@/lib/performance";
 import { setSEOTags } from "@/lib/seo";
@@ -60,10 +61,18 @@ const Index = () => {
       <main role="main">
         <Hero />
         <Services />
-        <About />
-        <Expertise />
-        <Testimonials />
-        <FAQ />
+        <LazySection fallback={<div className="py-32 bg-secondary/20" />}>
+          <About />
+        </LazySection>
+        <LazySection fallback={<div className="py-24 bg-background" />}>
+          <Expertise />
+        </LazySection>
+        <LazySection fallback={<div className="py-32 bg-secondary/20" />}>
+          <Testimonials />
+        </LazySection>
+        <LazySection fallback={<div className="py-24 bg-background" />}>
+          <FAQ />
+        </LazySection>
         <Contact />
       </main>
       <Footer />
