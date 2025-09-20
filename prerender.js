@@ -23,17 +23,17 @@ console.log('✅ Template loaded.');
 // --- 2. Dynamically find and load the server-side renderer ---
 let render;
 try {
-  const serverAssetPath = path.join(serverDistPath, 'assets');
-  // Read the directory to find the entry-server file with the hash
+  // CORRECTED PATH: Look inside the 'assets/js' subfolder
+  const serverAssetPath = path.join(serverDistPath, 'assets', 'js');
   const serverFiles = fs.readdirSync(serverAssetPath);
   const serverEntryFile = serverFiles.find(file => file.startsWith('entry-server') && file.endsWith('.js'));
   
   if (!serverEntryFile) {
-    throw new Error('Could not find the server entry file in dist/server/assets/.');
+    throw new Error('Could not find the server entry file in dist/server/assets/js/.');
   }
 
   // Use the dynamically found file path
-  const serverEntryPath = `./dist/server/assets/${serverEntryFile}`;
+  const serverEntryPath = `./dist/server/assets/js/${serverEntryFile}`;
   console.log(`>> Dynamically found and importing render function from: ${serverEntryPath}`);
   
   const serverEntry = await import(serverEntryPath);
