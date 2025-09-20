@@ -23,35 +23,42 @@ const ScrollToTopOnNavigate = () => {
   return null;
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <LanguageProvider>
-        <ScrollToTopOnNavigate />
-        <Toaster />
-        <Sonner />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route 
-            path="/privacy" 
-            element={
-              <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-                <Privacy />
-              </Suspense>
-            } 
-          />
-          <Route 
-            path="/impressum" 
-            element={
-              <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-                <LegalNotice />
-              </Suspense>
-            } 
-          />
-        </Routes>
-      </LanguageProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  useEffect(() => {
+    // Mark as hydrated after React has mounted
+    document.body.classList.add('hydrated');
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <LanguageProvider>
+          <ScrollToTopOnNavigate />
+          <Toaster />
+          <Sonner />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route 
+              path="/privacy" 
+              element={
+                <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+                  <Privacy />
+                </Suspense>
+              } 
+            />
+            <Route 
+              path="/impressum" 
+              element={
+                <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+                  <LegalNotice />
+                </Suspense>
+              } 
+            />
+          </Routes>
+        </LanguageProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

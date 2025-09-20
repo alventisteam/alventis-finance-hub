@@ -27,6 +27,7 @@ const Hero = () => {
           fetchPriority="high"
           decoding="async"
           data-hero-image="true"
+          style={{ contain: 'layout style paint', willChange: 'transform' }}
         />
         <div className="absolute inset-0 bg-primary/80"></div>
       </div>
@@ -39,9 +40,11 @@ const Hero = () => {
           }} />
         </h1>
         
-        <p className="text-xl sm:text-2xl font-lato font-light mb-8 max-w-3xl mx-auto leading-relaxed">
-          {t('hero.subtitle')}
-        </p>
+        <div className="hero-subtitle-critical text-xl sm:text-2xl font-lato font-light mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="hidden-until-hydrated">
+            {t('hero.subtitle')}
+          </p>
+        </div>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4">
           <Button
