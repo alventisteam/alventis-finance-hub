@@ -126,7 +126,7 @@ const Contact = () => {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
               alt="Modern glass office building in Belgium representing Alventis finance consultancy for multinationals"
               className="w-full h-full object-cover"
-              fetchPriority="high"
+              loading="lazy"
               width="800"
               height="600"
             />
