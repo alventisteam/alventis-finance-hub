@@ -256,9 +256,9 @@ const Contact = () => {
                        <info.icon className="h-6 w-6 text-accent" />
                      </div>
                      <div className="flex-1">
-                       <h4 className="font-lato font-semibold text-foreground mb-1">
-                         {info.title}
-                       </h4>
+                        <span className="font-lato font-semibold text-foreground mb-1 block">
+                          {info.title}
+                        </span>
                        <div className="flex items-center gap-2">
                          <p className="font-lato text-primary font-medium">
                            {info.value}

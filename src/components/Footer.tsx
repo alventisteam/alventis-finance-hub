@@ -30,9 +30,9 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-playfair font-semibold text-lg mb-4">
+            <h3 className="font-playfair font-semibold text-lg mb-4">
               {t('footer.services.title')}
-            </h4>
+            </h3>
             <ul className="space-y-2 font-lato text-primary-foreground/80">
               <li>{t('footer.service1')}</li>
               <li>{t('footer.service2')}</li>
@@ -44,9 +44,9 @@ const Footer = () => {
 
           {/* Contact & Social Proof */}
           <div>
-            <h4 className="font-playfair font-semibold text-lg mb-4">
+            <h3 className="font-playfair font-semibold text-lg mb-4">
               {t('footer.contact.title')}
-            </h4>
+            </h3>
             <div className="space-y-2 font-lato text-primary-foreground/80 mb-6">
               <p>{t('footer.location')}</p>
               <p>+32 478 83 43 23</p>
@@ -54,9 +54,9 @@ const Footer = () => {
             </div>
             
             <div className="space-y-3">
-              <h5 className="font-lato font-semibold text-primary-foreground text-sm">
+              <span className="font-lato font-semibold text-primary-foreground text-sm block">
                 {t('footer.trusted.title')}
-              </h5>
+              </span>
               <div className="space-y-1 font-lato text-primary-foreground/60 text-sm">
                 <p>{t('footer.trusted1')}</p>
                 <p>{t('footer.trusted2')}</p>

@@ -35,7 +35,7 @@ const Testimonials = () => {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="font-playfair font-bold text-primary mb-2">Buckman</h3>
+                <p className="font-playfair font-bold text-primary mb-2 text-lg">Buckman</p>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.buckman.description')}
                 </p>
@@ -54,7 +54,7 @@ const Testimonials = () => {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="font-playfair font-bold text-primary mb-2">Laurelton Diamonds</h3>
+                <p className="font-playfair font-bold text-primary mb-2 text-lg">Laurelton Diamonds</p>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.laurelton.description')}
                 </p>
@@ -73,7 +73,7 @@ const Testimonials = () => {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="font-playfair font-bold text-primary mb-2">Imperial Brands</h3>
+                <p className="font-playfair font-bold text-primary mb-2 text-lg">Imperial Brands</p>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.imperial.description')}
                 </p>
@@ -92,7 +92,7 @@ const Testimonials = () => {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="font-playfair font-bold text-primary mb-2">Katoen Natie</h3>
+                <p className="font-playfair font-bold text-primary mb-2 text-lg">Katoen Natie</p>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.katoen.description')}
                 </p>
@@ -111,7 +111,7 @@ const Testimonials = () => {
                      loading="lazy"
                    />
                 </div>
-                <h3 className="font-playfair font-bold text-primary mb-2">Steelduxx</h3>
+                <p className="font-playfair font-bold text-primary mb-2 text-lg">Steelduxx</p>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.steelduxx.description')}
                 </p>
@@ -130,7 +130,7 @@ const Testimonials = () => {
                      loading="lazy"
                    />
                 </div>
-                <h3 className="font-playfair font-bold text-primary mb-2">Bestseller</h3>
+                <p className="font-playfair font-bold text-primary mb-2 text-lg">Bestseller</p>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.bestseller.description')}
                 </p>
@@ -149,7 +149,7 @@ const Testimonials = () => {
                      loading="lazy"
                    />
                 </div>
-                <h3 className="font-playfair font-bold text-primary mb-2">AC Partners</h3>
+                <p className="font-playfair font-bold text-primary mb-2 text-lg">AC Partners</p>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.acpartners.description')}
                 </p>
@@ -168,7 +168,7 @@ const Testimonials = () => {
                      loading="lazy"
                    />
                 </div>
-                <h3 className="font-playfair font-bold text-primary mb-2">Robert Half</h3>
+                <p className="font-playfair font-bold text-primary mb-2 text-lg">Robert Half</p>
                 <p className="font-lato text-muted-foreground text-sm">
                   {t('testimonials.roberthalf.description')}
                 </p>

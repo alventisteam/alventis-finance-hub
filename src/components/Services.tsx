@@ -130,12 +130,12 @@ const Services = () => {
                 
                 <div className="space-y-8">
                   <div className="border-l-4 border-muted pl-6 py-2">
-                    <h4 className="font-lato font-bold text-muted-foreground mb-3 text-sm uppercase tracking-wide">{t('services.problem')}</h4>
+                    <span className="font-lato font-bold text-muted-foreground mb-3 text-sm uppercase tracking-wide block">{t('services.problem')}</span>
                     <p className="font-lato text-muted-foreground leading-relaxed">{service.problem}</p>
                   </div>
                   
                   <div className="border-l-4 border-primary pl-6 py-2">
-                    <h4 className="font-lato font-bold text-primary mb-3 text-sm uppercase tracking-wide">{t('services.solution')}</h4>
+                    <span className="font-lato font-bold text-primary mb-3 text-sm uppercase tracking-wide block">{t('services.solution')}</span>
                     <p className="font-lato text-foreground leading-relaxed">
                       {index === 0 && (
                         <>
@@ -156,7 +156,7 @@ const Services = () => {
                   </div>
                   
                   <div className="border-l-4 border-warm pl-6 py-2">
-                    <h4 className="font-lato font-bold text-warm mb-3 text-sm uppercase tracking-wide">{t('services.benefit')}</h4>
+                    <span className="font-lato font-bold text-warm mb-3 text-sm uppercase tracking-wide block">{t('services.benefit')}</span>
                     <p className="font-lato text-foreground font-semibold leading-relaxed">
                       {index === 0 && (
                         <>
