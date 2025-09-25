@@ -23,7 +23,7 @@ export const translations = {
     
     // Hero Section
     'hero.title': 'BTW-compliance & Finance Optimalisatie voor Multinationals in België',
-    'hero.subtitle': '10+ jaar ervaring als finance & business controller. Expertise in btw-advies, digitalisering finance processen en audit-ready rapportering voor internationale bedrijven zoals Buckman, Katoen Natie en Imperial Brands.',
+    'hero.subtitle': '10+ jaar ervaring als finance en business controller. Expertise in btw-advies, digitalisering finance processen en audit-ready rapportering voor internationale bedrijven zoals Buckman, Katoen Natie en Imperial Brands.',
     'hero.cta1': 'Plan een gratis kennismaking',
     'hero.cta2': 'Bekijk onze diensten',
     'hero.scroll': 'Scroll naar diensten',
@@ -270,7 +270,7 @@ export const translations = {
     
     // Hero Section
     'hero.title': 'VAT Compliance & Finance Optimization for Multinationals in Belgium',
-    'hero.subtitle': '10+ years of experience as finance & business controller. Expertise in VAT advice, finance process digitalization and audit-ready reporting for international companies like Buckman, Katoen Natie and Imperial Brands.',
+    'hero.subtitle': '10+ years of experience as finance and business controller. Expertise in VAT advice, finance process digitalization and audit-ready reporting for international companies like Buckman, Katoen Natie and Imperial Brands.',
     'hero.cta1': 'Schedule a free consultation',
     'hero.cta2': 'View our services',
     'hero.scroll': 'Scroll to services',
@@ -516,18 +516,18 @@ export const translations = {
     
     // Hero Section
     'hero.title': 'Cumplimiento de IVA y Optimización Financiera para Multinacionales en Bélgica',
-    'hero.subtitle': 'Más de 10 años de experiencia como controlador financiero y empresarial. Experiencia en asesoramiento de IVA, digitalización de procesos financieros e informes listos para auditoría para empresas internacionales como Buckman, Katoen Natie e Imperial Brands.',
+    'hero.subtitle': 'Más de 10 años de experiencia como controlador financiero y de negocios. Experiencia en asesoramiento de IVA, digitalización de procesos financieros e informes listos para auditoría para empresas internacionales como Buckman, Katoen Natie e Imperial Brands.',
     'hero.cta1': 'Programar consulta gratuita',
     'hero.cta2': 'Ver nuestros servicios',
     'hero.scroll': 'Desplazarse a servicios',
     
     // About Section
     'about.title': 'Acerca de Alventis',
-    'about.intro1': 'Como controlador financiero y empresarial y gerente de proyectos en multinacionales internacionales, entiendo exactamente con qué luchan los equipos financieros. Desde obligaciones interminables de IVA hasta procesos manuales que ralentizan y causan errores.',
+    'about.intro1': 'Como controlador financiero y de negocios y gerente de proyectos en multinacionales internacionales, entiendo exactamente con qué luchan los equipos financieros. Desde obligaciones interminables de IVA hasta procesos manuales que ralentizan y causan errores.',
     'about.quote': '"Después de más de 10 años en primera línea de las finanzas en multinacionales, sé exactamente dónde van mal las cosas. ¿Mi enfoque? Fuera el caos. Adentro la estructura. Tu equipo trabaja más rápido, con mayor precisión y se enfoca en lo que realmente importa: el impacto estratégico."',
     'about.subtitle': 'Asesor estratégico en optimización financiera y estructuras internacionales de IVA',
     'about.expertise.title': 'Mi experiencia:',
-    'about.expertise.1': 'Más de 10 años de experiencia como controlador financiero y empresarial en multinacionales',
+    'about.expertise.1': 'Más de 10 años de experiencia como controlador financiero y de negocios en multinacionales',
     'about.expertise.2': 'Asesoramiento de IVA para estructuras internacionales – especialista en regulaciones belgas',
     'about.expertise.3': 'Orientación de transformaciones financieras y procesos de cambio',
     'about.expertise.4': 'Optimización de procesos y digitalización de departamentos financieros',
