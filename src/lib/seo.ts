@@ -20,7 +20,8 @@ const coreEntities = {
     "name": "Alventis",
     "description": "BTW-compliance en finance optimalisatie voor multinationals in België. Specialist in btw-advies, digitalisering finance processen en audit-ready rapportering.",
     "url": "https://alventis.be",
-    "logo": "https://alventis.be/favicon-optimized.webp",
+    "logo": "https://alventis.be/assets/alventis-og-image.webp",
+    "image": "https://alventis.be/assets/alventis-og-image.webp",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+32478834323",
@@ -39,7 +40,7 @@ const coreEntities = {
       "@id": "https://alventis.be/#person"
     },
     "areaServed": "Belgium",
-    "inLanguage": "nl"
+    "inLanguage": ["nl", "en", "es"]
   },
   
   person: {
@@ -59,11 +60,22 @@ const coreEntities = {
     "@id": "https://alventis.be/#business",
     "name": "Alventis Finance Consulting",
     "description": "BTW-compliance en finance optimalisatie voor multinationals in België",
+    "url": "https://alventis.be",
+    "image": "https://alventis.be/assets/alventis-og-image.webp",
+    "telephone": "+32478834323",
+    "priceRange": "€€–€€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bergstraat 39",
+      "addressLocality": "Kluisbergen",
+      "postalCode": "9690",
+      "addressCountry": "BE"
+    },
     "provider": {
       "@id": "https://alventis.be/#org"
     },
     "areaServed": "Belgium",
-    "inLanguage": "nl",
+    "inLanguage": ["nl", "en", "es"],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Finance Consulting Services",
@@ -127,7 +139,7 @@ export function generateJSONLD(pageData: PageSEO): string {
     "url": pageData.canonicalUrl,
     "name": pageData.title,
     "description": pageData.description,
-    "inLanguage": "nl",
+    "inLanguage": ["nl", "en", "es"],
     "isPartOf": {
       "@type": "WebSite",
       "@id": "https://alventis.be/#website",
