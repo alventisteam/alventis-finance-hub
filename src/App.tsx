@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import Privacy from "./pages/Privacy";
 import LegalNotice from "./pages/LegalNotice";
+import Services from "./pages/Services";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
         <Sonner />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/diensten" element={<Services />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/impressum" element={<LegalNotice />} />
         </Routes>

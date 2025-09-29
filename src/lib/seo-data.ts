@@ -17,6 +17,17 @@ export const seoData: Record<string, RouteMetadata> = {
     image: "/assets/alventis-og-image.webp",
     hasFAQ: true
   },
+  '/diensten': {
+    title: "Finance Optimalisatie & BTW-compliance Diensten | Alventis België",
+    description: "Professionele BTW-compliance en finance optimalisatie diensten voor multinationals in België. 50% tijdsbesparing, 100% compliance garantie, 3 maanden implementatie.",
+    canonicalUrl: "https://alventis.be/diensten",
+    image: "/assets/alventis-og-image.webp",
+    hasFAQ: true,
+    breadcrumbs: [
+      { name: 'Home', url: 'https://alventis.be/' },
+      { name: 'Diensten', url: 'https://alventis.be/diensten' }
+    ]
+  },
   '/privacy': {
     title: 'Privacybeleid & GDPR Compliance | Alventis Finance Consulting',
     description: 'Privacybeleid Alventis: GDPR-compliant gegevensverwerking, cookiebeleid, uw rechten als klant. Transparante privacy practices voor onze BTW & finance diensten.',

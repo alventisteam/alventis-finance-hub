@@ -99,6 +99,12 @@ const Navigation = () => {
                   >
                     {t('nav.services')}
                   </button>
+                  <Link
+                    to="/diensten"
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.diensten')}
+                  </Link>
                   <button
                     onClick={() => scrollToSection('about')}
                     className="text-foreground hover:text-accent transition-colors font-lato font-medium"
@@ -137,6 +143,12 @@ const Navigation = () => {
                     className="text-foreground hover:text-accent transition-colors font-lato font-medium"
                   >
                     {t('nav.services')}
+                  </Link>
+                  <Link
+                    to="/diensten"
+                    className="text-foreground hover:text-accent transition-colors font-lato font-medium"
+                  >
+                    {t('nav.diensten')}
                   </Link>
                   <Link
                     to="/#about"
@@ -231,6 +243,13 @@ const Navigation = () => {
                   >
                     {t('nav.services')}
                   </button>
+                  <Link
+                    to="/diensten"
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {t('nav.diensten')}
+                  </Link>
                   <button
                     onClick={() => scrollToSection('about')}
                     className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium w-full text-left"
@@ -271,6 +290,13 @@ const Navigation = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {t('nav.services')}
+                  </Link>
+                  <Link
+                    to="/diensten"
+                    className="block px-3 py-2 text-foreground hover:text-accent font-lato font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {t('nav.diensten')}
                   </Link>
                   <Link
                     to="/#contact"
