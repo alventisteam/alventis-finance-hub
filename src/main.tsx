@@ -11,11 +11,16 @@ const app = (
   </BrowserRouter>
 );
 
-// Use hydration for SSR in production with error boundaries
+// Smart hydration: Check if SSR content exists before using hydrateRoot
+// This allows SSR in production (Netlify) while supporting CSR in Lovable preview
 try {
-  if (import.meta.env.PROD) {
+  const hasSSRContent = root.innerHTML.trim() && !root.innerHTML.includes('<!--app-html-->');
+  
+  if (hasSSRContent) {
+    // SSR content exists (production with prerendering) - use hydration
     hydrateRoot(root, app);
   } else {
+    // No SSR content (Lovable preview or initial load) - use client-side rendering
     createRoot(root).render(app);
   }
 } catch (error) {

@@ -13,7 +13,8 @@ const { render } = await import('./dist/server/entry-server.js')
 const routesToPrerender = [
   '/',
   '/privacy',
-  '/impressum'
+  '/impressum',
+  '/diensten'
   // Add new routes here when creating new pages/blogs
   // Example: '/blog', '/blog/post-1', '/about', etc.
 ]

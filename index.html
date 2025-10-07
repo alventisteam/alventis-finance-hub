@@ -63,6 +63,7 @@
       (function() {
         var hostname = window.location.hostname;
         window.__PREVIEW_MODE__ = hostname.includes('lovableproject.com') || 
+                                  hostname.includes('lovable.app') ||
                                   hostname === 'localhost' || 
                                   hostname.includes('cdn.gpteng.co');
         window.__APP_ENV__ = {

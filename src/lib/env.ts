@@ -8,6 +8,7 @@ export const ENV = {
   isPreviewMode: () => {
     if (typeof window === 'undefined') return false;
     return window.location.hostname.includes('lovableproject.com') || 
+           window.location.hostname.includes('lovable.app') ||
            window.location.hostname === 'localhost' ||
            window.location.hostname.includes('cdn.gpteng.co');
   }
